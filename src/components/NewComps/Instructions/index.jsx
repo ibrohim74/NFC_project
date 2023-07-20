@@ -51,12 +51,15 @@ const Instructions = (props) => {
               orientation="vertical"
             >
               <div className="bg-gray-100 flex flex-1 flex-col gap-8 items-start justify-center p-8 sm:px-5 rounded-[32px] w-full">
-                <Text
-                  className="text-base text-blue-A400 tracking-[0.32px] w-full"
-                  size="txtRubikSemiBold16BlueA400"
-                >
-                  STEP 02
-                </Text>
+                <div className="flex sm:flex-col flex-row gap-7 items-center justify-center w-full">
+                  <Text
+                    className="text-base text-blue-A400 tracking-[0.32px] w-auto"
+                    size="txtRubikSemiBold16BlueA400"
+                  >
+                    STEP 02
+                  </Text>
+                  <Line className="bg-gray-200 h-px w-4/5 sm:w-[87%]" />
+                </div>
                 <div className="flex flex-col gap-5 items-start justify-start w-full">
                   <Text
                     className="text-2xl md:text-[22px] text-black-900 sm:text-xl w-full"
@@ -75,12 +78,15 @@ const Instructions = (props) => {
                 </div>
               </div>
               <div className="bg-gray-100_01 flex flex-1 flex-col gap-8 items-start justify-center p-8 sm:px-5 rounded-[32px] w-full">
-                <Text
-                  className="text-base text-blue-A400 tracking-[0.32px] w-full"
-                  size="txtRubikSemiBold16BlueA400"
-                >
-                  STEP 03
-                </Text>
+                <div className="flex sm:flex-col flex-row gap-7 items-center justify-center w-full">
+                  <Text
+                    className="text-base text-blue-A400 tracking-[0.32px] w-auto"
+                    size="txtRubikSemiBold16BlueA400"
+                  >
+                    STEP 03
+                  </Text>
+                  <Line className="bg-gray-200 h-px w-4/5 sm:w-[87%]" />
+                </div>
                 <div className="flex flex-col gap-5 items-start justify-start w-full">
                   <Text
                     className="text-2xl md:text-[22px] text-black-900 sm:text-xl w-full"

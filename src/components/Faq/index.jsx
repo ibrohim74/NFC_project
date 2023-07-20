@@ -5,7 +5,7 @@ import { Img, Text } from "components";
 const Faq = (props) => {
   return (
     <>
-      <div className={props.className}>
+      <div className={props.className} onClick={props.onClick} id={props.id}>
         <div className="flex flex-col items-center justify-center max-w-[766px] w-full">
           <Text
             className="text-4xl sm:text-[32px] md:text-[34px] text-black-900 text-center w-full"

@@ -5,7 +5,7 @@ import { Img, Text } from "components";
 const Panel = (props) => {
   return (
     <>
-      <div className={props.className}>
+      <div className={props.className} onClick={props?.onClick} id={props.id}>
         <div className="flex flex-col items-center justify-start sm:p-[] sm:pl-[] sm:pr-[] w-[57%] md:w-full">
           <div className="flex md:flex-col flex-row gap-8 items-start justify-start max-w-[1080px] w-full">
             <div className="flex md:flex-1 flex-col items-center justify-start w-[49%] md:w-full">
