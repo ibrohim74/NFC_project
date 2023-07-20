@@ -5,8 +5,8 @@ import { Text } from "components";
 const GridPanel = (props) => {
   return (
     <>
-      <div className={props.className} onClick={props?.onClick}>
-        <div className="flex flex-col gap-5 items-center justify-center max-w-[1080px] md:px-10 sm:px-5 px-[185px] w-full">
+      <div className={props.className} onClick={props?.onClick} id={props.id}>
+        <div className="flex flex-col gap-5 items-center justify-center max-w-[1080px] md:px-10 sm:px-5 px-[60px] w-full">
           <Text
             className="text-4xl sm:text-[32px] md:text-[34px] text-black-900 text-center w-full"
             size="txtRubikSemiBold36"
@@ -21,8 +21,8 @@ const GridPanel = (props) => {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Text>
         </div>
-        <div className="gap-7 grid md:grid-cols-1 grid-cols-2 items-start max-w-[1080px] min-h-[auto] w-full">
-          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] md:h-auto items-start justify-end p-7 sm:px-5 rounded-[28px] w-full">
+        <div className="gap-7 grid md:grid-cols-1 grid-cols-2 items-start max-w-[1080px] min-h-[auto] w-fit">
+          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] items-start justify-end p-7 sm:px-5 rounded-[28px] w-[400px]">
             <Text
               className="text-base text-blue-A400 tracking-[0.32px] w-auto"
               size="txtRubikSemiBold16"
@@ -36,7 +36,7 @@ const GridPanel = (props) => {
               Заряжайте и оплачивайте в выбранном пункте оплаты.
             </Text>
           </div>
-          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-full items-start justify-end p-7 sm:px-5 rounded-[28px] w-full">
+          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] items-start justify-end p-7 sm:px-5 rounded-[28px] w-[400px]">
             <Text
               className="text-base text-blue-A400 tracking-[0.32px] w-auto"
               size="txtRubikSemiBold16"
@@ -50,7 +50,7 @@ const GridPanel = (props) => {
               Найдите доступные точки зарядки, ближайшие к вам в любом месте.
             </Text>
           </div>
-          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] items-start justify-end p-7 sm:px-5 rounded-[28px] w-full">
+          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] items-start justify-end p-7 sm:px-5 rounded-[28px] w-[400px]">
             <Text
               className="text-base text-blue-A400 tracking-[0.32px] w-auto"
               size="txtRubikSemiBold16"
@@ -64,7 +64,7 @@ const GridPanel = (props) => {
               Заряжайте и оплачивайте в выбранном пункте оплаты.
             </Text>
           </div>
-          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] items-start justify-end p-7 sm:px-5 rounded-[28px] w-full">
+          <div className="bg-gray-100 flex flex-1 flex-col gap-5 h-[400px] items-start justify-end p-7 sm:px-5 rounded-[28px] w-[400px]">
             <Text
               className="text-base text-blue-A400 tracking-[0.32px] w-auto"
               size="txtRubikSemiBold16"

@@ -6,7 +6,7 @@ const Faq = (props) => {
   return (
     <>
       <div className={props.className}>
-        <div className="flex flex-col items-center justify-center max-w-[766px] md:px-10 sm:px-5 px-[120px] w-full">
+        <div className="flex flex-col items-center justify-center max-w-[766px] md:px-10 sm:px-5 px-[60px] w-full">
           <Text
             className="text-4xl sm:text-[32px] md:text-[34px] text-black-900 text-center w-full"
             size="txtRubikSemiBold36"

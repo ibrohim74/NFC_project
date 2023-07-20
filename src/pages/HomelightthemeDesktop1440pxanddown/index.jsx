@@ -18,11 +18,8 @@ const HomelightthemeDesktop1440pxanddownPage = () => {
         <Header className="bg-white-A700 flex items-center justify-center md:px-5 py-7 w-full" />
         <Panel className="flex flex-col gap-[120px] h-[768px] md:h-auto items-center justify-center py-[120px] w-full" />
         <div
-          className="common-pointer flex flex-col h-[768px] md:h-auto items-center justify-center py-[120px] w-full"
+          className="flex flex-col h-[768px] md:h-auto items-center justify-center py-[120px] w-full"
           id="block1"
-          onClick={() => {
-            handleSectionNavigation("block1");
-          }}
         >
           <div className="flex md:flex-col flex-row gap-7 items-start justify-start max-w-[1080px] mx-auto md:px-5 w-full">
             <div className="flex md:flex-1 flex-col items-center justify-start w-[49%] md:w-full">
@@ -74,12 +71,12 @@ const HomelightthemeDesktop1440pxanddownPage = () => {
         </div>
         <GridPanel
           className="bg-gray-50 flex flex-col gap-10 items-center justify-start max-w-[1440px] pb-[120px] pt-[60px] w-full"
-          onClick={() => handleSectionNavigation("block1")}
+          id="block2"
         />
         <StepsPanel className="bg-gray-50 flex flex-col gap-10 items-center justify-start p-[60px] md:px-10 sm:px-5 w-full" />
         <Panel className="flex flex-col gap-[120px] h-[768px] md:h-auto items-center justify-center py-[120px] w-full" />
-        <Faq className="flex flex-col gap-10 items-center justify-center pb-[120px] pt-[60px] w-full" />
-        <Advantages className="flex flex-col gap-10 items-center justify-center pb-[120px] pt-[60px] w-full" />
+        <Faq className="flex flex-col gap-10 items-center justify-center pb-[120px] pt-[60px] md:px-10 sm:px-5 px-[60px] w-full" />
+        <Advantages className="flex flex-col gap-10 items-center justify-center pb-[120px] pt-[60px] md:px-10 sm:px-5 px-[60px] w-full" />
         <Footer className="flex gap-10 items-center justify-center md:px-5 py-[60px] w-full" />
       </div>
     </>

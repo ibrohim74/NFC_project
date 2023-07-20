@@ -6,7 +6,7 @@ const Panel = (props) => {
   return (
     <>
       <div className={props.className}>
-        <div className="flex md:flex-col flex-row gap-7 items-start justify-start max-w-[1080px] w-full">
+        <div className="flex md:flex-col flex-row gap-7 items-start justify-start max-w-[1080px] w-full md:px-10 sm:px-5 px-[60px]">
           <div className="flex flex-1 flex-col gap-7 h-full items-start justify-center py-7 w-full">
             <Text
               className="leading-[44.00px] max-w-[526px] md:max-w-full text-4xl sm:text-[32px] md:text-[34px] text-black-900"
