@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { handleSectionNavigation } from "utils";
 import { Img, Text } from "components";
+import { debounce } from "lodash";
+import "../../styles/style.css";
 
 const Header = (props) => {
   // create a state variable to store the menu visibility
@@ -10,10 +12,49 @@ const Header = (props) => {
   const handleToggle = () => {
     setShowMenu(!showMenu);
   };
+  const handleNavClick = (id) => {
+    handleToggle();
+    handleSectionNavigation(id);
+  };
+
+  useEffect(() => {
+    // Function to toggle the disable-scroll class on the body element
+    const toggleScroll = () => {
+      const bodyElement = document.querySelector("body");
+      if (showMenu) {
+        bodyElement.classList.add("disable-scroll");
+      } else {
+        bodyElement.classList.remove("disable-scroll");
+      }
+    };
+
+    // Call the toggleScroll function when the showMenu state changes
+    toggleScroll();
+
+    // Add a debounced resize event listener to handle screen size changes
+    const handleResize = debounce(() => {
+      if (window.innerWidth >= 0) {
+        // Assuming md breakpoint is 768px P.S. 768 is working strangly so I made 0
+        setShowMenu(false);
+      }
+    }, 200); // Adjust the debounce delay as needed
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      const bodyElement = document.querySelector("body");
+      bodyElement.classList.remove("disable-scroll");
+    };
+  }, [showMenu]);
+
   return (
     <>
       <header className={props.className}>
-        <div className="flex flex-row sm:gap-[auto] items-center md:justify-between justify-center max-w-[1080px] w-full">
+        <div
+          className={`flex flex-row sm:gap-[auto] items-center md:justify-between justify-center max-w-[1080px] w-full`}
+        >
           <div className="flex flex-col h-7 md:h-auto items-center justify-start">
             <Text
               className="text-2xl md:text-[22px] text-black-900 sm:text-xl w-auto"
@@ -78,7 +119,7 @@ const Header = (props) => {
           </div>
           {/* burger icon to show or hide the navbar */}
           <div
-            className="hidden cursor-pointer sm:flex ml-auto"
+            className="hidden cursor-pointer md:flex ml-auto"
             onClick={handleToggle}
           >
             {/* SVG element for the burger icon */}
@@ -122,37 +163,39 @@ const Header = (props) => {
         </div>
 
         <div
-          className="flex flex-col gap-5 sm:gap-[auto] items-left md:justify-between justify-center max-w-[1080px] w-full transition ease-in-out duration-300"
+          className={`flex flex-col gap-5 sm:gap-[auto] items-left md:justify-start ${
+            showMenu ? "slide-in" : "slide-out hidden"
+          } justify-center h-screen max-w-[1080px] w-full transition ease-in-out duration-300`}
           // add style attribute to change translate-y based on showMenu state
-          style={{
-            transform: showMenu ? "translateY(0)" : "translateY(-200%)",
-          }}
+          // style={{
+          //   transform: showMenu ? "translateY(0)" : "translateY(-200%)",
+          // }}
         >
           <a
             href="javascript:"
             className="text-base text-black-900 tracking-[0.16px]"
-            onClick={() => handleSectionNavigation("Product")}
+            onClick={() => handleNavClick("Product")}
           >
             <Text size="txtRubikRegular16">Product</Text>
           </a>
           <a
             href="javascript:"
             className="text-base text-black-900 tracking-[0.16px]"
-            onClick={() => handleSectionNavigation("Functions")}
+            onClick={() => handleNavClick("Functions")}
           >
             <Text size="txtRubikRegular16">Functions</Text>
           </a>
           <a
             href="javascript:"
             className="text-base text-black-900 tracking-[0.16px]"
-            onClick={() => handleSectionNavigation("Instructions")}
+            onClick={() => handleNavClick("Instructions")}
           >
             <Text size="txtRubikRegular16">Instructions</Text>
           </a>
           <a
             href="javascript:"
             className="text-base text-black-900 tracking-[0.16px]"
-            onClick={() => handleSectionNavigation("Faq")}
+            onClick={() => handleNavClick("Faq")}
           >
             <Text size="txtRubikRegular16">FAQ</Text>
           </a>
@@ -169,7 +212,7 @@ const Header = (props) => {
               Uzb
             </Text>
           </div>
-          <Img className="h-full w-4" src="images/img_user.svg" alt="user" />
+          <Img className="h-fit w-4" src="images/img_user.svg" alt="user" />
         </div>
       </header>
     </>
