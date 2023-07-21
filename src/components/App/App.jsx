@@ -2,21 +2,18 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Contact from './page/Contact'
-
-data = [
-    {
-        id: 1,
-        name: Tohir,
-    }
-]
+import Home from './page/Home';
+import {data} from './page/Db'
 
 function App() {
 
     return (
         <Router>
             <Routes>
-                {/* <Route path="/" element={<Home />}></Route> */}
-                <Route exact path="/contact" element={<Contact />} />
+                <Route path="/" element={<Home />}></Route>
+                {data.map( item => 
+                <Route key={item.id} exact path={`/contact/${item.id}`} element={<Contact data={item} />} />
+                )}
             </Routes>
         </Router>
     );
