@@ -1,0 +1,33 @@
+@import "../styles/_variables";
+
+.breadcrumb {
+    margin: 10px 0 20px 0;
+
+    &__link {
+        color: $cOne;
+        font-weight: 600;
+        display: inline-block;
+        user-select: none;
+
+        &:not(:last-child) {
+            font-weight: 400;
+
+            span {
+                opacity: 0.8;
+            }
+
+            &::after {
+                content: "/";
+                font-weight: 700;
+                font-size: 13px;
+                position: relative;
+                top: -2px;
+                margin: 0 5px;
+            }
+        }
+
+        &:last-child {
+            pointer-events: none;
+        }
+    }
+}

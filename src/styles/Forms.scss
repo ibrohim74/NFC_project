@@ -1,0 +1,31 @@
+@import "variables";
+
+.app__form {
+    display: flex;
+    flex-direction: column;
+    
+    .MuiTextField-root {width: 100%;}
+
+    .MuiInput-root {
+        color: #fff;
+        padding-bottom: 5px;
+
+        &::before {border-bottom: 1px solid #fff !important;}
+
+        &::after {border-bottom: 2px solid #fff;}
+    }
+
+    .MuiInputLabel-root {color: #fff !important;}
+
+    &.light {
+        .MuiInputLabel-root {color: $cOne !important;}
+
+        .MuiInput-root {
+            color: $cOne;
+
+            &::before {border-bottom: 1px solid $cOne !important;}
+
+            &::after {border-bottom: 2px solid $cOne;}
+        }
+    }
+}
