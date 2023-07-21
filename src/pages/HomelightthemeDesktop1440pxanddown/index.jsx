@@ -25,7 +25,7 @@ const HomelightthemeDesktop1440pxanddownPage = () => {
         <VideoPanel className="flex flex-col items-center justify-center sm:m-[] sm:mb-[] sm:ml-[] sm:mr-[] sm:mt-[] sm:p-[] pt-16 sm:px-5 w-full" />
         <TrustedBy className="flex flex-col gap-8 items-center justify-start pb-16 pt-32 sm:px-5 md:px-5 w-full" />
         <Panel
-          className="bg-gray-50 flex flex-col items-center justify-center sm:p-[] pb-32 pt-16 sm:px-5 md:px-5 rounded-tl-[128px] rounded-tr-[128px] w-full"
+          className="bg-gray-50 flex flex-col items-center justify-center sm:p-[] pb-32 pt-16 sm:px-5 md:px-5 rounded-tl-[128px] sm:rounded-tl-[64px] rounded-tr-[128px] sm:rounded-tr-[64px] w-full"
           id="Product"
         />
         <Functions
@@ -33,7 +33,7 @@ const HomelightthemeDesktop1440pxanddownPage = () => {
           id="Functions"
         />
         <Instructions
-          className="bg-gray-50 flex flex-col gap-8 items-center justify-center sm:p-[] pb-16 sm:px-5 md:px-5 rounded-bl-[128px] rounded-br-[128px] w-full"
+          className="bg-gray-50 flex flex-col gap-8 items-center justify-center sm:p-[] pb-16 sm:px-5 md:px-5 rounded-bl-[128px] rounded-br-[128px] sm:rounded-bl-[64px] sm:rounded-br-[64px] w-full"
           id="Instructions"
         />
         <PanelReverse className="flex flex-col gap-[120px] items-center justify-center sm:p-[] pb-32 pt-[65px] sm:px-5 md:px-5 w-full" />

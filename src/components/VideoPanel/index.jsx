@@ -6,7 +6,7 @@ const VideoPanel = (props) => {
   return (
     <>
       <div className={props.className}>
-        <div className="bg-gray-100 flex flex-col h-[600px] md:h-auto items-center justify-center sm:m-[] max-w-[1080px] sm:mb-[] sm:ml-[] sm:mr-[] sm:mt-[] p-7 sm:p-[] sm:pb-[] sm:pl-[] sm:pr-[] sm:pt-[] rounded-[80px] w-full">
+        <div className="bg-gray-100 flex flex-col h-[600px] md:h-auto items-center justify-center sm:m-[] max-w-[1080px] sm:mb-[] sm:ml-[] sm:mr-[] sm:mt-[] p-7 sm:p-[] sm:pb-[] sm:pl-[] sm:pr-[] sm:pt-[] sm:rounded-[64px] rounded-[80px] w-full">
           <div className="flex flex-col gap-12 h-full items-start sm:items-start justify-center sm:m-[] sm:mb-[] sm:ml-[] sm:mr-[] sm:mt-[] sm:p-[] sm:pb-[] sm:pl-[] sm:pr-[] sm:pt-[] w-full">
             <div className="flex flex-col items-start justify-start w-full">
               <Text

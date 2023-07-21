@@ -19,7 +19,8 @@ const Question = (props) => {
         onClick={handleClick}
         id={props.id}
       >
-        <div className="flex sm:flex-col flex-row gap-8 items-center justify-center  sm:px-5 rounded-[28px] w-full">
+        {/* deleted: sm:flex-col */}
+        <div className="flex  flex-row gap-8 items-center justify-center  sm:px-5 rounded-[28px] w-full">
           <Text
             className="flex-1 text-base text-black-900 tracking-[0.16px] w-auto"
             size="txtRubikRegular16"
@@ -38,7 +39,7 @@ const Question = (props) => {
           }}
         >
           <Text
-            className="flex-1 text-base text-black-900 tracking-[0.16px] w-auto"
+            className="m-5 flex-1 text-base text-black-900 tracking-[0.16px] w-auto"
             size="txtRubikRegular16"
           >
             {answer}

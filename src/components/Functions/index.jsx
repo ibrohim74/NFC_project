@@ -25,7 +25,7 @@ const Functions = (props) => {
               className={`${
                 isYou ? "bg-white-A700 cursor-default" : ""
               } border-2 border-solid border-white-A700 font-rubik font-semibold py-[18px] rounded-[28px] text-base text-black-900 text-center tracking-[0.32px] w-full`}
-              onClick={handleToggle}
+              onClick={isYou ? null : handleToggle}
             >
               Yourself
             </Button>
@@ -33,7 +33,7 @@ const Functions = (props) => {
               className={`${
                 isYou ? "" : "bg-white-A700 cursor-default"
               } border-2 border-solid border-white-A700 font-rubik font-semibold py-[18px] rounded-[28px] text-base text-black-900 text-center tracking-[0.32px] w-full`}
-              onClick={handleToggle}
+              onClick={isYou ? handleToggle : null}
             >
               Team
             </Button>

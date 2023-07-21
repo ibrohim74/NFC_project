@@ -1,8 +1,15 @@
 import React from "react";
 
 import { Button, Line, List, Text } from "components";
+import Step from "components/Step";
 
 const StepsPanel = (props) => {
+  const steps = [
+    {
+      header: "Click on the 'Get started' button and fill out the form",
+      text: "Choose the product you like and provide minimal information such as your name, email, phone number, and job title to get started.",
+    },
+  ];
   return (
     <>
       <div className={props.className}>
@@ -18,6 +25,11 @@ const StepsPanel = (props) => {
           className="flex flex-col gap-7 items-start max-w-[766px] w-full"
           orientation="vertical"
         >
+          <Step
+            className="bg-gray-100 flex flex-1 flex-col gap-10 items-start justify-center my-0 p-7 sm:px-5 rounded-[24px] w-full"
+            step={{ key: 1, ...steps[0] }}
+          />
+          <Step />
           <div className="bg-gray-100 flex flex-1 flex-col gap-10 items-start justify-center my-0 p-7 sm:px-5 rounded-[24px] w-full">
             <div className="flex sm:flex-col flex-row gap-7 items-center justify-start w-full">
               <Text
