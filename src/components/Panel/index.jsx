@@ -7,7 +7,7 @@ const Panel = (props) => {
     <>
       <div className={props.className} onClick={props?.onClick} id={props.id}>
         <div className="flex flex-col items-center justify-start sm:p-[] sm:pl-[] sm:pr-[] w-[57%] md:w-full">
-          <div className="flex md:flex-col flex-row gap-8 items-start justify-start max-w-[1080px] w-full">
+          <div className="flex md:flex-col flex-row gap-8 items-center justify-start max-w-[1080px] w-full">
             <div className="flex md:flex-1 flex-col items-center justify-start w-[49%] md:w-full">
               <Img
                 className="h-[480px] md:h-auto sm:m-[] sm:mb-[] sm:ml-[] sm:mr-[] sm:mt-[] object-cover sm:p-[] sm:pl-[] sm:pr-[] rounded-bl-[40px] rounded-br-[40px] w-full"

@@ -6,7 +6,7 @@ const PanelReverse = (props) => {
   return (
     <>
       <div className={props.className}>
-        <div className="flex md:flex-col flex-row gap-8 items-start justify-start max-w-[1080px] w-full">
+        <div className="flex md:flex-col flex-row gap-8 items-center justify-start max-w-[1080px] w-full">
           <div className="flex md:flex-1 flex-col items-center justify-start w-[49%] md:w-full">
             <Img
               className="h-[480px] md:h-auto object-cover rounded-bl-[40px] rounded-br-[40px] w-full"
