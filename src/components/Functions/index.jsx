@@ -24,7 +24,8 @@ const Functions = (props) => {
             <Button
               className={`${
                 isYou ? "bg-white-A700 cursor-default" : ""
-              } border-2 border-solid border-white-A700 font-rubik font-semibold py-[18px] rounded-[28px] text-base text-black-900 text-center tracking-[0.32px] w-full`}
+                // deleted border-2 border-solid border-white-A700
+              } font-rubik font-semibold py-[18px] rounded-[28px] text-base text-black-900 text-center tracking-[0.32px] w-full`}
               onClick={isYou ? null : handleToggle}
             >
               Yourself
@@ -32,7 +33,8 @@ const Functions = (props) => {
             <Button
               className={`${
                 isYou ? "" : "bg-white-A700 cursor-default"
-              } border-2 border-solid border-white-A700 font-rubik font-semibold py-[18px] rounded-[28px] text-base text-black-900 text-center tracking-[0.32px] w-full`}
+                // deleted border-2 border-solid border-white-A700
+              } font-rubik font-semibold py-[18px] rounded-[28px] text-base text-black-900 text-center tracking-[0.32px] w-full`}
               onClick={isYou ? handleToggle : null}
             >
               Team

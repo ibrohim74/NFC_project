@@ -1,8 +1,24 @@
 import React from "react";
-
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { Img, List, Text } from "components";
 
 const TrustedBy = (props) => {
+  const imgSrcs = [
+    "images/img_homestationinstalled.png",
+    "images/img_homestationinstalled_64x190.png",
+    "images/img_homestationinstalled_64x160.png",
+    "images/img_homestationinstalled_64x180.png",
+    "images/img_homestationinstalled_64x170.png",
+  ];
+  const slideLeft = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+
+  const slideRight = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
   return (
     <>
       <div className={props.className}>
@@ -14,46 +30,25 @@ const TrustedBy = (props) => {
             Trusted by industry leaders
           </Text>
         </div>
-        <List
-          className="sm:flex-col flex-row gap-8 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-5 justify-center max-w-[1080px] w-full"
-          orientation="horizontal"
-        >
-          <div className="flex flex-1 flex-col h-full items-center justify-center w-full">
-            <Img
-              className="h-16 md:h-auto object-cover w-[190px]"
-              src="images/img_homestationinstalled.png"
-              alt="homestationinst"
-            />
-          </div>
-          <div className="flex flex-1 flex-col h-full items-center justify-center w-full">
-            <Img
-              className="h-16 md:h-auto object-cover w-[190px]"
-              src="images/img_homestationinstalled_64x190.png"
-              alt="homestationinst"
-            />
-          </div>
-          <div className="flex flex-1 flex-col h-full items-center justify-center w-full">
-            <Img
-              className="h-16 md:h-auto object-cover w-40"
-              src="images/img_homestationinstalled_64x160.png"
-              alt="homestationinst"
-            />
-          </div>
-          <div className="flex flex-1 flex-col h-full items-center justify-center w-full">
-            <Img
-              className="h-16 md:h-auto object-cover w-[180px]"
-              src="images/img_homestationinstalled_64x180.png"
-              alt="homestationinst"
-            />
-          </div>
-          <div className="flex flex-1 flex-col h-full items-center justify-center w-full">
-            <Img
-              className="h-16 md:h-auto object-cover w-[170px]"
-              src="images/img_homestationinstalled_64x170.png"
-              alt="homestationinst"
-            />
-          </div>
-        </List>
+        <div className="relative flex items-center">
+          <List
+            // deleted: sm:flex-col flex-row grid sm:grid-cols-1 md:grid-cols-3 grid-cols-5 flex gap-8  justify-center max-w-[1080px] w-full
+            id="slider"
+            className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"
+            orientation="horizontal"
+          >
+            {imgSrcs.map((src) => (
+              //deleted: flex flex-1 flex-col h-full items-center justify-center w-full
+              <div className="w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300">
+                <Img
+                  className="h-16 md:h-auto object-cover w-[190px]"
+                  src={src}
+                  alt="homestationinst"
+                />
+              </div>
+            ))}
+          </List>
+        </div>
       </div>
     </>
   );
