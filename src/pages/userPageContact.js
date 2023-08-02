@@ -72,32 +72,37 @@ const UserPageContact = (data) => {
           </a>
         </div>
       </div>
-      <div className="contact-info-item">
-        <svg
-          width="24"
-          height="24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clip-path="url(#id1)">
-            <path
-              d="M19 1H5a5 5 0 0 0-5 5v12a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V6a5 5 0 0 0-5-5ZM5 3h14a3 3 0 0 1 2.78 1.89l-7.66 7.66a3 3 0 0 1-4.24 0L2.22 4.89A3 3 0 0 1 5 3Zm14 18H5a3 3 0 0 1-3-3V7.5l6.46 6.46a5 5 0 0 0 7.08 0L22 7.5V18a3 3 0 0 1-3 3Z"
-              fill="var(--envelope-icon-color, currentColor)"
-            ></path>
-          </g>
-          <defs>
-            <clipPath id="id1">
-              <path fill="#fff" d="M0 0h24v24H0z"></path>
-            </clipPath>
-          </defs>
-        </svg>
-        <div className="item-text">
-          <span className="info-label">Email</span>
-          <a>
-            <span>{props.email}</span>
-          </a>
+      {props.email && props.email !== "" ? (
+        <div className="contact-info-item">
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#id1)">
+              <path
+                d="M19 1H5a5 5 0 0 0-5 5v12a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V6a5 5 0 0 0-5-5ZM5 3h14a3 3 0 0 1 2.78 1.89l-7.66 7.66a3 3 0 0 1-4.24 0L2.22 4.89A3 3 0 0 1 5 3Zm14 18H5a3 3 0 0 1-3-3V7.5l6.46 6.46a5 5 0 0 0 7.08 0L22 7.5V18a3 3 0 0 1-3 3Z"
+                fill="var(--envelope-icon-color, currentColor)"
+              ></path>
+            </g>
+            <defs>
+              <clipPath id="id1">
+                <path fill="#fff" d="M0 0h24v24H0z"></path>
+              </clipPath>
+            </defs>
+          </svg>
+          <div className="item-text">
+            <span className="info-label">Email</span>
+            <a>
+              <span>{props.email}</span>
+            </a>
+          </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
+
       <div className="contact-info-item">
         <svg
           width="24"
@@ -177,76 +182,88 @@ const UserPageContact = (data) => {
   );
   const socialsContent = (
     <>
-      <div className="contact-info-item">
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20 3.33a16.67 16.67 0 1 0 0 33.34 16.67 16.67 0 0 0 0-33.34Z"
-            fill="#29B6F6"
-          ></path>
-          <path
-            d="m27.96 12.75-2.8 14.34s-.13.66-.94.66c-.43 0-.66-.2-.66-.2l-6.08-5.06L14.5 21l-3.82-1.01s-.68-.2-.68-.76c0-.47.7-.7.7-.7l15.99-6.34s.48-.18.84-.18c.22 0 .47.1.47.38 0 .18-.04.37-.04.37Z"
-            fill="#fff"
-          ></path>
-          <path
-            d="m19.75 24.38-2.57 2.53s-.11.09-.26.09c-.05 0-.1 0-.16-.03l.72-4.48 2.27 1.89Z"
-            fill="#B0BEC5"
-          ></path>
-          <path
-            d="M24.92 15.15a.38.38 0 0 0-.52-.07L14.5 21s1.58 4.42 1.82 5.18c.24.77.44.79.44.79l.72-4.48 7.37-6.82c.17-.12.2-.36.07-.52Z"
-            fill="#CFD8DC"
-          ></path>
-        </svg>
-        <div className="item-text">
-          <span className="info-label">Telegram</span>
-          <a href={props.telegram}>
-            <span>
-              {props.name} {props.name2}
-            </span>
-          </a>
+      {props.telegram && props.telegram !== "" ? (
+        <div className="contact-info-item">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 3.33a16.67 16.67 0 1 0 0 33.34 16.67 16.67 0 0 0 0-33.34Z"
+              fill="#29B6F6"
+            ></path>
+            <path
+              d="m27.96 12.75-2.8 14.34s-.13.66-.94.66c-.43 0-.66-.2-.66-.2l-6.08-5.06L14.5 21l-3.82-1.01s-.68-.2-.68-.76c0-.47.7-.7.7-.7l15.99-6.34s.48-.18.84-.18c.22 0 .47.1.47.38 0 .18-.04.37-.04.37Z"
+              fill="#fff"
+            ></path>
+            <path
+              d="m19.75 24.38-2.57 2.53s-.11.09-.26.09c-.05 0-.1 0-.16-.03l.72-4.48 2.27 1.89Z"
+              fill="#B0BEC5"
+            ></path>
+            <path
+              d="M24.92 15.15a.38.38 0 0 0-.52-.07L14.5 21s1.58 4.42 1.82 5.18c.24.77.44.79.44.79l.72-4.48 7.37-6.82c.17-.12.2-.36.07-.52Z"
+              fill="#CFD8DC"
+            ></path>
+          </svg>
+          <div className="item-text">
+            <span className="info-label">Telegram</span>
+            <a href={props.telegram}>
+              <span>
+                {props.name} {props.name2}
+              </span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div className="contact-info-item">
-        <img
-          srcset="https://img.icons8.com/?size=512&amp;id=Xy10Jcu1L2Su&amp;format=png 2x, https://img.icons8.com/?size=512&amp;id=Xy10Jcu1L2Su&amp;format=png 1x"
-          src="https://img.icons8.com/?size=512&amp;id=Xy10Jcu1L2Su&amp;format=png 2x"
-          alt="Instagram icon"
-          width="256"
-          height="256"
-          style={{ width: "32px", height: "32px" }}
-        />
-        <div className="item-text">
-          <span className="info-label">Instagram</span>
-          <a href={props.instagram}>
-            <span>
-              {props.name} {props.name2}
-            </span>
-          </a>
+      ) : (
+        <></>
+      )}
+      {props.instagram && props.instagram !== "" ? (
+        <div className="contact-info-item">
+          <img
+            srcset="https://img.icons8.com/?size=512&amp;id=Xy10Jcu1L2Su&amp;format=png 2x, https://img.icons8.com/?size=512&amp;id=Xy10Jcu1L2Su&amp;format=png 1x"
+            src="https://img.icons8.com/?size=512&amp;id=Xy10Jcu1L2Su&amp;format=png 2x"
+            alt="Instagram icon"
+            width="256"
+            height="256"
+            style={{ width: "32px", height: "32px" }}
+          />
+          <div className="item-text">
+            <span className="info-label">Instagram</span>
+            <a href={props.instagram}>
+              <span>
+                {props.name} {props.name2}
+              </span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div className="contact-info-item">
-        <img
-          srcset="https://img.icons8.com/?size=512&amp;id=xuvGCOXi8Wyg&amp;format=png 2x, https://img.icons8.com/?size=512&amp;id=xuvGCOXi8Wyg&amp;format=png 1x"
-          src="https://img.icons8.com/?size=512&amp;id=xuvGCOXi8Wyg&amp;format=png 2x"
-          alt="LinkedIn icon"
-          width="256"
-          height="256"
-          style={{ width: "32px", height: "32px" }}
-        ></img>
-        <div className="item-text">
-          <span className="info-label">LinkedIn</span>
-          <a href={props.linkedin}>
-            <span>
-              {props.name} {props.name2}
-            </span>
-          </a>
+      ) : (
+        <></>
+      )}
+      {props.facebook && props.facebook !== "" ? (
+        <div className="contact-info-item">
+          <img
+            srcset="https://img.icons8.com/?size=512&amp;id=xuvGCOXi8Wyg&amp;format=png 2x, https://img.icons8.com/?size=512&amp;id=xuvGCOXi8Wyg&amp;format=png 1x"
+            src="https://img.icons8.com/?size=512&amp;id=xuvGCOXi8Wyg&amp;format=png 2x"
+            alt="LinkedIn icon"
+            width="256"
+            height="256"
+            style={{ width: "32px", height: "32px" }}
+          ></img>
+          <div className="item-text">
+            <span className="info-label">LinkedIn</span>
+            <a href={props.linkedin}>
+              <span>
+                {props.name} {props.name2}
+              </span>
+            </a>
+          </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 
