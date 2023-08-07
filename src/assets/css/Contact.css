@@ -7,6 +7,7 @@
 } */
 * {
   --main-color: var(--itpark-green);
+  --secondary-color: #fff;
   --itpark-green: #d3e666;
   --light-gray: #ededf2;
 }
@@ -29,7 +30,7 @@
   width: 100vw;
   background-image: linear-gradient(
     to bottom,
-    #ffffff 45%,
+    var(--secondary-color, #fff) 45%,
     var(--main-color, #ededf2) 45%
   );
 }
@@ -39,10 +40,10 @@
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  border-radius: 10px;
+  border-radius: 16px;
   min-width: 50%;
   min-height: fit-content;
-  background-color: white;
+  background-color: var(--secondary-color, #fff);
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -148,7 +149,7 @@
 
 .active-nav {
   color: black;
-  background-color: #fff;
+  background-color: var(--secondary-color);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -215,6 +216,200 @@
 .item-text a span {
   font-weight: 400;
   color: cornflowerblue;
+}
+
+.threeDots {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.threeDots div {
+  cursor: pointer;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color);
+}
+.threeDots div:hover {
+  filter: brightness(95%);
+}
+
+/* FOR SHARE THIS CONTACT PART */
+
+.share-contact {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 576px) {
+  .share-contact {
+    align-items: end;
+  }
+}
+
+.share-contact .container {
+  margin: 0;
+  padding: 0;
+}
+
+.share-box {
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  border-radius: 16px;
+  width: 400px;
+  min-height: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 576px) {
+  .share-box {
+    width: 100vw;
+    margin: 0;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+.share-top {
+  padding: 24px 8px;
+}
+
+.share-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-close {
+  position: absolute;
+  right: 8px;
+}
+.share-close div {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+.share-close div:hover {
+  background-color: #f3f3f1;
+  /* filter: brightness(95%); */
+}
+.share-close div svg {
+  height: 16px;
+  width: 16px;
+}
+
+.share-list {
+  margin: 24px 0 16px 0;
+}
+
+.share-list-item {
+  cursor: pointer;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.share-list-item:hover {
+  background-color: #f3f3f1;
+  /* filter: brightness(95%); */
+}
+.share-item-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.share-item-right svg {
+  height: 24px;
+  width: 24px;
+}
+
+.share-copy {
+  margin: 0 16px 0 16px;
+  cursor: pointer;
+  padding: 16px 12px 16px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #e0e2d9;
+  border-radius: 8px;
+}
+.share-copy:hover {
+  background-color: #f3f3f1;
+  /* filter: brightness(95%); */
+}
+.share-copy-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.share-bottom {
+  border-top: 1px solid #e0e2d9;
+  padding: 20px;
+}
+
+.share-bottom-header {
+  padding-bottom: 16px;
+}
+.share-bottom-header div:nth-child(1) {
+  line-height: 1.2;
+}
+.share-bottom-header div:nth-child(2) {
+  --tw-text-opacity: 1;
+  color: rgb(103 107 95 / var(--tw-text-opacity));
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.share-bottom-btns {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.share-bottom-btn {
+  width: 100%;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4rem;
+}
+.share-bottom-btns .share-bottom-btn:first-of-type {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.share-bottom-btns .share-bottom-btn:nth-of-type(2) {
+  border: 1px solid #e0e2d9;
 }
 
 /* @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap");
