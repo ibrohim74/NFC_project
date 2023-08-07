@@ -94,7 +94,19 @@
 .contact-img {
   width: 120px;
   height: auto;
-  border-radius: 16px;
+  border-radius: 50%;
+}
+/* OR */
+.contact-initials {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #f3f3f3;
 }
 
 .contact-name {
@@ -122,7 +134,7 @@
 }
 
 .contact-button:hover {
-  border: 1px solid black;
+  border-color: gray;
 }
 
 .contact-icon {
@@ -279,8 +291,7 @@
   .share-box {
     width: 100vw;
     margin: 0;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-radius: 0;
   }
 }
 
@@ -329,6 +340,7 @@
   justify-content: space-between;
   background-color: #fff;
   border-radius: 8px;
+  color: #000;
 }
 .share-list-item:hover {
   background-color: #f3f3f1;
@@ -361,6 +373,9 @@
   background-color: #f3f3f1;
   /* filter: brightness(95%); */
 }
+.share-copy::selection {
+  background-color: #fff;
+}
 .share-copy-right {
   display: flex;
   flex-direction: row;
@@ -375,6 +390,10 @@
 }
 
 .share-bottom-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding-bottom: 16px;
 }
 .share-bottom-header div:nth-child(1) {
@@ -410,6 +429,15 @@
 }
 .share-bottom-btns .share-bottom-btn:nth-of-type(2) {
   border: 1px solid #e0e2d9;
+}
+
+/* SECONDARY CSS */
+
+.truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap");

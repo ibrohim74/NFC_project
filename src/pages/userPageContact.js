@@ -1,10 +1,27 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "../assets/css/Contact.css";
 import VCard from "vcard-creator";
 
 const UserPageContact = (data) => {
   const props = data.data;
+
+  const CURRENTURL = window.location.href;
+  const SHARETEXT = "Check this contact";
+  let telegramUrl = `tg://msg_url?url=${CURRENTURL}&text=${SHARETEXT}`;
+  let instagramUrl = `https://www.instagram.com/share?url=${CURRENTURL}&text=${SHARETEXT}`;
+  let facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${CURRENTURL}&quote=${SHARETEXT}`;
+  let twitterUrl = `https://twitter.com/intent/tweet?url=${CURRENTURL}&text=${SHARETEXT}`;
+  let linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${CURRENTURL}&mini=true&title=${SHARETEXT}`;
+  let whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+    CURRENTURL + " " + SHARETEXT
+  )}`;
+  let messengerUrl = `https://www.messenger.com/t/?u=${encodeURIComponent(
+    CURRENTURL
+  )}&quote=${SHARETEXT}`;
+  let emailUrl = `mailto:?subject=${SHARETEXT}&body=${CURRENTURL}`;
 
   const [activeNav, setActiveNav] = useState("1");
   const handleNavBtnClick = (key) => {
@@ -14,6 +31,46 @@ const UserPageContact = (data) => {
   const [showShare, setShowShare] = useState(false);
   const handleShareToggle = () => {
     setShowShare(!showShare);
+  };
+
+  // Define a state variable to store the copy status
+  const [copied, setCopied] = useState(false);
+
+  // Define a function to handle the copy event
+  const handleCopy = async () => {
+    try {
+      // Try to copy the text using the Clipboard API
+      await navigator.clipboard.writeText(window.location.href);
+      // If successful, update the copied state
+      setCopied(true);
+      // Reset the copied state after 3 seconds
+      setTimeout(() => setCopied(false), 3000);
+    } catch (err) {
+      // If failed, update the copied state and log the error
+      setCopied(false);
+      console.error(err);
+    }
+  };
+
+  // Define a state variable to store the share status
+  const [shared, setShared] = useState(false);
+
+  // Define a function to handle the share event
+  const handleShare = async () => {
+    try {
+      // Try to share the current page using the Web Share API
+      await navigator.share({
+        title: document.title,
+        text: "Check this contact",
+        url: window.location.href,
+      });
+      // If successful, update the shared state
+      setShared(true);
+    } catch (err) {
+      // If failed, update the shared state and log the error
+      setShared(false);
+      console.error(err);
+    }
   };
 
   const card = new VCard();
@@ -300,41 +357,28 @@ const UserPageContact = (data) => {
               </div>
 
               <div className="share-list">
-                <div className="share-list-item">
+                <Link className="share-list-item" to={telegramUrl}>
                   <div className="share-item-right">
                     <svg
-                      viewBox="0 0 24 24"
-                      data-testid="ShareIcon-snapchat"
-                      enable-background="new 0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label="Telegram"
+                      viewBox="0 0 512 512"
                     >
-                      <g clip-path="url(#a)">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="#FFFC00"
-                          rx="4"
-                        ></rect>
-                        <path
-                          fill="#fff"
-                          d="M18.78 15.392c-.058-.193-.337-.329-.337-.329l-.07-.036a5.385 5.385 0 0 1-1.224-.802 4.15 4.15 0 0 1-.71-.809 3.049 3.049 0 0 1-.391-.806c-.026-.104-.022-.146 0-.2.018-.046.072-.09.097-.11.157-.111.41-.275.565-.375.135-.087.25-.162.318-.21.218-.152.368-.308.456-.476a.821.821 0 0 0 .039-.69c-.12-.317-.416-.505-.792-.505-.083 0-.17.01-.255.027-.216.047-.42.124-.59.19a.018.018 0 0 1-.026-.018c.019-.423.04-.992-.008-1.533a3.78 3.78 0 0 0-.307-1.26 3.378 3.378 0 0 0-.548-.821 3.374 3.374 0 0 0-.867-.697 4.017 4.017 0 0 0-2.022-.515 4.02 4.02 0 0 0-2.02.515c-.45.257-.737.547-.868.697-.168.193-.383.46-.548.82-.166.36-.266.771-.307 1.261a11.821 11.821 0 0 0-.009 1.533c0 .014-.012.024-.026.018a3.98 3.98 0 0 0-.59-.19 1.227 1.227 0 0 0-.256-.027c-.375 0-.67.188-.791.505a.821.821 0 0 0 .039.69c.089.168.237.324.455.476.067.048.183.123.318.21.151.099.397.258.556.368a.33.33 0 0 1 .106.117c.023.055.027.097-.002.208a3.06 3.06 0 0 1-.39.798c-.19.29-.43.561-.709.809-.347.306-.76.577-1.224.802-.023.011-.049.024-.077.04 0 0-.278.142-.33.325-.078.271.129.525.339.661.344.223.763.342 1.006.407.068.018.13.035.185.052a.37.37 0 0 1 .16.093c.047.06.052.136.07.22.025.143.085.32.262.442.194.133.44.143.752.156.326.012.732.027 1.197.182.215.07.411.191.636.33.472.29 1.06.651 2.062.651 1.004 0 1.596-.362 2.07-.654.226-.137.419-.257.63-.326.465-.154.87-.17 1.197-.182.312-.012.558-.02.752-.156.19-.13.243-.325.268-.47.014-.072.023-.138.064-.19a.364.364 0 0 1 .154-.09c.057-.019.121-.035.192-.055.243-.065.548-.142.92-.351.446-.254.477-.565.43-.72Z"
-                        ></path>
-                        <path
-                          fill="#000"
-                          d="M19.168 15.242c-.1-.269-.288-.412-.502-.531a1.235 1.235 0 0 0-.108-.057c-.064-.034-.13-.066-.195-.099-.667-.354-1.19-.801-1.55-1.33a3.12 3.12 0 0 1-.267-.472c-.03-.09-.03-.14-.007-.185a.293.293 0 0 1 .086-.089c.115-.076.233-.153.314-.204.143-.093.257-.167.329-.217.275-.191.466-.395.586-.623.17-.32.19-.688.06-1.032-.18-.478-.634-.775-1.18-.775-.115 0-.23.013-.344.038l-.089.02a9.962 9.962 0 0 0-.031-1.01c-.103-1.195-.521-1.82-.957-2.32a3.81 3.81 0 0 0-.974-.784C13.677 5.192 12.927 5 12.11 5c-.815 0-1.565.192-2.227.57a3.777 3.777 0 0 0-.975.785c-.436.499-.854 1.125-.957 2.32-.029.338-.036.685-.032 1.01l-.089-.02a1.612 1.612 0 0 0-.343-.038c-.547 0-1 .297-1.18.775-.13.344-.11.71.06 1.031.12.228.312.432.586.624.073.051.186.125.329.217.078.05.19.123.301.197a.336.336 0 0 1 .098.097c.023.047.023.098-.012.193-.058.13-.143.287-.262.462-.354.518-.861.957-1.507 1.307-.343.182-.698.303-.848.711-.114.308-.039.66.248.955.095.102.214.192.364.275.353.195.653.29.889.356a.568.568 0 0 1 .18.08c.105.092.09.23.23.434.084.126.182.212.262.268.293.202.624.215.973.229.316.012.674.026 1.082.16.17.056.346.165.549.29.489.301 1.16.712 2.28.712 1.122 0 1.795-.414 2.288-.715.203-.124.378-.232.542-.286.408-.135.766-.149 1.082-.161.35-.014.678-.027.973-.23.092-.063.208-.167.3-.326.1-.17.099-.291.193-.373a.564.564 0 0 1 .17-.077 3.95 3.95 0 0 0 .9-.36c.16-.087.284-.183.382-.292l.005-.004c.267-.292.336-.632.224-.934Zm-.996.535c-.608.336-1.012.3-1.326.501-.267.173-.11.543-.303.677-.239.165-.943-.011-1.852.288-.75.249-1.23.961-2.58.961-1.354 0-1.82-.71-2.58-.96-.91-.3-1.615-.124-1.853-.29-.193-.133-.036-.503-.303-.676-.313-.202-.718-.166-1.326-.501-.387-.214-.168-.346-.039-.408 2.203-1.065 2.553-2.712 2.57-2.836.019-.147.04-.264-.123-.415-.157-.146-.855-.578-1.048-.712-.321-.224-.461-.447-.357-.722.072-.19.25-.261.437-.261.059 0 .118.007.175.019.352.076.693.253.89.3.028.007.052.01.073.01.105 0 .141-.053.134-.174-.022-.385-.078-1.134-.016-1.836.083-.963.394-1.441.763-1.865.178-.202 1.011-1.083 2.604-1.083 1.597 0 2.426.88 2.604 1.083.369.423.68.9.763 1.865.061.702.009 1.451-.016 1.836-.009.126.03.174.134.174.021 0 .046-.003.073-.01.197-.047.538-.224.89-.3a.823.823 0 0 1 .175-.02c.187 0 .365.073.437.262.104.275-.037.498-.357.722-.193.134-.891.566-1.048.712-.163.15-.142.267-.122.415.015.124.366 1.77 2.569 2.836.125.062.345.194-.042.408Z"
-                        ></path>
-                      </g>
-                      <defs>
-                        <clipPath id="a">
-                          <rect
-                            width="24"
-                            height="24"
-                            fill="#fff"
-                            rx="4"
-                          ></rect>
-                        </clipPath>
-                      </defs>
+                      <rect width="512" height="512" fill="#37aee2" rx="15%" />
+                      <path
+                        fill="#c8daea"
+                        d="M199 404c-11 0-10-4-13-14l-32-105 245-144"
+                      />
+                      <path
+                        fill="#a9c9dd"
+                        d="M199 404c7 0 11-4 16-8l45-43-56-34"
+                      />
+                      <path
+                        fill="#f6fbfe"
+                        d="M204 319l135 99c14 9 26 4 30-14l55-258c5-22-9-32-24-25L79 245c-21 8-21 21-4 26l83 26 190-121c9-5 17-3 11 4"
+                      />
                     </svg>
-                    <div>Share on Snapchat</div>
+                    <div>Share via Telegram</div>
                   </div>
                   <div>
                     <svg
@@ -347,8 +391,72 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <Link className="share-list-item" to={instagramUrl}>
+                  <div className="share-item-right">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 28.87 28.87"
+                      id="instagram"
+                    >
+                      <defs>
+                        <linearGradient
+                          id="a"
+                          x1="-1.84"
+                          x2="32.16"
+                          y1="30.47"
+                          y2="-3.03"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop offset="0" stop-color="#fed576"></stop>
+                          <stop offset=".26" stop-color="#f47133"></stop>
+                          <stop offset=".61" stop-color="#bc3081"></stop>
+                          <stop offset="1" stop-color="#4c63d2"></stop>
+                        </linearGradient>
+                      </defs>
+                      <g data-name="Layer 2">
+                        <g data-name="Layer 1">
+                          <rect
+                            width="28.87"
+                            height="28.87"
+                            fill="url(#a)"
+                            rx="15%"
+                          ></rect>
+                          <g data-name="<Group>">
+                            <path
+                              fill="#fff"
+                              d="M10 5h9c.2.1.5.1.7.2a4.78 4.78 0 0 1 3.8 3.3 8 8 0 0 1 .3 1.5v8.8a6.94 6.94 0 0 1-1.2 3.1 5.51 5.51 0 0 1-4.5 1.9h-7.5a5.49 5.49 0 0 1-3.7-1.2A5.51 5.51 0 0 1 5 18.14v-7a7.57 7.57 0 0 1 .1-1.5 4.9 4.9 0 0 1 3.8-4.3zm-3.1 9.5v3.9a3.42 3.42 0 0 0 3.7 3.7q3.9.15 7.8 0c2.3 0 3.6-1.4 3.7-3.7q.15-3.9 0-7.8a3.52 3.52 0 0 0-3.7-3.7q-3.9-.15-7.8 0a3.42 3.42 0 0 0-3.7 3.7z"
+                              data-name="<Compound Path>"
+                            ></path>
+                            <path
+                              fill="#fff"
+                              d="M9.64 14.54a4.91 4.91 0 0 1 4.9-4.9 5 5 0 0 1 4.9 4.9 4.91 4.91 0 0 1-4.9 4.9 5 5 0 0 1-4.9-4.9zm4.9-3.1a3.05 3.05 0 1 0 3 3 3 3 0 0 0-3-3z"
+                              data-name="<Compound Path>"
+                            ></path>
+                            <path
+                              fill="#fff"
+                              d="M18.34 9.44a1.16 1.16 0 0 1 1.2-1.2 1.29 1.29 0 0 1 1.2 1.2 1.2 1.2 0 0 1-2.4 0z"
+                              data-name="<Path>"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                    <div>Share via Instagram</div>
+                  </div>
+                  <div>
+                    <svg
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      id="chevron"
+                    >
+                      <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
+                    </svg>
+                  </div>
+                </Link>
+                <Link className="share-list-item" to={facebookUrl}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 24 24"
@@ -379,8 +487,8 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <Link className="share-list-item" to={linkedinUrl}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 24 24"
@@ -423,8 +531,8 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <Link className="share-list-item" to={twitterUrl}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 24 24"
@@ -467,8 +575,8 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <Link className="share-list-item" to={whatsappUrl}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 24 24"
@@ -513,8 +621,8 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <Link className="share-list-item" to={messengerUrl}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 24 24"
@@ -578,8 +686,8 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <Link className="share-list-item" to={emailUrl}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 48 48"
@@ -618,8 +726,8 @@ const UserPageContact = (data) => {
                       <path d="M13.25 10 6.109 2.58a.697.697 0 0 1 0-.979.68.68 0 0 1 .969 0l7.83 7.908a.697.697 0 0 1 0 .979l-7.83 7.908a.68.68 0 0 1-.969 0 .697.697 0 0 1 0-.979L13.25 10z"></path>
                     </svg>
                   </div>
-                </div>
-                <div className="share-list-item">
+                </Link>
+                <div className="share-list-item" onClick={handleShare}>
                   <div className="share-item-right">
                     <svg
                       viewBox="0 0 48 48"
@@ -657,7 +765,7 @@ const UserPageContact = (data) => {
                 </div>
               </div>
 
-              <div className="share-copy">
+              <div className="share-copy" onClick={handleCopy}>
                 <div className="share-copy-right">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -669,9 +777,11 @@ const UserPageContact = (data) => {
                       fill="#43E660"
                     ></path>
                   </svg>
-                  <div>linktr.ee/purecube</div>
+                  <div className="truncate">{window.location.href}</div>
                 </div>
-                <div>Copy</div>
+                <div style={{ color: copied ? "green" : "black" }}>
+                  {copied ? <>Copied!</> : <>Copy</>}
+                </div>
               </div>
             </div>
 
@@ -733,7 +843,13 @@ const UserPageContact = (data) => {
 
             <div className="contact-top">
               <div className="contact-header">
-                <img className="contact-img" src={props.avatar} />
+                {/* <img className="contact-img" src={props.avatar} /> */}
+                <div className="contact-initials">
+                  <div>
+                    {props.name[0]}
+                    {props.name2[0]}
+                  </div>
+                </div>
                 <div className="contact-name">{`${props.name} ${props.name2}`}</div>
               </div>
               <div className="button-box">
