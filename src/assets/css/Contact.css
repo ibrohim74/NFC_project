@@ -8,7 +8,8 @@
 * {
   --main-color: var(--itpark-green);
   --secondary-color: #fff;
-  --itpark-green: #d3e666;
+  /* --itpark-green: #d3e666; */
+  --itpark-green: #7dba28;
   --light-gray: #ededf2;
 }
 
@@ -28,11 +29,12 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(
+  /* background-color: #7f7f7f; */
+  /* background-image: linear-gradient(
     to bottom,
     var(--secondary-color, #fff) 45%,
     var(--main-color, #ededf2) 45%
-  );
+  ); */
 }
 
 .contact-box {
@@ -134,7 +136,8 @@
 }
 
 .contact-button:hover {
-  border-color: gray;
+  background-color: #000;
+  color: #fff;
 }
 
 .contact-icon {
@@ -154,7 +157,8 @@
 }
 
 .navbar-button {
-  color: gray;
+  /* color: gray; */
+  color: #fff;
   padding: 6px 24px;
   cursor: pointer;
 }
