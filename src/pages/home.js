@@ -7,9 +7,11 @@ import Wpsay from "../component/wpsay";
 import VideoPanel from "../component/videoPanel";
 import { LOGIN_ROUTE, USER_CONTACT } from "../utils/consts";
 import { Link } from "react-router-dom";
+import { navLangs } from "../utils/multiLang";
 const Home = () => {
   const [isActive, setIsActive] = useState(false);
   const [funcIsActive, setfuncIsActive] = useState(false);
+  const [pageLang, setPageLang] = useState("en");
   const handleClick = () => {
     setIsActive((current) => !current);
   };
@@ -75,21 +77,25 @@ const Home = () => {
             <div className={isActive ? "nav-content active" : "nav-content"}>
               <ul>
                 <li>
-                  <a href="#team">For Yourself</a>
+                  {/* <a href="#team">For Yourself</a> */}
+                  <a href="#team">{navLangs.forYou[`${pageLang}`]}</a>
                 </li>
                 <li>
-                  <a href="#team">For Teams</a>
+                  <a href="#team">{navLangs.forTeam[`${pageLang}`]}</a>
                 </li>
                 <li>
-                  <a href="#product">Products</a>
+                  <a href="#product">{navLangs.products[`${pageLang}`]}</a>
                 </li>
                 <li>
-                  <a href="#tutroil">Tutorials</a>
+                  <a href="#tutroil">{navLangs.tutorials[`${pageLang}`]}</a>
                 </li>
               </ul>
             </div>
             <div className="nav-component">
-              <select name="select">
+              <select
+                name="select"
+                onChange={(evt) => setPageLang(evt.target.value)}
+              >
                 <option value="uz">Uz</option>
                 <option value="ru"> Ru</option>
                 <option value="en">En</option>

@@ -11,8 +11,8 @@ const UserPageContact = (data) => {
   /* SET/CHANGE CSS VARIABLES */
 
   const MAIN_COLOR = {
-    red: 25,
-    green: 6,
+    red: 5,
+    green: 86,
     blue: 40,
   }; /* rgb(125, 186, 40) */
   const SECONDARY_COLOR = {
@@ -44,12 +44,29 @@ const UserPageContact = (data) => {
           green: SECONDARY_COLOR.green + 120,
           blue: SECONDARY_COLOR.blue + 120,
         };
+  const BUTTON_COLOR =
+    MAIN_COLOR.red * 0.299 +
+      MAIN_COLOR.green * 0.587 +
+      MAIN_COLOR.blue * 0.114 >
+    100
+      ? "#000000"
+      : "#ffffff";
 
-  document.documentElement.style.cssText = `--contact-main-color: rgb(${MAIN_COLOR.red}, ${MAIN_COLOR.green}, ${MAIN_COLOR.blue});
-  --contact-secondary-color: rgb(${SECONDARY_COLOR.red}, ${SECONDARY_COLOR.green}, ${SECONDARY_COLOR.blue});
+  document.documentElement.style.cssText = `--contact-main-color: rgb(${
+    MAIN_COLOR.red
+  }, ${MAIN_COLOR.green}, ${MAIN_COLOR.blue});
+  --contact-secondary-color: rgb(${SECONDARY_COLOR.red}, ${
+    SECONDARY_COLOR.green
+  }, ${SECONDARY_COLOR.blue});
   --contact-text-main-color: ${TEXT_MAIN_COLOR};
   --contact-text-secondary-color: ${TEXT_SECONDARY_COLOR};
-  --contact-link-color: rgb(${LINK_COLOR.red}, ${LINK_COLOR.green}, ${LINK_COLOR.blue});
+  --contact-link-color: rgb(${LINK_COLOR.red}, ${LINK_COLOR.green}, ${
+    LINK_COLOR.blue
+  });
+  --contact-button-color: ${BUTTON_COLOR};
+  --contact-button-inverted-color: ${
+    BUTTON_COLOR == "#000000" ? "#ffffff" : "#000000"
+  }
   `;
 
   /* END OF CSS CHANGES */
