@@ -21,6 +21,10 @@ const CompanyUserList = () => {
     const [data, setData] = useState([]);
     const [createUser, setCreateUser] = useState({
         birthday:'',
+        work_info:{
+            org:'',
+            role:''
+        },
         address:{
             street: '',
             region:'',
@@ -31,6 +35,10 @@ const CompanyUserList = () => {
     });
     const [updateUser, setUpdateUser] = useState({
         birthday:'',
+        work_info:{
+            org:'',
+            role:''
+        },
         address:{
             street: '',
             region:'',
@@ -119,7 +127,7 @@ console.log(data)
                 <td>{item.id}</td>
                 <td>{item.username}</td>
                 <td>{item.phone}</td>
-                <td>{item.work_info}</td>
+                <td>{item.work_info.role}</td>
                 <td>
                     <Popconfirm
                         title="Delete "
@@ -171,10 +179,15 @@ console.log(data)
                     />
                     <DatePicker onChange={birthdayUpdate}
                     />
-                    <Input placeholder="work_info"
+                    <Input placeholder="Organization"
                            required
-                           onChange={e => {
-                               setUpdateUser({...updateUser, work_info: e.target.value})
+                           onChange={(e) => {
+                               setUpdateUser({...updateUser , work_info:{...updateUser.work_info , org:e.target.value}});
+                           }}/>
+<Input placeholder="Role"
+                           required
+                           onChange={(e) => {
+                               setUpdateUser({...updateUser , work_info:{...updateUser.work_info , role:e.target.value}});
                            }}/>
 
 
@@ -268,10 +281,15 @@ console.log(data)
                     />
                     <DatePicker onChange={birthdayChange}
                     />
-                    <Input placeholder="work_info"
+                    <Input placeholder="Organization"
                            required
-                           onChange={e => {
-                               setCreateUser({...createUser, work_info: e.target.value})
+                           onChange={(e) => {
+                               setCreateUser({...createUser , work_info:{...createUser.work_info , org:e.target.value}});
+                           }}/>
+                    <Input placeholder="Role"
+                           required
+                           onChange={(e) => {
+                               setCreateUser({...createUser , work_info:{...createUser.work_info , role:e.target.value}});
                            }}/>
 
 
@@ -317,7 +335,7 @@ console.log(data)
                 <th>id</th>
                 <th>username</th>
                 <th>Phone</th>
-                <th>wok_info</th>
+                <th>Role</th>
                 <th>Action</th>
                 </thead>
                 <tbody>

@@ -9,6 +9,7 @@ body{
 .ant-modal-footer{
     display: none;
 }
+.ant-cascader-menus ul{display: block}
 .content-admin{
     height: 100% !important;
 }

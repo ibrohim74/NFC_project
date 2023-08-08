@@ -15,7 +15,10 @@ const CompanyProfile = () => {
         last_name:'',
         phone:'',
         birthday:'',
-        work_info:'',
+        work_info:{
+            org:'',
+            role:''
+        },
         address:{
             city:'',
             street:'',
@@ -32,7 +35,10 @@ const CompanyProfile = () => {
         last_name: sendProf.last_name ? sendProf.last_name : currentUser.last_name,
         phone: sendProf.phone ? sendProf.phone : currentUser.phone,
         birthday: sendProf.birthday ? sendProf.birthday : currentUser.birthday,
-        work_info: sendProf.work_info ? sendProf.work_info : currentUser.work_info,
+        work_info: {
+            org: sendProf.work_info ? sendProf.work_info.org : currentUser.work_info.org,
+            role: sendProf.work_info ? sendProf.work_info.role : currentUser.work_info.role
+        },
         address: {
             city: sendProf.address ? sendProf.address.city : currentUser.address.city,
             street: sendProf.address ? sendProf.address.street : currentUser.address.street,
@@ -118,12 +124,19 @@ const CompanyProfile = () => {
                     // value={sendProf.birthday}
                        onChange={e => setSendProf({...sendProf ,birthday:e.target.value})}
                 />
-            <p>{currentUser.work_info}</p>
 
             <input type="text"
-                       placeholder='work_info'
+                       placeholder='Organization'
                     // value={sendProf.work_info}
-                       onChange={e => setSendProf({...sendProf ,work_info:e.target.value})}
+                   onChange={(e) => {
+                       setSendProf({...sendProf , work_info:{...sendProf.work_info , org:e.target.value}});
+                   }}
+                />    <input type="text"
+                       placeholder='Role'
+                    // value={sendProf.work_info}
+                   onChange={(e) => {
+                       setSendProf({...sendProf , work_info:{...sendProf.work_info , role:e.target.value}});
+                   }}
                 />
             <input
                 type="text"

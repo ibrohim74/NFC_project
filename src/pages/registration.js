@@ -226,18 +226,26 @@ const Registration = () => {
                             {/* WORK INFO */}
                             <FloatingLabel
                                 controlId="floatingInput"
-                                label="work info"
+                                label="organization"
                                 className="mb-4"
                             >
                                 <Form.Control
-                                    // as="textarea"
-                                    rows={3}
                                     type="text"
                                     placeholder="hello from work info"
-                                    style={{height: "100px"}}
-                                    value={regData.work_info}
                                     onChange={(e) => {
-                                        setRegData({...regData, work_info: e.target.value});
+                                        setRegData({...regData , work_info:{...regData.work_info , org:e.target.value}});
+                                    }}
+                                />
+                            </FloatingLabel><FloatingLabel
+                                controlId="floatingInput"
+                                label="Role"
+                                className="mb-4"
+                            >
+                                <Form.Control
+                                    type="text"
+                                    placeholder="hello from work info"
+                                    onChange={(e) => {
+                                        setRegData({...regData , work_info:{...regData.work_info , role:e.target.value}});
                                     }}
                                 />
                             </FloatingLabel>
