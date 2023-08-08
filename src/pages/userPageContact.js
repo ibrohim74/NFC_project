@@ -1,17 +1,64 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import "../assets/css/Contact.css";
 import VCard from "vcard-creator";
+import { HOME_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const UserPageContact = (data) => {
   const props = data.data;
 
+  /* SET/CHANGE CSS VARIABLES */
+
+  const MAIN_COLOR = {
+    red: 25,
+    green: 6,
+    blue: 40,
+  }; /* rgb(125, 186, 40) */
+  const SECONDARY_COLOR = {
+    red: 255,
+    green: 255,
+    blue: 255,
+  }; /* rgb(255, 255, 255) */
+
+  // if (red*0.299 + green*0.587 + blue*0.114) > 186 use #000000 else use #ffffff
+  const TEXT_MAIN_COLOR =
+    MAIN_COLOR.red * 0.299 +
+      MAIN_COLOR.green * 0.587 +
+      MAIN_COLOR.blue * 0.114 >
+    186
+      ? "#000000"
+      : "#ffffff";
+  const TEXT_SECONDARY_COLOR =
+    SECONDARY_COLOR.red * 0.299 +
+      SECONDARY_COLOR.green * 0.587 +
+      SECONDARY_COLOR.blue * 0.114 >
+    186
+      ? "#000000"
+      : "#ffffff";
+  const LINK_COLOR =
+    TEXT_SECONDARY_COLOR == "#000000"
+      ? { red: 100, green: 149, blue: 237 }
+      : {
+          red: SECONDARY_COLOR.red + 120,
+          green: SECONDARY_COLOR.green + 120,
+          blue: SECONDARY_COLOR.blue + 120,
+        };
+
+  document.documentElement.style.cssText = `--contact-main-color: rgb(${MAIN_COLOR.red}, ${MAIN_COLOR.green}, ${MAIN_COLOR.blue});
+  --contact-secondary-color: rgb(${SECONDARY_COLOR.red}, ${SECONDARY_COLOR.green}, ${SECONDARY_COLOR.blue});
+  --contact-text-main-color: ${TEXT_MAIN_COLOR};
+  --contact-text-secondary-color: ${TEXT_SECONDARY_COLOR};
+  --contact-link-color: rgb(${LINK_COLOR.red}, ${LINK_COLOR.green}, ${LINK_COLOR.blue});
+  `;
+
+  /* END OF CSS CHANGES */
+
   const CURRENTURL = window.location.href;
   const SHARETEXT = "Check this contact";
   let telegramUrl = `tg://msg_url?url=${CURRENTURL}&text=${SHARETEXT}`;
-  let instagramUrl = `https://www.instagram.com/share?url=${CURRENTURL}&text=${SHARETEXT}`;
+  // let instagramUrl = `https://www.instagram.com/share?url=${CURRENTURL}&text=${SHARETEXT}`; Share via Instagram doesn't work with text you can only share photos or videos
+  let instagramUrl = `https://www.instagram.com/`;
   let facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${CURRENTURL}&quote=${SHARETEXT}`;
   let twitterUrl = `https://twitter.com/intent/tweet?url=${CURRENTURL}&text=${SHARETEXT}`;
   let linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${CURRENTURL}&mini=true&title=${SHARETEXT}`;
@@ -392,7 +439,11 @@ const UserPageContact = (data) => {
                     </svg>
                   </div>
                 </Link>
-                <Link className="share-list-item" to={instagramUrl}>
+                <Link
+                  className="share-list-item"
+                  to={instagramUrl}
+                  onClick={handleCopy}
+                >
                   <div className="share-item-right">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -792,10 +843,14 @@ const UserPageContact = (data) => {
               </div>
               <div className="share-bottom-btns">
                 <div className="share-bottom-btn">
-                  <div>Sign up free</div>
+                  <Link style={{ color: "white" }} to={REGISTRATION_ROUTE}>
+                    Sign up free
+                  </Link>
                 </div>
                 <div className="share-bottom-btn">
-                  <div>Find out more</div>
+                  <Link style={{ color: "black" }} to={HOME_ROUTE}>
+                    Find out more
+                  </Link>
                 </div>
               </div>
             </div>
@@ -807,12 +862,13 @@ const UserPageContact = (data) => {
 
   return (
     <>
-      <>{showShare ? shareContactContent : <></>}</>
-      <div className="contact">
-        <div key={props.id} className="contact-box">
-          <div className="container">
-            <>
-              {/* {showShare ? (
+      <div className="User-page-contact">
+        <>{showShare ? shareContactContent : <></>}</>
+        <div className="contact">
+          <div key={props.id} className="contact-box">
+            <div className="container">
+              <>
+                {/* {showShare ? (
                 <></>
               ) : (
                 <>
@@ -840,114 +896,115 @@ const UserPageContact = (data) => {
                 </>
 
               )} */}
-              <div
-                className="threeDots"
-                style={showShare ? { opacity: "0" } : {}}
-              >
                 <div
-                  onClick={
-                    showShare ? console.log("something") : handleShareToggle
-                  }
-                  style={showShare ? { opacity: "0", cursor: "default" } : {}}
+                  className="threeDots"
+                  style={showShare ? { opacity: "0" } : {}}
                 >
-                  <svg width="16" height="16" viewBox="0 0 16 16">
-                    <path
-                      fill="black"
-                      stroke="black"
-                      d="M12.6661 7.33348C12.2979 7.33348 11.9994 7.63195 11.9994 8.00014C11.9994 8.36833 12.2979 8.66681 12.6661 8.66681C13.0343 8.66681 13.3328 8.36833 13.3328 8.00014C13.3328 7.63195 13.0343 7.33348 12.6661 7.33348Z"
-                    ></path>
-                    <path
-                      fill="black"
-                      stroke="black"
-                      d="M8.00057 7.33348C7.63238 7.33348 7.3339 7.63195 7.3339 8.00014C7.3339 8.36833 7.63238 8.66681 8.00057 8.66681C8.36876 8.66681 8.66724 8.36833 8.66724 8.00014C8.66724 7.63195 8.36876 7.33348 8.00057 7.33348Z"
-                    ></path>
-                    <path
-                      fill="black"
-                      stroke="black"
-                      d="M3.33333 7.33348C2.96514 7.33348 2.66667 7.63195 2.66667 8.00014C2.66667 8.36833 2.96514 8.66681 3.33333 8.66681C3.70152 8.66681 4 8.36833 4 8.00014C4 7.63195 3.70152 7.33348 3.33333 7.33348Z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-            </>
-
-            <div className="contact-top">
-              <div className="contact-header">
-                {/* <img className="contact-img" src={props.avatar} /> */}
-                <div className="contact-initials">
-                  <div>
-                    {props.name[0]}
-                    {props.name2[0]}
-                  </div>
-                </div>
-                <div className="contact-name">{`${props.name} ${props.name2}`}</div>
-              </div>
-              <div className="button-box">
-                <button className="contact-button" onClick={handleDownload}>
-                  <span className="contact-icon">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                  <div
+                    onClick={
+                      showShare ? console.log("something") : handleShareToggle
+                    }
+                    style={showShare ? { opacity: "0", cursor: "default" } : {}}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16">
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M12 4c.6 0 1 .4 1 1v14a1 1 0 1 1-2 0V5c0-.6.4-1 1-1Z"
-                        fill="var(--plus-icon-color, currentColor)"
+                        fill={TEXT_SECONDARY_COLOR}
+                        stroke={TEXT_SECONDARY_COLOR}
+                        d="M12.6661 7.33348C12.2979 7.33348 11.9994 7.63195 11.9994 8.00014C11.9994 8.36833 12.2979 8.66681 12.6661 8.66681C13.0343 8.66681 13.3328 8.36833 13.3328 8.00014C13.3328 7.63195 13.0343 7.33348 12.6661 7.33348Z"
                       ></path>
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M4 12c0-.6.4-1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Z"
-                        fill="var(--plus-icon-color, currentColor)"
+                        fill={TEXT_SECONDARY_COLOR}
+                        stroke={TEXT_SECONDARY_COLOR}
+                        d="M8.00057 7.33348C7.63238 7.33348 7.3339 7.63195 7.3339 8.00014C7.3339 8.36833 7.63238 8.66681 8.00057 8.66681C8.36876 8.66681 8.66724 8.36833 8.66724 8.00014C8.66724 7.63195 8.36876 7.33348 8.00057 7.33348Z"
+                      ></path>
+                      <path
+                        fill={TEXT_SECONDARY_COLOR}
+                        stroke={TEXT_SECONDARY_COLOR}
+                        d="M3.33333 7.33348C2.96514 7.33348 2.66667 7.63195 2.66667 8.00014C2.66667 8.36833 2.96514 8.66681 3.33333 8.66681C3.70152 8.66681 4 8.36833 4 8.00014C4 7.63195 3.70152 7.33348 3.33333 7.33348Z"
                       ></path>
                     </svg>
-                  </span>
-                  <span>Add to contacts</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <div className="contact-navbar">
-              <div
-                onClick={() => handleNavBtnClick("1")}
-                className={`${
-                  activeNav === "1" ? "active-nav" : ""
-                } navbar-button`}
-              >
-                <span>Contact</span>
-              </div>
-              <div
-                onClick={() => handleNavBtnClick("2")}
-                className={`${
-                  activeNav === "2" ? "active-nav" : ""
-                } navbar-button`}
-              >
-                <span>Company</span>
-              </div>
-              <div
-                onClick={() => handleNavBtnClick("3")}
-                className={`${
-                  activeNav === "3" ? "active-nav" : ""
-                } navbar-button`}
-              >
-                <span>Socials</span>
-              </div>
-            </div>
-          </div>
+                  </div>
+                </div>
+              </>
 
-          <div className="container">
-            <div className="contact-info">
-              {activeNav === "1" && contactContent}
-              {activeNav === "2" && companyContent}
-              {activeNav === "3" && socialsContent}
+              <div className="contact-top">
+                <div className="contact-header">
+                  {/* <img className="contact-img" src={props.avatar} /> */}
+                  <div className="contact-initials">
+                    <div>
+                      {props.name[0]}
+                      {props.name2[0]}
+                    </div>
+                  </div>
+                  <div className="contact-name">{`${props.name} ${props.name2}`}</div>
+                </div>
+                <div className="button-box">
+                  <button className="contact-button" onClick={handleDownload}>
+                    <span className="contact-icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 4c.6 0 1 .4 1 1v14a1 1 0 1 1-2 0V5c0-.6.4-1 1-1Z"
+                          fill="var(--plus-icon-color, currentColor)"
+                        ></path>
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M4 12c0-.6.4-1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Z"
+                          fill="var(--plus-icon-color, currentColor)"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span>Add to contacts</span>
+                  </button>
+                </div>
+              </div>
             </div>
+            <div className="container">
+              <div className="contact-navbar">
+                <div
+                  onClick={() => handleNavBtnClick("1")}
+                  className={`${
+                    activeNav === "1" ? "active-nav" : ""
+                  } navbar-button`}
+                >
+                  <span>Contact</span>
+                </div>
+                <div
+                  onClick={() => handleNavBtnClick("2")}
+                  className={`${
+                    activeNav === "2" ? "active-nav" : ""
+                  } navbar-button`}
+                >
+                  <span>Company</span>
+                </div>
+                <div
+                  onClick={() => handleNavBtnClick("3")}
+                  className={`${
+                    activeNav === "3" ? "active-nav" : ""
+                  } navbar-button`}
+                >
+                  <span>Socials</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="container">
+              <div className="contact-info">
+                {activeNav === "1" && contactContent}
+                {activeNav === "2" && companyContent}
+                {activeNav === "3" && socialsContent}
+              </div>
+            </div>
+            <div></div>
           </div>
-          <div></div>
         </div>
       </div>
     </>
