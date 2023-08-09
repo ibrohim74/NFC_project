@@ -1,8 +1,9 @@
 export const data = [
   {
     id: 1,
-    name: "Abdulaxad",
-    name2: "Kuchkarov",
+    url: "Abdulaxad",
+    name: "Kuchkarov",
+    name2: "Abdulaxad Maratovich",
     tel: "+998903572528",
     companyName: "IT park",
     jobName: "Executive director",
@@ -18,6 +19,7 @@ export const data = [
   },
   {
     id: 2,
+    url: "Farhad",
     name: "Farhad",
     name2: "Ibragimov",
     tel: "+998998905444",
@@ -35,6 +37,7 @@ export const data = [
   },
   {
     id: 3,
+    url: "Behzod",
     name: "Behzod",
     name2: "Abdullaev",
     tel: "+998998905444",
