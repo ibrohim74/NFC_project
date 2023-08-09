@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {$authHost} from "../../../http";
 import {message} from "antd";
 import {Err} from "../../../component/err";
+import {Button, Table} from "react-bootstrap";
 
 
 const CompanyOrders = () => {
@@ -51,13 +52,16 @@ const CompanyOrders = () => {
     }
     console.log(data)
     return (
-        <div>
+        <div className={"companyOrder"}>
             {contextHolder}
-            <select  id="select">
-                {optionData}
-            </select>
-            <button onClick={createBtn}>create</button>
-            <table>
+            <div className="orderBtn">
+                <select  id="select">
+                    {optionData}
+                </select>
+                <Button onClick={createBtn}>create</Button>
+            </div>
+
+            <Table>
                 <thead>
                 <th>Username</th>
                 <th>telephone</th>
@@ -75,7 +79,7 @@ const CompanyOrders = () => {
                 </>
                 })}
                 </tbody>
-            </table>
+            </Table>
         </div>
     );
 };

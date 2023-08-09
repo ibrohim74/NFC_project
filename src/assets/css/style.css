@@ -147,4 +147,25 @@ body{
     padding: 10px;
 }
 
-
+Table{
+    width: 70% !important;
+    text-align: center;
+}
+.user-list{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+.companyOrder select{
+    margin-top: 50px;
+}
+.companyOrder{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+.orderBtn{
+    margin-bottom: 30px;
+}
