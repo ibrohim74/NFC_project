@@ -19,7 +19,7 @@ const AppRout = observer(() => {
                 { local && adminDash.map(({path, Component}) => <Route key={path} path={path + "/*"} element={Component}/>)}
 
 
-                    <Route  exact path={`/contact/:username`} element={<UserPageContact/>} />
+                    <Route  exact path={`/:username`} element={<UserPageContact/>} />
 
                 <Route
                     path="*"
