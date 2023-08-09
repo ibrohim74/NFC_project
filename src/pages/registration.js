@@ -177,7 +177,7 @@ const Registration = () => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Pismadonchiyev"
-                                    vvalue={regData.last_name}
+                                    value={regData.last_name}
                                     onChange={(e) => {
                                         setRegData({...regData, last_name: e.target.value});
                                     }}

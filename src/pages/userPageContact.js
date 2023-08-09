@@ -6,6 +6,7 @@ import {$host} from "../http";
 const UserPageContact = () => {
     const {username} = useParams()
     const [data, setData] = useState([])
+
     const getUser = async () => {
         try {
             const res = await $host.get('api/v1/contact/' + username)
@@ -14,6 +15,9 @@ const UserPageContact = () => {
             return window.location.assign('/')
         }
     }
+    useEffect(() => {
+        getUser()
+    }, [])
     const contactVCF = async ()=>{
         try {
             const res = await $host.get('api/v1/vcard/' + username)
@@ -30,9 +34,7 @@ const UserPageContact = () => {
         }
     }
     console.log(data)
-    useEffect(() => {
-        getUser()
-    }, [])
+
     const [activeNav, setActiveNav] = useState("1");
     const handleNavBtnClick = (key) => {
         setActiveNav(key);
@@ -146,7 +148,7 @@ const UserPageContact = () => {
                 </svg>
                 <div className="item-text">
                     <span className="info-label">Company</span>
-                    <span>{data.work_info}</span>
+                    <span>{data.work_info && data.work_info.org}</span>
                 </div>
             </div>
             <div className="contact-info-item">
@@ -164,7 +166,7 @@ const UserPageContact = () => {
                 </svg>
                 <div className="item-text">
                     <span className="info-label">Profession</span>
-                    <span>{data.work_info}</span>
+                    <span>{data.work_info && data.work_info.role}</span>
                 </div>
             </div>
         </>

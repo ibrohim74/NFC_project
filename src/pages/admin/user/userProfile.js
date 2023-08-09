@@ -1,6 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {message} from "antd";
 import {$authHost} from "../../../http";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import {
+    Container,
+    Form,
+    Card,
+    Button,
+    Row,
+    Col,
+    FormGroup,
+} from "react-bootstrap";
 
 const UserProfile = () => {
     const [currentUser, setCurrentUser] = useState([]);
@@ -34,6 +44,8 @@ const UserProfile = () => {
         last_name: sendProf.last_name ? sendProf.last_name : currentUser.last_name,
         phone: sendProf.phone ? sendProf.phone : currentUser.phone,
         birthday: sendProf.birthday ? sendProf.birthday : currentUser.birthday,
+        created_by_id:currentUser.created_by_id,
+        theme:currentUser.theme,
         work_info: {
             org: sendProf.work_info ? sendProf.work_info.org : currentUser.work_info.org,
             role: sendProf.work_info ? sendProf.work_info.role : currentUser.work_info.role
@@ -45,7 +57,6 @@ const UserProfile = () => {
             country: sendProf.address ? sendProf.address.country : currentUser.address.country
         }
     }
-
     useEffect(() => {
         const getData = async () => {
             const res = await $authHost.get('api/v1/users/' + localStorage.getItem('uuid'));
@@ -53,127 +64,347 @@ const UserProfile = () => {
         };
         getData()
     }, []);
-
+console.log(dataIndex)
     const handleSend = async ()=>{
-        try {
-            const res = await $authHost.patch('api/v1/users/' + localStorage.getItem('uuid')+'/',
-                dataIndex
-            );
-            messageApi.open({
-                type: 'success',
-                content: res.data.username +" update",
-            })
-            setTimeout(()=>{
-                return window.location.reload()
-            },3000)
-        }catch (e) {
+        if (sendProf.password === ''){
             messageApi.open({
                 type: 'error',
-                content: e.message,
+                content: "password",
             })
+        }else {
+            try {
+                const res = await $authHost.patch('api/v1/users/' + localStorage.getItem('uuid')+'/',
+                    dataIndex
+                );
+                messageApi.open({
+                    type: 'success',
+                    content: res.data.username +" update",
+                })
+                setTimeout(()=>{
+                    return window.location.reload()
+                },3000)
+            }catch (e) {
+                messageApi.open({
+                    type: 'error',
+                    content: e.message,
+                })
+            }
         }
+
     }
     return (
-        <div key={currentUser.id}>
+        <>
+            <Container>
+                <Row >
+                    <Col style={{marginTop:"30px" }} >
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`email:${currentUser.email}`}
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="email"
+                                placeholder={`email:${currentUser.email}`}
+                                onChange={e => setSendProf({...sendProf ,email:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col  style={{marginTop:"30px" }}>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`username:${currentUser.username}`}
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`username:${currentUser.username}`}
+                                onChange={e => setSendProf({...sendProf , username:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col >
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={'password'}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="password"
+                                placeholder={`password:${currentUser.password}`}
+                                onChange={e => setSendProf({...sendProf ,password:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`first_name: ${currentUser.first_name}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`first_name:${currentUser.first_name}`}
+                                onChange={e => setSendProf({...sendProf ,first_name:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`last_name: ${currentUser.last_name}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`last_name: ${currentUser.last_name}`}
+                                onChange={e => setSendProf({...sendProf ,last_name:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`phone: ${currentUser.phone}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`phone: ${currentUser.phone}`}
+                                onChange={e => setSendProf({...sendProf ,phone:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`birthday: ${currentUser.birthday}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="date"
+                                placeholder={`phone: ${currentUser.birthday}`}
+                                onChange={e => setSendProf({...sendProf ,birthday:e.target.value})}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`organization: ${dataIndex.work_info.org}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`organization: ${dataIndex.work_info.org}`}
+                                onChange={(e) => {
+                                    setSendProf({...sendProf , work_info:{...sendProf.work_info , org:e.target.value}});
+                                }}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`Role: ${dataIndex.work_info.role}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`Role: ${dataIndex.work_info.role}`}
+                                onChange={(e) => {
+                                    setSendProf({...sendProf , work_info:{...sendProf.work_info , role:e.target.value}});
+                                }}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`City: ${dataIndex.address.city}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`City: ${dataIndex.address.city}`}
+                                onChange={(e) => {
+                                    dataIndex.address.city = e.target.value;
+                                }}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`Street: ${dataIndex.address.street}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`Street: ${dataIndex.address.street}`}
+                                onChange={(e) => {
+                                    setSendProf({...sendProf , address:{...sendProf.address , street:e.target.value}});
+                                }}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`Region: ${dataIndex.address.region}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`Region: ${dataIndex.address.region}`}
+                                onChange={(e) => {
+                                    setSendProf({...sendProf , address:{...sendProf.address , region:e.target.value}});
+                                }}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                    <Col>
+                        <FloatingLabel
+                            controlId="floatingInput"
+                            label={`Country: ${dataIndex.address.country}`}
+                            required
+                            className="mb-4"
+                        >
+                            <Form.Control
+                                type="text"
+                                placeholder={`Country: ${dataIndex.address.country}`}
+                                onChange={(e) => {
+                                    setSendProf({...sendProf , address:{...sendProf.address , country:e.target.value}});
+                                }}
+                            />
+                        </FloatingLabel>
+                    </Col>
+                </Row>
+                <Col>
+                <Button onClick={handleSend}>send</Button>
+            </Col>
+            </Container>
+
+        <>
             {contextHolder}
-            <p>{currentUser.username}</p>
-            <input type="text"
-                   placeholder='username'
-                   onChange={e => setSendProf({...sendProf , username:e.target.value})}
-            />
-            <p>{currentUser.email}</p>
-            <input type="text"
-                   placeholder='email'
-                // value={sendProf.email}
-                   onChange={e => setSendProf({...sendProf ,email:e.target.value})}
-            />
-            <input type="text"
-                   placeholder='password'
-                // value={sendProf.password}
-                   onChange={e => setSendProf({...sendProf ,password:e.target.value})}
-            />
-            <p>{currentUser.first_name}</p>
+        {/*    <p>{currentUser.username}</p>*/}
+        {/*    <input type="text"*/}
+        {/*           placeholder='username'*/}
+        {/*           onChange={e => setSendProf({...sendProf , username:e.target.value})}*/}
+        {/*    />*/}
+        {/*    <p>{currentUser.email}</p>*/}
+        {/*    <input type="text"*/}
+        {/*           placeholder='email'*/}
+        {/*           required*/}
+        {/*        // value={sendProf.email}*/}
+        {/*           onChange={e => setSendProf({...sendProf ,email:e.target.value})}*/}
+        {/*    />*/}
+        {/*    <input type="text"*/}
+        {/*           placeholder='password'*/}
+        {/*        // value={sendProf.password}*/}
+        {/*           onChange={e => setSendProf({...sendProf ,password:e.target.value})}*/}
+        {/*    />*/}
+        {/*    <p>{currentUser.first_name}</p>*/}
 
-            <input type="text"
-                   placeholder='first_name'
-                // value={sendProf.first_name}
-                   onChange={e => setSendProf({...sendProf ,first_name:e.target.value})}
-            />
+        {/*    <input type="text"*/}
+        {/*           placeholder='first_name'*/}
+        {/*        // value={sendProf.first_name}*/}
+        {/*           onChange={e => setSendProf({...sendProf ,first_name:e.target.value})}*/}
+        {/*    />*/}
 
-            <p>{currentUser.last_name}</p>
+        {/*    <p>{currentUser.last_name}</p>*/}
 
-            <input type="text"
-                   placeholder='last_name'
-                // value={sendProf.last_name}
-                   onChange={e => setSendProf({...sendProf ,last_name:e.target.value})}
-            />
+        {/*    <input type="text"*/}
+        {/*           placeholder='last_name'*/}
+        {/*        // value={sendProf.last_name}*/}
+        {/*           onChange={e => setSendProf({...sendProf ,last_name:e.target.value})}*/}
+        {/*    />*/}
 
-            <p>{currentUser.phone}</p>
+        {/*    <p>{currentUser.phone}</p>*/}
 
-            <input type="text"
-                   placeholder='phone'
-                // value={sendProf.phone}
-                   onChange={e => setSendProf({...sendProf ,phone:e.target.value})}
-            />
+        {/*    <input type="text"*/}
+        {/*           placeholder='phone'*/}
+        {/*        // value={sendProf.phone}*/}
+        {/*           onChange={e => setSendProf({...sendProf ,phone:e.target.value})}*/}
+        {/*    />*/}
 
-            <p>{currentUser.birthday}</p>
+        {/*    <p>{currentUser.birthday}</p>*/}
 
-            <input type="date"
-                   placeholder='birthday'
-                // value={sendProf.birthday}
-                   onChange={e => setSendProf({...sendProf ,birthday:e.target.value})}
-            />
+        {/*    <input type="date"*/}
+        {/*           placeholder='birthday'*/}
+        {/*        // value={sendProf.birthday}*/}
+        {/*           onChange={e => setSendProf({...sendProf ,birthday:e.target.value})}*/}
+        {/*    />*/}
 
-            <input type="text"
-                   placeholder='Organization'
-                // value={sendProf.work_info}
-                   onChange={(e) => {
-                       setSendProf({...sendProf , work_info:{...sendProf.work_info , org:e.target.value}});
-                   }}
-            />    <input type="text"
-                         placeholder='Role'
-            // value={sendProf.work_info}
-                         onChange={(e) => {
-                             setSendProf({...sendProf , work_info:{...sendProf.work_info , role:e.target.value}});
-                         }}
-        />
-            <input
-                type="text"
-                placeholder="city"
-                onChange={(e) => {
-                    setSendProf({...sendProf , address:{...sendProf.address , city:e.target.value}});
-                }}
-            />
+        {/*    <input type="text"*/}
+        {/*           placeholder='Organization'*/}
+        {/*        // value={sendProf.work_info}*/}
+        {/*           onChange={(e) => {*/}
+        {/*               setSendProf({...sendProf , work_info:{...sendProf.work_info , org:e.target.value}});*/}
+        {/*           }}*/}
+        {/*    />    <input type="text"*/}
+        {/*                 placeholder='Role'*/}
 
-
-            <input
-                type="text"
-                placeholder="street"
-                onChange={(e) => {
-                    setSendProf({...sendProf , address:{...sendProf.address , street:e.target.value}});
-                }}
-            />
+        {/*                 onChange={(e) => {*/}
+        {/*                     setSendProf({...sendProf , work_info:{...sendProf.work_info , role:e.target.value}});*/}
+        {/*                 }}*/}
+        {/*/>*/}
+        {/*    <input*/}
+        {/*        type="text"*/}
+        {/*        placeholder="city"*/}
+        {/*        onChange={(e) => {*/}
+        {/*            setSendProf({...sendProf , address:{...sendProf.address , city:e.target.value}});*/}
+        {/*        }}*/}
+        {/*    />*/}
 
 
-            <input
-                type="text"
-                placeholder="region"
-                onChange={(e) => {
-                    setSendProf({...sendProf , address:{...sendProf.address , region:e.target.value}});
-                }}
-            />
+        {/*    <input*/}
+        {/*        type="text"*/}
+        {/*        placeholder="street"*/}
+        {/*        onChange={(e) => {*/}
+        {/*            setSendProf({...sendProf , address:{...sendProf.address , street:e.target.value}});*/}
+        {/*        }}*/}
+        {/*    />*/}
 
 
-            <input
-                type="text"
-                placeholder="country"
-                onChange={(e) => {
-                    setSendProf({...sendProf , address:{...sendProf.address , country:e.target.value}});
-                }}
-            />
-            <button onClick={handleSend}>send</button>
-        </div>
-    );
+        {/*    <input*/}
+        {/*        type="text"*/}
+        {/*        placeholder="region"*/}
+        {/*        onChange={(e) => {*/}
+        {/*            setSendProf({...sendProf , address:{...sendProf.address , region:e.target.value}});*/}
+        {/*        }}*/}
+        {/*    />*/}
+
+
+        {/*    <input*/}
+        {/*        type="text"*/}
+        {/*        placeholder="country"*/}
+        {/*        onChange={(e) => {*/}
+        {/*            setSendProf({...sendProf , address:{...sendProf.address , country:e.target.value}});*/}
+        {/*        }}*/}
+        {/*    />*/}
+        {/*    <button type='submit' onClick={handleSend}>send</button>*/}
+
+        </>
+</>
+);
 };
 
 export default UserProfile;
