@@ -5,13 +5,28 @@ import "../assets/css/Contact.css";
 import VCard from "vcard-creator";
 import { HOME_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
+const themes = {
+  whiteBlack: {
+    main: { red: 255, green: 255, blue: 255 },
+    secondary: { red: 0, green: 0, blue: 0 },
+  },
+  blackWhite: {
+    main: { red: 0, green: 0, blue: 0 },
+    secondary: { red: 255, green: 255, blue: 255 },
+  },
+  greenBlack: {
+    main: { red: 125, green: 186, blue: 40 },
+    secondary: { red: 0, green: 0, blue: 0 },
+  },
+};
+
 const UserPageContact = (data) => {
   const props = data.data;
 
   /* SET/CHANGE CSS VARIABLES */
 
-  const MAIN_COLOR = props.pallete.main; /* rgb(125, 186, 40) */
-  const SECONDARY_COLOR = props.pallete.secondary; /* rgb(255, 255, 255) */
+  const MAIN_COLOR = themes.greenBlack.main; /* rgb(125, 186, 40) */
+  const SECONDARY_COLOR = themes.greenBlack.secondary; /* rgb(255, 255, 255) */
 
   // if (red*0.299 + green*0.587 + blue*0.114) > 186 use #000000 else use #ffffff
   const TEXT_MAIN_COLOR =
