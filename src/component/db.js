@@ -1,13 +1,13 @@
 export const data = [
   {
     id: 1,
-    name: "Abdulla",
-    name2: "Kucharov",
+    name: "Abdulaxad",
+    name2: "Kuchkarov",
     tel: "+998903572528",
     companyName: "IT park",
     jobName: "Executive director",
     instagram: "",
-    telegram: "https://t.me/s/akucharov",
+    telegram: "https://t.me/s/akuchkarov",
     linkedin: "",
     facebook: "",
     avatar: require("../assets/img/behzod-aka-avatar.JPG"),

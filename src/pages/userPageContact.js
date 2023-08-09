@@ -160,8 +160,8 @@ const UserPageContact = (data) => {
       .addCompany(`${props.companyName}`)
       .addEmail("xibroxim11@gmail.com")
       .addJobtitle(`${props.jobName}`)
-      .addPhoneNumber(998993045475, "WORK")
-      .addSocial(`${props.instagram}`, "instagram", "khasanov_ibroxim");
+      .addPhoneNumber(998993045475, "WORK");
+    // .addSocial(`${props.instagram}`, "", "");
 
     return card.toString();
   };
