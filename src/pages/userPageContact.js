@@ -25,8 +25,8 @@ const UserPageContact = (data) => {
 
   /* SET/CHANGE CSS VARIABLES */
 
-  const MAIN_COLOR = themes.greenBlack.main; /* rgb(125, 186, 40) */
-  const SECONDARY_COLOR = themes.greenBlack.secondary; /* rgb(255, 255, 255) */
+  const MAIN_COLOR = props.pallete.main; /* rgb(125, 186, 40) */
+  const SECONDARY_COLOR = props.pallete.secondary; /* rgb(255, 255, 255) */
 
   // if (red*0.299 + green*0.587 + blue*0.114) > 186 use #000000 else use #ffffff
   const TEXT_MAIN_COLOR =
