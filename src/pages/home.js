@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/css/home.css";
 import Question from "../component/question";
@@ -7,66 +7,43 @@ import Wpsay from "../component/wpsay";
 import VideoPanel from "../component/videoPanel";
 import { LOGIN_ROUTE, USER_CONTACT } from "../utils/consts";
 import { Link } from "react-router-dom";
-import { navLangs } from "../utils/multiLang";
+import {
+  createLangs,
+  faqLangs,
+  footerLangs,
+  functionsLangs,
+  goalLangs,
+  launchLags,
+  navLangs,
+} from "../utils/multiLang";
+
 const Home = () => {
   const [isActive, setIsActive] = useState(false);
-  const [funcIsActive, setfuncIsActive] = useState(false);
-  const [pageLang, setPageLang] = useState("en");
+  const [funcType, setfuncType] = useState("yourself");
+  const [pageLang, setPageLang] = useState(
+    localStorage.getItem("language") || "uz"
+  );
   const handleClick = () => {
     setIsActive((current) => !current);
   };
-  const funcBox = () => {
-    setfuncIsActive((current) => !current);
+  const handleFuncChange = (type) => {
+    setfuncType(type);
   };
-  console.log(funcIsActive);
 
-  const faqs = [
-    {
-      question: "What's a Site?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit",
-    },
-    {
-      question: "What can I link to on my Site?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "Where can I share my Site?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "How do I update my link in my social media bios?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "What if I need more than one Site?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "Are Sites free?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: 'What is a "link in bio"?',
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "How do I put a link in my Tiktok and Instagram bio?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      question: "Where else can I share my link in bio  ?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ];
+  useEffect(() => {
+    // save pageLang to localStorage under "language" key
+    localStorage.setItem("language", pageLang);
+    console.log(localStorage.getItem("language"));
+  }, [pageLang]); // only run when pageLang changes
+  // create a ref to store the select element
+  const selectRef = useRef(null);
+  // use useEffect to run the code when the component mounts
+  useEffect(() => {
+    // get the language value from local storage
+    const language = localStorage.getItem("language");
+    // set the value prop of the select element to the language value
+    selectRef.current.value = language;
+  }); // pass no dependencies
 
   return (
     <>
@@ -78,10 +55,14 @@ const Home = () => {
               <ul>
                 <li>
                   {/* <a href="#team">For Yourself</a> */}
-                  <a href="#team">{navLangs.forYou[`${pageLang}`]}</a>
+                  <a href="#team" onClick={() => handleFuncChange("yourself")}>
+                    {navLangs.forYou[`${pageLang}`]}
+                  </a>
                 </li>
                 <li>
-                  <a href="#team">{navLangs.forTeam[`${pageLang}`]}</a>
+                  <a href="#team" onClick={() => handleFuncChange("team")}>
+                    {navLangs.forTeam[`${pageLang}`]}
+                  </a>
                 </li>
                 <li>
                   <a href="#product">{navLangs.products[`${pageLang}`]}</a>
@@ -89,18 +70,22 @@ const Home = () => {
                 <li>
                   <a href="#tutroil">{navLangs.tutorials[`${pageLang}`]}</a>
                 </li>
+                <li>
+                  <a href="#faq">{navLangs.faqs[`${pageLang}`]}</a>
+                </li>
               </ul>
             </div>
             <div className="nav-component">
+              {/* LANGUAGES */}
               <select
                 name="select"
                 onChange={(evt) => setPageLang(evt.target.value)}
+                ref={selectRef}
               >
                 <option value="uz">Uz</option>
-                <option value="ru"> Ru</option>
+                <option value="ru">Ru</option>
                 <option value="en">En</option>
               </select>
-
               <Link to={LOGIN_ROUTE} className="account">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -184,9 +169,9 @@ const Home = () => {
             </Carousel>
           </div>
         </div> */}
-        <VideoPanel />
+        <VideoPanel pageLang={pageLang} />
 
-        <Slider />
+        <Slider pageLang={pageLang} />
 
         <div className="info">
           <div className="info-box">
@@ -194,15 +179,8 @@ const Home = () => {
               <img src={require("../assets/img/wristband-duo.png")} alt="" />
             </div>
             <div className="right-el">
-              <h1>Create and customize your digital profile in minutes.</h1>
-              <p>
-                Our product is designed to simplify the way you share all the
-                necessary information about yourself with others. No more
-                fumbling with business cards or manually typing in contact
-                details. With a single click, you can instantly share your
-                complete profile, making networking and connecting with others a
-                breeze.
-              </p>
+              <h1>{createLangs.create[pageLang]}</h1>
+              <p>{createLangs.ourProduct[pageLang]}</p>
             </div>
           </div>
         </div>
@@ -210,24 +188,32 @@ const Home = () => {
         <div className="function" id={"team"}>
           <div className="func-box">
             <div className="func-title">
-              <h1>Functions that you'll love and need</h1>
+              <h1>{functionsLangs.funcHeader[pageLang]}</h1>
               <div className="func-type">
-                {funcIsActive ? (
+                {funcType == "team" ? (
                   <>
                     <div>
-                      <h3 onClick={funcBox}>Yourself</h3>
+                      <h3 onClick={() => handleFuncChange("yourself")}>
+                        {functionsLangs.Yourself[pageLang]}
+                      </h3>
                     </div>
                     <div>
-                      <h3 style={{ background: "white" }}>Team</h3>
+                      <h3 style={{ background: "white" }}>
+                        {functionsLangs.Team[pageLang]}
+                      </h3>
                     </div>
                   </>
                 ) : (
                   <>
                     <div>
-                      <h3 style={{ background: "white" }}>Yourself</h3>
+                      <h3 style={{ background: "white" }}>
+                        {functionsLangs.Yourself[pageLang]}
+                      </h3>
                     </div>
                     <div>
-                      <h3 onClick={funcBox}>Team</h3>
+                      <h3 onClick={() => handleFuncChange("team")}>
+                        {functionsLangs.Team[pageLang]}
+                      </h3>
                     </div>
                   </>
                 )}
@@ -235,59 +221,38 @@ const Home = () => {
             </div>
             <div className="func-content">
               <div className="func-box-content">
-                {funcIsActive ? (
+                {funcType == "team" ? (
                   <div className="func-left">
                     <div className="func-left-el">
-                      <h1>Sustainable</h1>
-                      <p>
-                        When an employee leaves, you can reuse the card with new
-                        employees, reducing waste and costs.
-                      </p>
+                      <h1>{functionsLangs.sust[pageLang]}</h1>
+                      <p>{functionsLangs.sustText[pageLang]}</p>
                     </div>
                     <div className="func-left-el">
-                      <h1>Track your cards</h1>
-                      <p>
-                        Track your analytics and the number of people who have
-                        viewed profiles to generate more leads.
-                      </p>
+                      <h1>{functionsLangs.track[pageLang]}</h1>
+                      <p>{functionsLangs.trackText[pageLang]}</p>
                     </div>
                     <div className="func-left-el">
-                      <h1>Stand out with innovation </h1>
-                      <p>
-                        Whatever you do, whatever you're into. Share it and
-                        engage your audience by unifying them in one place, all
-                        from the link in the bio.
-                      </p>
+                      <h1>{functionsLangs.stand[pageLang]}</h1>
+                      <p>{functionsLangs.standText[pageLang]}</p>
                     </div>
                   </div>
                 ) : (
                   <div className="func-left">
                     <div className="func-left-el">
-                      <h1>Share the way you want</h1>
-                      <p>
-                        You can share your profile and content in multiple ways,
-                        including NFC tap, QR code, or Link through the
-                        internet.
-                      </p>
+                      <h1>{functionsLangs.share[pageLang]}</h1>
+                      <p>{functionsLangs.shareText[pageLang]}</p>
                     </div>
                     <div className="func-left-el">
-                      <h1>Save paper cards</h1>
-                      <p>
-                        Take photo of paper cards handed to you in the events
-                        and save them in the app, keep all cards in one place.
-                      </p>
+                      <h1>{functionsLangs.save[pageLang]}</h1>
+                      <p>{functionsLangs.saveText[pageLang]}</p>
                     </div>
                     <div className="func-left-el">
-                      <h1>Manage your profile</h1>
-                      <p>
-                        Edit, update, and schedule content with our quick, easy
-                        editor and seamlessly connect your Site with the tools
-                        you already use.
-                      </p>
+                      <h1>{functionsLangs.manage[pageLang]}</h1>
+                      <p>{functionsLangs.manageText[pageLang]}</p>
                     </div>
                   </div>
                 )}
-                {funcIsActive ? (
+                {funcType == "team" ? (
                   <div className="func-right">
                     <img
                       src={require("../assets/img/wristband-trio.png")}
@@ -305,57 +270,45 @@ const Home = () => {
         </div>
 
         <div className="launch" id={"tutroil"}>
-          <h1 className={"launch-h1"}>Launch your online profile today</h1>
+          <h1 className={"launch-h1"}>{launchLags.launchHeader[pageLang]}</h1>
 
           <div className="launch-box">
             <div className="launch-item">
               <div className="launch-step">
-                <h3>STEP 01</h3>
+                <h3>{launchLags.step[pageLang]} 01</h3>
               </div>
               <div className="launch-titel">
-                <h1>Click on the 'Get started' button and fill out the form</h1>
+                <h1>{launchLags.click[pageLang]}</h1>
               </div>
               <div className="launch-text">
-                <p>
-                  Choose the product you like and provide minimal information
-                  such as your name, email, phone number, and job title to get
-                  started.
-                </p>
+                <p>{launchLags.clickText[pageLang]}</p>
               </div>
             </div>
             <div className="launch-item">
               <div className="launch-step">
-                <h3>STEP 02</h3>
+                <h3>{launchLags.step[pageLang]} 02</h3>
               </div>
               <div className="launch-titel">
-                <h1>Set up your profile</h1>
+                <h1>{launchLags.set[pageLang]}</h1>
               </div>
               <div className="launch-text">
-                <p>
-                  Enter our web platform to add all additional information and
-                  add your style to your profile. It all comes together in a
-                  link designed in the landing page format.
-                </p>
+                <p>{launchLags.setText[pageLang]}</p>
               </div>
             </div>
             <div className="launch-item">
               <div className="launch-step">
-                <h3>STEP 03</h3>
+                <h3>{launchLags.step[pageLang]} 03</h3>
               </div>
               <div className="launch-titel">
-                <h1>All set and ready!</h1>
+                <h1>{launchLags.all[pageLang]}</h1>
               </div>
               <div className="launch-text">
-                <p>
-                  The web platform allows you to store and edit your profile,
-                  and in an offline gathering, you can easily share your
-                  business card in one click with our product.
-                </p>
+                <p>{launchLags.allText[pageLang]}</p>
               </div>
             </div>
           </div>
           <div className="launch-btn">
-            <a href="#">Get started today</a>
+            <a href="#">{launchLags.getStarted[pageLang]}</a>
           </div>
         </div>
 
@@ -368,25 +321,18 @@ const Home = () => {
               />
             </div>
             <div className="right-el">
-              <h1>Our goal is to make our world more greener than ever!</h1>
-              <p>
-                Join us in our mission to create a greener world by embracing
-                the our product. Say goodbye to wasteful paper business cards
-                and join the sustainable revolution. With our product, you can
-                instantly exchange your profile information, making networking
-                eco-friendly and efficient. You can make a positive impact on
-                the environment while effortlessly sharing your profile.
-              </p>
+              <h1>{goalLangs.goal[pageLang]}</h1>
+              <p>{goalLangs.goalText[pageLang]}</p>
             </div>
           </div>
         </div>
 
-        <div className="faq">
-          <h1>Frequently asked questions</h1>
+        <div className="faq" id="faq">
+          <h1>{faqLangs.faqHeader[pageLang]}</h1>
           <div //flex flex-col gap-8 items-start justify-start max-w-[766px] w-full
             className="faq-container"
           >
-            {faqs.map((faq, index) => (
+            {faqLangs.faqs[pageLang].map((faq, index) => (
               <Question
                 // deleted this:  gap-8
                 // bg-gray-100 flex flex-col items-center justify-center p-8 sm:px-5 rounded-[28px] w-full
@@ -397,21 +343,19 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <Wpsay />
+        <Wpsay pageLang={pageLang} />
         <footer style={{ fontFamily: "Rubik" }}>
           <div className="footer-container">
             <div className="footer-main">
               <div className="footer-text">
                 <div className="footer-text-content" size="txtRubikRegular16">
-                  One place for all yout paper cards, digital profiles, social
-                  media, products, and analytics, all you need is one click
-                  away!
+                  {footerLangs.footerText[pageLang]}
                 </div>
               </div>
               <div className="footer-links">
                 <div className="footer-links-column">
                   <div className="footer-links-header" size="txtRubikMedium24">
-                    Links
+                    {footerLangs.links[pageLang]}
                   </div>
                   <ul className="footer-links-list">
                     <li>
@@ -420,7 +364,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          Product
+                          {footerLangs.product[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -430,7 +374,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          FAQs
+                          {footerLangs.faqs[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -440,7 +384,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          Blog
+                          {footerLangs.blog[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -458,7 +402,7 @@ const Home = () => {
                 </div>
                 <div className="footer-links-column">
                   <div className="footer-links-header" size="txtRubikMedium24">
-                    Information
+                    {footerLangs.information[pageLang]}
                   </div>
                   <ul className="footer-links-list">
                     <li>
@@ -467,7 +411,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          About Us
+                          {footerLangs.aboutus[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -477,7 +421,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          Contacts
+                          {footerLangs.contacts[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -495,7 +439,7 @@ const Home = () => {
                 </div>
                 <div className="footer-links-column">
                   <div className="footer-links-header" size="txtRubikMedium24">
-                    Others
+                    {footerLangs.others[pageLang]}
                   </div>
                   <ul className="footer-links-list">
                     <li>
@@ -504,7 +448,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          Terms and Conditions
+                          {footerLangs.terms[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -514,7 +458,7 @@ const Home = () => {
                           className="footer-list-item"
                           size="txtRubikRegular16"
                         >
-                          Cookie Policy
+                          {footerLangs.cookie[pageLang]}
                         </div>
                       </a>
                     </li>
@@ -526,10 +470,10 @@ const Home = () => {
               <div className="line" />
               <div className="footer-logo">
                 <div className="footer-logo-text" size="txtRubikRegular14">
-                  All rights reserved
+                  {footerLangs.allRights[pageLang]}
                 </div>
                 <div className="footer-logo-icon">
-                  created by
+                  {footerLangs.createdBy[pageLang]}
                   {/* <img
                     className="footer-icon"
                     src="images/img_play.svg"
