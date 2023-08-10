@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import "../assets/css/Contact.css";
+import { React, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import VCard from "vcard-creator";
+import "../assets/css/Contact.css";
+import { $host } from "../http";
 import { HOME_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const themes = {
@@ -20,8 +20,10 @@ const themes = {
   },
 };
 
-const UserPageContact = (data) => {
-  const props = data.data;
+const UserPageContact = (comingProps) => {
+  const props = comingProps.data;
+  // const { username } = useParams(); uncomment
+  // const [data, setData] = useState([]);
 
   /* SET/CHANGE CSS VARIABLES */
 
@@ -78,6 +80,8 @@ const UserPageContact = (data) => {
 
   /* END OF CSS CHANGES */
 
+  /* FOR SHARING URL */
+
   const CURRENTURL = window.location.href;
   const SHARETEXT = "Check this contact";
   let telegramUrl = `tg://msg_url?url=${CURRENTURL}&text=${SHARETEXT}`;
@@ -94,35 +98,7 @@ const UserPageContact = (data) => {
   )}&quote=${SHARETEXT}`;
   let emailUrl = `mailto:?subject=${SHARETEXT}&body=${CURRENTURL}`;
 
-  const [activeNav, setActiveNav] = useState("1");
-  const handleNavBtnClick = (key) => {
-    setActiveNav(key);
-  };
-
-  const [showShare, setShowShare] = useState(false);
-  const handleShareToggle = () => {
-    setShowShare(!showShare);
-  };
-
-  // Define a state variable to store the copy status
-  const [copied, setCopied] = useState(false);
-
-  // Define a function to handle the copy event
-  const handleCopy = async () => {
-    try {
-      // Try to copy the text using the Clipboard API
-      await navigator.clipboard.writeText(window.location.href);
-      // If successful, update the copied state
-      setCopied(true);
-      // Reset the copied state after 3 seconds
-      setTimeout(() => setCopied(false), 3000);
-    } catch (err) {
-      // If failed, update the copied state and log the error
-      setCopied(false);
-      console.error(err);
-    }
-  };
-
+  // For sharing through default share function of browser ->
   // Define a state variable to store the share status
   const [shared, setShared] = useState(false);
 
@@ -143,6 +119,42 @@ const UserPageContact = (data) => {
       console.error(err);
     }
   };
+  // <-
+
+  /* END OF URL SHARING */
+
+  // active navbar
+  const [activeNav, setActiveNav] = useState("1");
+  const handleNavBtnClick = (key) => {
+    setActiveNav(key);
+  };
+
+  // toggle share
+  const [showShare, setShowShare] = useState(false);
+  const handleShareToggle = () => {
+    setShowShare(!showShare);
+  };
+
+  // Copy url button function ->
+  // Define a state variable to store the copy status
+  const [copied, setCopied] = useState(false);
+
+  // Define a function to handle the copy event
+  const handleCopy = async () => {
+    try {
+      // Try to copy the text using the Clipboard API
+      await navigator.clipboard.writeText(window.location.href);
+      // If successful, update the copied state
+      setCopied(true);
+      // Reset the copied state after 3 seconds
+      setTimeout(() => setCopied(false), 3000);
+    } catch (err) {
+      // If failed, update the copied state and log the error
+      setCopied(false);
+      console.error(err);
+    }
+  };
+  // <-
 
   const card = new VCard();
   const vcf = () => {
@@ -153,7 +165,6 @@ const UserPageContact = (data) => {
     const suffix = "";
     card
       .addName(firstname, lastname, additional, prefix, suffix)
-
       .addAddress("IT park", "", "Muminov street, 4", "Toshkent", "Uzbekistan")
       .addCompany(`${props.companyName}`)
       // .addEmail("test@email.com")
@@ -163,6 +174,7 @@ const UserPageContact = (data) => {
 
     return card.toString();
   };
+
   const handleDownload = () => {
     const vCardData = vcf();
     const blob = new Blob([vCardData], { type: "text/vcard" });
@@ -182,6 +194,35 @@ const UserPageContact = (data) => {
       window.location.reload(true);
     }, 2000);
   };
+
+  // const getUser = async () => { uncomment
+  //   try {
+  //     const res = await $host.get("api/v1/contact/" + username);
+  //     setData(res.data);
+  //   } catch (e) {
+  //     return window.location.assign("/");
+  //   }
+  // };
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+  // const contactVCF = async () => {
+  //   try {
+  //     const res = await $host.get("api/v1/vcard/" + username);
+  //     const blob = new Blob([res.data], { type: "text/vcard" });
+  //     const url = URL.createObjectURL(blob);
+  //     const a = document.createElement("a");
+  //     a.href = url;
+  //     a.download = `${data.username}.vcf`;
+  //     a.click();
+  //     URL.revokeObjectURL(url);
+  //     console.log(res);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+  // console.log(data);
+
   const contactContent = (
     <>
       <div className="contact-info-item">
