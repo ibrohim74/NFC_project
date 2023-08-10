@@ -1,3 +1,8 @@
+import { $host } from "../http";
+
+const getUser = async () => {
+  const res = await $host.get("api/v1/");
+};
 export const data = [
   {
     id: 1,

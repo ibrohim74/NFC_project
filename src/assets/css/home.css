@@ -46,6 +46,12 @@ h1 {
 .nav-content ul {
   margin: 0;
 }
+
+.nav-content ul li {
+  text-align: center;
+  margin: 0;
+}
+
 .carousel-inner {
   height: 100%;
 }

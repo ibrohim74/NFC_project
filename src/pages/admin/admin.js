@@ -1,15 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
-import Sidebar from "./sidebar";
 
 import {Routes, Route, Link} from "react-router-dom"
 import {observer} from "mobx-react-lite";
 import {$authHost, useTokenRefresh} from "../../http";
-import {Context} from "../../index";
 import {adminRoute, companyRoute, polyRoute, userRoute} from "../../routs";
 import {QuestionCircleOutlined} from "@ant-design/icons";
 import {
-    COMPANY_DEVISE, DEVISE_POLY,
-    DEVISE_USER,
     EDIT_ALL_USER,
     ORDER_USER, ORDERS_MANAGER,
     PROFILE_ADMIN,
@@ -18,21 +14,24 @@ import {
     STATISTIC, USER_LIST
 } from "../../utils/consts";
 import {getUser_Profile, logOut} from "../../http/userAPI";
+import { Layout, Space } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
 
 const Admin = observer(() => {
-    const {user} = useContext(Context);
     const [currentUser, setCurrentUser] = useState([]);
-    const [type, setType] = useState('');
 
     const token = useTokenRefresh();
     useEffect(() => {
-        const getData = async () => {
-            const res = await $authHost.get('api/v1/users/' + localStorage.getItem('uuid'));
-            setCurrentUser([res.data])
-            console.log(res)
-        };
-        if (token) {
-            getData()
+        try {
+            const getData = async () => {
+                const res = await $authHost.get('api/v1/users/' + localStorage.getItem('uuid'));
+                setCurrentUser([res.data])
+            };
+            if (token) {
+                getData()
+            }else {return  console.log('err')}
+        }catch (e) {
+            return window.location.assign('/')
         }
 
     }, [token]);
@@ -47,6 +46,7 @@ const Admin = observer(() => {
         typeUser()
     }, [])
     return (
+
         <div className={"adminPage"}>
             <div className="said-bar">
                 <div className='sidebar'>
