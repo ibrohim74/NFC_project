@@ -23,7 +23,10 @@ const themes = {
 const UserPageContact = (comingProps) => {
   const props = comingProps.data;
   const { username } = useParams(); //comment
-  const [data, setData] = useState([]); //comment
+  const [data, setData] = useState({
+    first_name: "Palonchi",
+    last_name: "Pismadonchi",
+  }); //comment
 
   /* SET/CHANGE CSS VARIABLES */
 
@@ -207,7 +210,7 @@ const UserPageContact = (comingProps) => {
   };
   useEffect(() => {
     getUser();
-  }, []);
+  }, [window.location.href]);
   const contactVCF = async () => {
     try {
       const res = await $host.get("api/v1/vcard/" + username);
@@ -1139,12 +1142,11 @@ const UserPageContact = (comingProps) => {
                   {/* <img className="contact-img" src={props.avatar} /> */}
                   <div className="contact-initials">
                     <div>
-                      ab
-                      {/* {data.name[0]}
-                      {data.name2[0]} */}
+                      {data.first_name[0]}
+                      {data.last_name[0]}
                     </div>
                   </div>
-                  <div className="contact-name">{`${data.name} ${data.name2}`}</div>
+                  <div className="contact-name">{`${data.first_name} ${data.last_name}`}</div>
                 </div>
                 <div className="button-box">
                   <button className="contact-button" onClick={contactVCF}>
