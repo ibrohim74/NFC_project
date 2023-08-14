@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Select from "react-select";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/css/home.css";
 import Question from "../component/question";
@@ -16,6 +17,51 @@ import {
   launchLags,
   navLangs,
 } from "../utils/multiLang";
+
+// for language select
+const customComponents = {
+  DropdownIndicator: () => null,
+  IndicatorSeparator: () => null,
+};
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    border: "none",
+    borderRadius: "10px",
+    backgroundColor: "#f3f3f3",
+    color: "#333",
+    fontFamily: "Arial, sans-serif",
+    fontSize: "1rem",
+    textAlign: "center",
+    outline: "none !important",
+    cursor: "pointer",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    border: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: state.isSelected
+      ? "#b8ff65"
+      : state.isFocused
+      ? "#f3f3f3"
+      : "white",
+    color: state.isSelected ? "black" : "black",
+    textAlign: "center",
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    borderRadius: "10px",
+    paddingTop: 0,
+    paddingBottom: 0,
+  }),
+  menu: (provided) => ({
+    ...provided,
+    borderRadius: "10px",
+  }),
+};
+// <- for language select
 
 const Home = () => {
   const [isActive, setIsActive] = useState(false);
@@ -35,15 +81,16 @@ const Home = () => {
     localStorage.setItem("language", pageLang);
     console.log(localStorage.getItem("language"));
   }, [pageLang]); // only run when pageLang changes
+
   // create a ref to store the select element
-  const selectRef = useRef(null);
+  // const selectRef = useRef(null);
   // use useEffect to run the code when the component mounts
-  useEffect(() => {
-    // get the language value from local storage
-    const language = localStorage.getItem("language");
-    // set the value prop of the select element to the language value
-    selectRef.current.value = language;
-  }); // pass no dependencies
+  // useEffect(() => {
+  //   // get the language value from local storage
+  //   const language = localStorage.getItem("language");
+  //   // set the value prop of the select element to the language value
+  //   selectRef.current.value = language;
+  // }); // pass no dependencies
 
   return (
     <>
@@ -77,7 +124,22 @@ const Home = () => {
             </div>
             <div className="nav-component">
               {/* LANGUAGES */}
-              <select
+              <Select
+                className="select"
+                components={customComponents}
+                value={{
+                  value: pageLang,
+                  label: pageLang.charAt(0).toUpperCase() + pageLang.slice(1),
+                }}
+                onChange={(selectedOption) => setPageLang(selectedOption.value)}
+                styles={customStyles}
+                options={[
+                  { value: "uz", label: "Uz" },
+                  { value: "ru", label: "Ru" },
+                  { value: "en", label: "En" },
+                ]}
+              />
+              {/* <select
                 name="select"
                 onChange={(evt) => setPageLang(evt.target.value)}
                 ref={selectRef}
@@ -85,7 +147,7 @@ const Home = () => {
                 <option value="uz">Uz</option>
                 <option value="ru">Ru</option>
                 <option value="en">En</option>
-              </select>
+              </select> */}
               <Link to={LOGIN_ROUTE} className="account">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -70,7 +70,7 @@ h1 {
   display: flex;
   align-items: center;
 }
-.nav-component select {
+.nav-component .select {
   margin-right: 13px;
 }
 .nav-component .account {
@@ -701,9 +701,9 @@ footer {
 /*secondary css*/
 
 /* Select a select element with name="select" */
-select[name="select"] {
-  width: 40px;
-  height: 40px;
+.select {
+  /* width: 40px;
+  height: 40px; */
   border-radius: 10px;
   background: #f3f3f3;
   color: #333;
@@ -711,17 +711,6 @@ select[name="select"] {
   font-family: Arial, sans-serif;
   font-size: 1rem;
   text-align: center;
-  /* Remove the default outline that appears when the select element is focused */
   outline: none;
-  /* Remove the default browser styling of the select element */
-  appearance: none;
-  /* Change the mouse pointer when hovering over the select element */
   cursor: pointer;
-}
-
-/* Select an option element that is a child of a select element with name="select" */
-select[name="select"] > option {
-  appearance: none !important;
-  border: none !important;
-  border-radius: 50%;
 }
