@@ -421,7 +421,7 @@ const Home = () => {
                   </div>
                   <ul className="footer-links-list">
                     <li>
-                      <a href="javascript:" className="footer-link">
+                      <a href="#product" className="footer-link">
                         <div
                           className="footer-list-item"
                           size="txtRubikRegular16"
@@ -431,7 +431,7 @@ const Home = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:" className="footer-link">
+                      <a href="#faq" className="footer-link">
                         <div
                           className="footer-list-item"
                           size="txtRubikRegular16"
