@@ -162,7 +162,7 @@ const Home = () => {
                   />
                 </svg>
               </Link>
-              <Link to={USER_CONTACT} className="account">
+              {/* <Link to={USER_CONTACT} className="account">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -175,7 +175,7 @@ const Home = () => {
                     fill="red"
                   />
                 </svg>
-              </Link>
+              </Link> */}
               <div className="menu" onClick={handleClick}>
                 {isActive ? (
                   <svg
