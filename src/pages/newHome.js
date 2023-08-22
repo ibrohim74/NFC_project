@@ -401,24 +401,465 @@ const newHome = () => {
         <div className="dashboard-section">
           <div className="section-header">
             <div className="section-header-title">
-              <div>Get the Full Picture of Your Finances and Improve </div>
+              <div>Transform the Way You Spend and Save </div>
               <div>
-                <span className="second-color-font underlined-text">Your</span>{" "}
                 <span className="second-color-font underlined-text">
-                  Financial
-                </span>{" "}
-                <span className="second-color-font underlined-text">
-                  Habits
+                  Your Money
                 </span>
               </div>
             </div>
             <div className="section-header-text">
               <div className="third-color-font">
-                With our app you can easily improve your financial habits.
+                Don't just take our word for it, take a look at some of the
+                reviews below.
               </div>
             </div>
           </div>
-          <div className="big-card"></div>
+          <div className="big-card main-color-bg border-r-64px">
+            <div className="big-card-left">
+              <div className="big-card-icon-container">
+                <div className="big-card-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke='var(--token-057e105f-6de4-415f-b0f5-ac7d77f8a158, rgb(255, 255, 255)) /* {"name":"White"} */'
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                  </svg>
+                </div>
+              </div>
+              <div className="big-card-info">
+                <div className="big-card-info-top">
+                  <div className="big-card-info-title">Sync Across Devices</div>
+                  <div className="big-card-info-text">
+                    <div className="third-color-font">
+                      All of your transactions are automatically synced across
+                      various devices you might have to offer a seamless
+                      experience.
+                    </div>
+                  </div>
+                </div>
+                <div className="big-card-learn-container second-color-font">
+                  <div>Learn More</div>
+                  <div>{">"}</div>
+                </div>
+              </div>
+            </div>
+            <div className="big-card-right">
+              <img
+                className="second-color-bg border-r-64px"
+                src={require("../assets/img/wristband.png")}
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* REVIEWS SECTION */}
+        <div className="reviews-section">
+          <div className="section-header">
+            <div className="section-header-title">
+              <div>Trusted by Millions of Happy Customers from </div>
+              <div>
+                <span className="second-color-font underlined-text">
+                  Around the World
+                </span>
+              </div>
+            </div>
+            <div className="section-header-text">
+              <div className="third-color-font">
+                Don't just take our word for it, take a look at some of the
+                reviews below.
+              </div>
+            </div>
+          </div>
+          <div className="reviews">
+            <div className="review main-color-bg">
+              <div className="review-logo">
+                <img src={require("../assets/testImg/partnyor1.png")} alt="" />
+              </div>
+              <div className="review-text">
+                "This is one of the best apps I have ever tried! It offers
+                everything modern app should have and the design is just
+                outstanding - so easy to use!"
+              </div>
+              <div className="review-author">
+                <div className="review-author-img second-color-bg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 8 8"
+                    id="person"
+                    fill="#fff"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
+                  </svg>
+                </div>
+                <div className="review-author-info">
+                  <div className="review-author-name">Josh Smith</div>
+                  <div className="review-author-title third-color-font">
+                    Sr. Product Designer
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="review main-color-bg">
+              <div className="review-logo">
+                <img src={require("../assets/testImg/partnyor2.png")} alt="" />
+              </div>
+              <div className="review-text">
+                "I was really impressed when I found out about this app. At
+                first I thought it wasn't for me, but after some time, I
+                realized that it's one of the best apps I ever used."
+              </div>
+              <div className="review-author">
+                <div className="review-author-img second-color-bg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 8 8"
+                    id="person"
+                    fill="#fff"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
+                  </svg>
+                </div>
+                <div className="review-author-info">
+                  <div className="review-author-name">Samantha Johnsonith</div>
+                  <div className="review-author-title third-color-font">
+                    Digital Marketing Manager
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="review main-color-bg">
+              <div className="review-logo">
+                <img src={require("../assets/testImg/partnyor3.png")} alt="" />
+              </div>
+              <div className="review-text">
+                "I would absolutely recommend this app to anybody who is looking
+                to try something new and interesting as the features this app
+                offers are just incredible."
+              </div>
+              <div className="review-author">
+                <div className="review-author-img second-color-bg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 8 8"
+                    id="person"
+                    fill="#fff"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
+                  </svg>
+                </div>
+                <div className="review-author-info">
+                  <div className="review-author-name">Paul Anderson</div>
+                  <div className="review-author-title third-color-font">
+                    CEO & Founder
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* PRICING SECTION */}
+        <div className="pricing-section">
+          <div className="section-header">
+            <div className="section-header-title">
+              <div>Flexible Pricing Plans to Fit </div>
+              <div>
+                <span className="second-color-font underlined-text">
+                  All of
+                </span>{" "}
+                <span className="second-color-font underlined-text">
+                  Your Needs
+                </span>
+              </div>
+              <div> and More</div>
+            </div>
+            <div className="section-header-text">
+              <div className="third-color-font">
+                Find the plan that suits you the most below.
+              </div>
+            </div>
+          </div>
+          <div className="pricing-content">
+            <div className="pricing-switch main-color-bg">
+              <div className="pricing-switch-btn">Monthly</div>
+              <div className="pricing-switch-btn">Yearly</div>
+              <div className="pricing-switch-btn">Lifetime</div>
+            </div>
+            <div className="pricing-plans">
+              <div className="pricing-plan">
+                <div className="pricing-plan-price">
+                  <div className="price-title second-color-font">Free</div>
+                  <div className="price-info">
+                    <span className="price-number">$0 </span>
+                    <span className="price-per-time">/ Month</span>
+                  </div>
+                </div>
+                <div className="pricing-features">
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      No Transaction Fees
+                    </div>
+                  </div>
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      Free International Transfers
+                    </div>
+                  </div>
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      Free International Transfers
+                    </div>
+                  </div>
+                </div>
+                <div className="pricing-start-btn first-btn-style">
+                  Get Started
+                </div>
+              </div>
+              <div className="pricing-plan">
+                <div className="pricing-plan-price">
+                  <div className="price-title second-color-font">Premium</div>
+                  <div className="price-info">
+                    <span className="price-number">$4.99 </span>
+                    <span className="price-per-time">/ Month</span>
+                  </div>
+                </div>
+                <div className="pricing-features">
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      Everything in Free
+                    </div>
+                  </div>
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      Free Card Delivery
+                    </div>
+                  </div>
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      Free Card Delivery
+                    </div>
+                  </div>
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">Priority Support</div>
+                  </div>
+                  <div className="pricing-feature">
+                    <div className="pricing-feature-icon-container">
+                      <div className="pricing-feature-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            width: "100%",
+                            cursor: "auto",
+                            height: "100%",
+                          }}
+                        >
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="pricing-feature-info">
+                      Early Access to New Features
+                    </div>
+                  </div>
+                </div>
+                <div className="pricing-start-btn second-btn-style">
+                  Get Started
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
