@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../../src/assets/css/newHome.css";
 
 const Faq = (props) => {
   const { question, answer } = { ...props.faq };
   const [showAnswer, setShowAnswer] = useState(false);
+  const answerRef = useRef(null);
 
   const handleClick = () => {
     setShowAnswer(!showAnswer);
   };
+
+  useEffect(() => {
+    if (answerRef.current) {
+      answerRef.current.style.maxHeight = showAnswer
+        ? `${answerRef.current.scrollHeight}px`
+        : "0";
+    }
+  }, [showAnswer]);
 
   return (
     <>
@@ -18,8 +27,18 @@ const Faq = (props) => {
           </div>
           <div className="faq-icon">icon</div>
         </div>
-        <div className="faq-answer">
-          Yes, you will have to create an account.
+        <div
+          ref={answerRef}
+          className={`faq-answer-container`}
+          style={{
+            maxHeight: "0",
+            overflow: "hidden",
+            transition: "max-height 0.5s ease-in-out",
+          }}
+        >
+          <div className="faq-answer" size="txtRubikRegular16">
+            Yes, you will have to create an account.
+          </div>
         </div>
       </div>
       {/* <div

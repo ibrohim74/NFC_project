@@ -114,6 +114,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* HERO SECTION */}
         <div className="hero-section">
           <div className="hero-box">
@@ -148,6 +149,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* SLIDER SECTION */}
         <div className="home-slider">
           <div className="slider-box">
@@ -159,6 +161,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* FUNCTIONS SECTION */}
         <div className="functions-section">
           <div className="section-header">
@@ -295,6 +298,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* FEATURES SECTION */}
         <div className="features-section">
           <div className="section-header">
@@ -395,6 +399,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* DASHBOARD SECTION */}
         <div className="dashboard-section">
           <div className="section-header">
@@ -462,6 +467,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* REVIEWS SECTION */}
         <div className="reviews-section">
           <div className="section-header">
@@ -576,6 +582,7 @@ const NewHome = () => {
             </div>
           </div>
         </div>
+
         {/* PRICING SECTION */}
         <div className="pricing-section">
           <div className="section-header">

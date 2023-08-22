@@ -712,8 +712,9 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  /* gap: 24px; */
   border-bottom: 1px solid var(--faq-border-color);
+  margin-top: 0;
 }
 
 .Home .faq-top {
@@ -722,10 +723,22 @@ body {
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
+  align-items: start;
+}
+
+.Home .faq-question {
+}
+
+.Home .faq-answer-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.Home .faq-answer-container {
 }
 
 .Home .faq-answer {
-  width: 100%;
+  padding-top: 24px;
 }
 
 /************************************************* SECONDARY CSS *************************************************************/
