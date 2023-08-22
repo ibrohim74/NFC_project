@@ -6,6 +6,7 @@ body {
 
 .Home {
   --main-color: #f4f0fa;
+  --main-font-color: #000;
   --background-color: #fff;
   --second-color: #7755cc;
   --third-color: #452145;
@@ -13,6 +14,11 @@ body {
   --sc-theme-second-color: #f58a07;
   --trd-theme-main-color: #effaff;
   --trd-theme-second-color: #30c5ff;
+
+  /*secondary colors*/
+  --inactive-price-btn-color: #b5a6b9;
+  --faq-border-color: #ddd1f0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -574,7 +580,17 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   border-radius: 48px;
+  color: var(--inactive-price-btn-color);
+  /* user-select: none !important; */
+  cursor: pointer;
+}
+.Home .pricing-switch-btn:hover {
+  color: var(--main-font-color);
+}
+
+.Home .pricing-switch-btn.active {
   background-color: var(--background-color);
+  color: var(--main-font-color);
 }
 
 .Home .pricing-plans {
@@ -669,6 +685,47 @@ body {
   justify-content: center;
   font-size: 1.25rem;
   font-weight: 600;
+}
+
+/* FAQS SECTION */
+
+.Home .faq-section {
+  width: 100%;
+  padding: 96px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.Home .faqs {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Home .faq {
+  padding: 32px 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-bottom: 1px solid var(--faq-border-color);
+}
+
+.Home .faq-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.Home .faq-answer {
+  width: 100%;
 }
 
 /************************************************* SECONDARY CSS *************************************************************/

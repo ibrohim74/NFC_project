@@ -17,6 +17,7 @@ import {
   launchLags,
   navLangs,
 } from "../utils/multiLang";
+import Faq from "../component/faq";
 
 // for language select
 const customComponents = {
@@ -65,25 +66,27 @@ const customStyles = {
 
 const slides = (
   <>
-    <div class="slide">
+    <div className="slide">
       <img src={require("../assets/testImg/partnyor1.png")} alt="" />
     </div>
-    <div class="slide">
+    <div className="slide">
       <img src={require("../assets/testImg/partnyor2.png")} alt="" />
     </div>
-    <div class="slide">
+    <div className="slide">
       <img src={require("../assets/testImg/partnyor3.png")} alt="" />
     </div>
-    <div class="slide">
+    <div className="slide">
       <img src={require("../assets/testImg/partnyor4.png")} alt="" />
     </div>
-    <div class="slide">
+    <div className="slide">
       <img src={require("../assets/testImg/partnyor5.png")} alt="" />
     </div>
   </>
 );
 
-const newHome = () => {
+const NewHome = () => {
+  /* for price switch */
+  const [priceTime, setPriceTime] = useState("monthly"); // can be "monthly", "yearly", "lifetime"
   return (
     <>
       <div className="Home">
@@ -111,7 +114,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* HERO SECTION */}
         <div className="hero-section">
           <div className="hero-box">
@@ -146,7 +148,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* SLIDER SECTION */}
         <div className="home-slider">
           <div className="slider-box">
@@ -158,7 +159,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* FUNCTIONS SECTION */}
         <div className="functions-section">
           <div className="section-header">
@@ -189,9 +189,9 @@ const newHome = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke='var(--token-057e105f-6de4-415f-b0f5-ac7d77f8a158, rgb(255, 255, 255)) /* {"name":"White"} */'
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     style={{ width: "100%", cursor: "auto", height: "100%" }}
                   >
                     <rect
@@ -232,9 +232,9 @@ const newHome = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke='var(--token-057e105f-6de4-415f-b0f5-ac7d77f8a158, rgb(255, 255, 255)) /* {"name":"White"} */'
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     style={{ width: "100%", cursor: "auto", height: "100%" }}
                   >
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -267,9 +267,9 @@ const newHome = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke='var(--token-057e105f-6de4-415f-b0f5-ac7d77f8a158, rgb(255, 255, 255)) /* {"name":"White"} */'
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     style={{ width: "100%", cursor: "auto", height: "100%" }}
                   >
                     <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
@@ -295,7 +295,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* FEATURES SECTION */}
         <div className="features-section">
           <div className="section-header">
@@ -396,7 +395,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* DASHBOARD SECTION */}
         <div className="dashboard-section">
           <div className="section-header">
@@ -426,9 +424,9 @@ const newHome = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke='var(--token-057e105f-6de4-415f-b0f5-ac7d77f8a158, rgb(255, 255, 255)) /* {"name":"White"} */'
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     style={{ width: "100%", cursor: "auto", height: "100%" }}
                   >
                     <polyline points="17 1 21 5 17 9"></polyline>
@@ -464,7 +462,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* REVIEWS SECTION */}
         <div className="reviews-section">
           <div className="section-header">
@@ -579,7 +576,6 @@ const newHome = () => {
             </div>
           </div>
         </div>
-
         {/* PRICING SECTION */}
         <div className="pricing-section">
           <div className="section-header">
@@ -603,9 +599,30 @@ const newHome = () => {
           </div>
           <div className="pricing-content">
             <div className="pricing-switch main-color-bg">
-              <div className="pricing-switch-btn">Monthly</div>
-              <div className="pricing-switch-btn">Yearly</div>
-              <div className="pricing-switch-btn">Lifetime</div>
+              <div
+                className={`pricing-switch-btn ${
+                  priceTime === "monthly" ? "active" : ""
+                }`}
+                onClick={() => setPriceTime("monthly")}
+              >
+                Monthly
+              </div>
+              <div
+                className={`pricing-switch-btn ${
+                  priceTime === "yearly" ? "active" : ""
+                }`}
+                onClick={() => setPriceTime("yearly")}
+              >
+                Yearly
+              </div>
+              <div
+                className={`pricing-switch-btn ${
+                  priceTime === "lifetime" ? "active" : ""
+                }`}
+                onClick={() => setPriceTime("lifetime")}
+              >
+                Lifetime
+              </div>
             </div>
             <div className="pricing-plans">
               <div className="pricing-plan">
@@ -613,7 +630,16 @@ const newHome = () => {
                   <div className="price-title second-color-font">Free</div>
                   <div className="price-info">
                     <span className="price-number">$0 </span>
-                    <span className="price-per-time">/ Month</span>
+                    <span className="price-per-time">
+                      /{" "}
+                      {priceTime === "monthly" ? (
+                        <>Month</>
+                      ) : priceTime === "yearly" ? (
+                        <>Year</>
+                      ) : (
+                        <>Lifetime</>
+                      )}
+                    </span>
                   </div>
                 </div>
                 <div className="pricing-features">
@@ -627,9 +653,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -655,9 +681,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -683,9 +709,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -710,8 +736,25 @@ const newHome = () => {
                 <div className="pricing-plan-price">
                   <div className="price-title second-color-font">Premium</div>
                   <div className="price-info">
-                    <span className="price-number">$4.99 </span>
-                    <span className="price-per-time">/ Month</span>
+                    <span className="price-number">
+                      {priceTime === "monthly" ? (
+                        <>$4.99</>
+                      ) : priceTime === "monthly" ? (
+                        <>$39.99</>
+                      ) : (
+                        <>$74.99</>
+                      )}{" "}
+                    </span>
+                    <span className="price-per-time">
+                      /{" "}
+                      {priceTime === "monthly" ? (
+                        <>Month</>
+                      ) : priceTime === "yearly" ? (
+                        <>Year</>
+                      ) : (
+                        <>Lifetime</>
+                      )}
+                    </span>
                   </div>
                 </div>
                 <div className="pricing-features">
@@ -725,9 +768,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -753,9 +796,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -781,9 +824,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -809,9 +852,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -835,9 +878,9 @@ const newHome = () => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke='var(--token-28245a58-6cde-4717-bfdd-03eb721e66b9, rgb(35, 17, 35)) /* {"name":"Text / Dark / Primary"} */'
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           style={{
                             width: "100%",
                             cursor: "auto",
@@ -855,10 +898,43 @@ const newHome = () => {
                   </div>
                 </div>
                 <div className="pricing-start-btn second-btn-style">
-                  Get Started
+                  Start My Free Trial
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* FAQ SECTION */}
+        <div className="faq-section">
+          <div className="section-header">
+            <div className="section-header-title">
+              <div>Frequently Asked </div>
+              <div>
+                <span className="second-color-font underlined-text">
+                  Questions
+                </span>
+              </div>
+            </div>
+            <div className="section-header-text">
+              <div className="third-color-font">
+                Find answers to the questions you might have below.
+              </div>
+            </div>
+          </div>
+          <div className="faqs">
+            <Faq />
+            {/* <div className="faq">
+              <div className="faq-top">
+                <div className="faq-question">
+                  Do I need to sign up for an account?
+                </div>
+                <div className="faq-icon">icon</div>
+              </div>
+              <div className="faq-answer">
+                Yes, you will have to create an account.
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -866,4 +942,4 @@ const newHome = () => {
   );
 };
 
-export default newHome;
+export default NewHome;
