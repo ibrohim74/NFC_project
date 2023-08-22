@@ -3,6 +3,7 @@ export const HOME_ROUTE = "/";
 export const LOGIN_ROUTE = "/login";
 export const REGISTRATION_ROUTE = "/registration";
 export const USER_CONTACT = "/userContact/1";
+export const NEW_HOME_ROUTE = "/newHome";
 
 //dashboard route
 export const ADMIN_ROUTE = "/admin";
