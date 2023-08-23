@@ -93,7 +93,7 @@ const NewHome = () => {
         {/* NAVBAR */}
         <div className="home-navbar">
           <div className="navbar-box">
-            <div className="navbar-right">
+            <div className="navbar-left">
               <div className="logo">
                 LOGO
                 <span className="second-color-font">
@@ -101,7 +101,7 @@ const NewHome = () => {
                 </span>
               </div>
             </div>
-            <div className="navbar-left">
+            <div className="navbar-right">
               <div className="navbar-links">
                 <div className="navbar-link">Home</div>
                 <div className="navbar-link">About</div>
@@ -352,11 +352,9 @@ const NewHome = () => {
             </div>
             <div className="big-card sc-theme-main-color-bg">
               <div className="big-card-left">
-                <img
-                  className="sc-theme-second-color-bg border-r-64px"
-                  src={require("../assets/img/wristband.png")}
-                  alt=""
-                />
+                <div className="big-card-img-container sc-theme-second-color-bg border-r-64px">
+                  <img src={require("../assets/img/wristband.png")} alt="" />
+                </div>
               </div>
               <div className="big-card-right">
                 <div className="big-card-info-title">
@@ -376,11 +374,9 @@ const NewHome = () => {
             </div>
             <div className="big-card trd-theme-main-color-bg">
               <div className="big-card-left">
-                <img
-                  className="trd-theme-second-color-bg border-r-64px"
-                  src={require("../assets/img/wristband.png")}
-                  alt=""
-                />
+                <div className="big-card-img-container trd-theme-second-color-bg border-r-64px">
+                  <img src={require("../assets/img/wristband.png")} alt="" />
+                </div>
               </div>
               <div className="big-card-right">
                 <div className="big-card-info-title">
@@ -461,11 +457,9 @@ const NewHome = () => {
               </div>
             </div>
             <div className="big-card-right">
-              <img
-                className="second-color-bg border-r-64px"
-                src={require("../assets/img/wristband.png")}
-                alt=""
-              />
+              <div className="big-card-img-container second-color-bg border-r-64px">
+                <img src={require("../assets/img/wristband.png")} alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -639,7 +633,7 @@ const NewHome = () => {
                   <div className="price-title second-color-font">Free</div>
                   <div className="price-info">
                     <span className="price-number">$0 </span>
-                    <span className="price-per-time">
+                    <span className="price-per-time third-color-font">
                       /{" "}
                       {priceTime === "monthly" ? (
                         <>Month</>
@@ -754,7 +748,7 @@ const NewHome = () => {
                         <>$74.99</>
                       )}{" "}
                     </span>
-                    <span className="price-per-time">
+                    <span className="price-per-time third-color-font">
                       /{" "}
                       {priceTime === "monthly" ? (
                         <>Month</>
@@ -1064,7 +1058,7 @@ const NewHome = () => {
                 </div>
               </div>
               <div className="footer-column">
-                <div className="footer-column-header">header</div>
+                <div className="footer-column-header">Legal</div>
                 <div className="footer-column-links">
                   <div className="footer-column-link">Privacy Policy</div>
                   <div className="footer-column-link">Terms of Service</div>
