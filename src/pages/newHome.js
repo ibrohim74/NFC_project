@@ -85,6 +85,23 @@ const slides = (
 );
 
 const NewHome = () => {
+  /* for nav menu toggler */
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  const handleBurgerClick = () => {
+    setShowMenu(!showMenu);
+  };
+
+  useEffect(() => {
+    if (menuRef.current) {
+      menuRef.current.style.maxHeight = showMenu
+        ? `${menuRef.current.scrollHeight}px`
+        : // "320px"
+          "0";
+    }
+  }, [showMenu]);
+
   /* for price switch */
   const [priceTime, setPriceTime] = useState("monthly"); // can be "monthly", "yearly", "lifetime"
   return (
@@ -100,8 +117,15 @@ const NewHome = () => {
                   <div className="dot second-color-bg"></div>
                 </span>
               </div>
+              <div className="burger-menu" onClick={handleBurgerClick}>
+                <div class="nav-toggle">
+                  <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+                  <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+                  <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+                </div>
+              </div>
             </div>
-            <div className="navbar-right">
+            <div ref={menuRef} className="navbar-right">
               <div className="navbar-links">
                 <div className="navbar-link">Home</div>
                 <div className="navbar-link">About</div>
