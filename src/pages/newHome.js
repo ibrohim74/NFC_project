@@ -141,23 +141,23 @@ const NewHome = () => {
               </div>
             </div>
             <div className="hero-right">
-              <img
-                className="second-color-bg border-r-64px"
-                src={require("../assets/img/wristband.png")}
-                alt=""
-              />
+              <div className="big-card-img-container second-color-bg border-r-64px">
+                <img src={require("../assets/img/wristband.png")} alt="" />
+              </div>
             </div>
           </div>
         </div>
 
         {/* SLIDER SECTION */}
-        <div className="home-slider">
-          <div className="slider-box">
-            <div className="slider-track">
-              {slides}
-              {slides}
-              {slides}
-              {slides}
+        <div className="home-slider-section">
+          <div className="home-slider">
+            <div className="slider-box">
+              <div className="slider-track">
+                {slides}
+                {slides}
+                {slides}
+                {slides}
+              </div>
             </div>
           </div>
         </div>
@@ -323,11 +323,13 @@ const NewHome = () => {
           <div className="features-cards">
             <div className="big-card main-color-bg">
               <div className="big-card-left">
-                <img
-                  className="second-color-bg border-r-64px"
-                  src={require("../assets/img/wristband.png")}
-                  alt=""
-                />
+                <div className="big-card-img-container second-color-bg border-r-64px">
+                  <img
+                    className=""
+                    src={require("../assets/img/wristband.png")}
+                    alt=""
+                  />
+                </div>
               </div>
               <div className="big-card-right">
                 <div className="big-card-info-title">
@@ -930,18 +932,145 @@ const NewHome = () => {
             </div>
           </div>
           <div className="faqs">
-            <Faq />
-            {/* <div className="faq">
-              <div className="faq-top">
-                <div className="faq-question">
-                  Do I need to sign up for an account?
+            {faqLangs.faqs["en"].map((faq, index) => (
+              <Faq faq={faq} key={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* GET STARTED SECTION */}
+        <div className="start-section">
+          <div className="start-box main-color-bg border-r-64px">
+            <div className="section-header">
+              <div className="section-header-title">
+                <div>Get Started </div>
+                <div>
+                  <span className="second-color-font underlined-text">
+                    Completely
+                  </span>{" "}
+                  <span className="second-color-font underlined-text">
+                    for Free
+                  </span>
                 </div>
-                <div className="faq-icon">icon</div>
+                <div> with No Credit Card Required</div>
               </div>
-              <div className="faq-answer">
-                Yes, you will have to create an account.
+              <div className="section-header-text">
+                <div className="third-color-font">
+                  You can try out our app completely for free for 30 days.
+                </div>
               </div>
-            </div> */}
+            </div>
+            <div className="start-btns">
+              <div className="start-btn second-btn-style">
+                Download for Free
+              </div>
+              <div className="start-btn first-btn-style">Request a Demo</div>
+            </div>
+          </div>
+        </div>
+
+        {/* FOOTER SECTION */}
+        <div className="footer-section">
+          <div className="footer-box main-color-bg border-r-64px">
+            <div className="footer-left">
+              <div className="footer-super">
+                <div className="logo">
+                  LOGO
+                  <span className="second-color-font">
+                    <div className="dot second-color-bg"></div>
+                  </span>
+                </div>
+                <div className="rights-reserved third-color-font">
+                  © IT Park 2019-2023. All Rights Reserved.
+                </div>
+              </div>
+              <div className="footer-socials">
+                <div className="footer-social">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke='var(--token-3d9f3466-3a04-4832-8618-d0889335958f, rgb(69, 33, 69)) /* {"name":"Text / Dark / Secondary"} */'
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                  </svg>
+                </div>
+                <div className="footer-social">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke='var(--token-3d9f3466-3a04-4832-8618-d0889335958f, rgb(69, 33, 69)) /* {"name":"Text / Dark / Secondary"} */'
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <rect
+                      x="2"
+                      y="2"
+                      width="20"
+                      height="20"
+                      rx="5"
+                      ry="5"
+                    ></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div className="footer-social">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke='var(--token-3d9f3466-3a04-4832-8618-d0889335958f, rgb(69, 33, 69)) /* {"name":"Text / Dark / Secondary"} */'
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: "100%", cursor: "auto", height: "100%" }}
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div className="footer-right">
+              <div className="footer-column">
+                <div className="footer-column-header">Product</div>
+                <div className="footer-column-links">
+                  <div className="footer-column-link">Features</div>
+                  <div className="footer-column-link">Pricing</div>
+                  <div className="footer-column-link">Reviews</div>
+                </div>
+              </div>
+              <div className="footer-column">
+                <div className="footer-column-header">Company</div>
+                <div className="footer-column-links">
+                  <div className="footer-column-link">About</div>
+                  <div className="footer-column-link">Contact</div>
+                  <div className="footer-column-link">Support</div>
+                  <div className="footer-column-link">News</div>
+                  <div className="footer-column-link">Careers</div>
+                </div>
+              </div>
+              <div className="footer-column">
+                <div className="footer-column-header">header</div>
+                <div className="footer-column-links">
+                  <div className="footer-column-link">Privacy Policy</div>
+                  <div className="footer-column-link">Terms of Service</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

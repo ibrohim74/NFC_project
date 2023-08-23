@@ -20,12 +20,32 @@ const Faq = (props) => {
 
   return (
     <>
-      <div className="faq" onClick={handleClick}>
+      <div className="faq" onClick={handleClick} style={{ cursor: "pointer" }}>
         <div className="faq-top">
-          <div className="faq-question">
-            Do I need to sign up for an account?
+          <div className="faq-question">{question}</div>
+          <div className="faq-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke='var(--token-c14831ff-cc47-4731-9a6e-57f671335b44, rgb(119, 85, 204)) /* {"name":"Primary / 100%"} */'
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{
+                width: "100%",
+                cursor: "auto",
+                height: "100%",
+                rotate: showAnswer ? "90deg" : "0deg",
+                overflow: "hidden",
+                transition: "0.5s",
+              }}
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </div>
-          <div className="faq-icon">icon</div>
         </div>
         <div
           ref={answerRef}
@@ -36,8 +56,8 @@ const Faq = (props) => {
             transition: "max-height 0.5s ease-in-out",
           }}
         >
-          <div className="faq-answer" size="txtRubikRegular16">
-            Yes, you will have to create an account.
+          <div className="faq-answer third-color-font" size="txtRubikRegular16">
+            {answer}
           </div>
         </div>
       </div>
