@@ -20,7 +20,11 @@ const Faq = (props) => {
 
   return (
     <>
-      <div className="faq" onClick={handleClick} style={{ cursor: "pointer" }}>
+      <div
+        className={`faq ${props.className}`}
+        onClick={handleClick}
+        style={{ cursor: "pointer" }}
+      >
         <div className="faq-top">
           <div className="faq-question">{question}</div>
           <div className="faq-icon">

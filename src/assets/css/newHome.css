@@ -119,6 +119,14 @@ body {
   border-radius: 20px;
   white-space: nowrap;
   font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.Home .first-btn-style:hover,
+.Home .second-btn-style:hover {
+  background-color: var(--third-color);
+  color: #fff;
 }
 
 .Home .first-btn-style {
@@ -129,6 +137,22 @@ body {
 .Home .second-btn-style {
   background-color: var(--second-color);
   color: #fff;
+}
+
+/* for language selctor */
+/* Select a select element with name="select" */
+.select {
+  width: max-content;
+  height: max-content;
+  border-radius: 10px;
+  background: #f3f3f3;
+  color: #333;
+  /* Change the font style and size of the select element */
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
 }
 
 /* for burger menu toggler */
@@ -155,8 +179,10 @@ body {
 .nav-toggle .bar {
   height: 3px;
   width: 100%;
-  background-color: black;
-  transition: all 1s ease-in-out;
+  /* background-color: black; */
+  background-color: var(--second-color);
+  border-radius: 1.5px;
+  transition: all 0.5s ease-in-out;
 }
 
 .nav-toggle:hover {
@@ -164,7 +190,7 @@ body {
 }
 
 .x-icon {
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .x-icon:nth-of-type(1) {
@@ -276,6 +302,9 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 96px;
+  overflow: visible;
+  z-index: 1000;
+  transition: all 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 1250px) {
@@ -309,9 +338,22 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  max-height: fit-content;
+  /* max-height: fit-content; */
+
+  /* height: fit-content;
+  max-height: 0; */
+
   gap: 96px;
-  transition: max-height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+}
+
+.Home .home-navbar .navbar-right.expanded {
+  height: auto;
+}
+
+.Home .home-navbar .navbar-right.collapsed {
+  height: 0;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1250px) {
@@ -1134,6 +1176,7 @@ body {
   color: var(--inactive-price-btn-color);
   /* user-select: none !important; */
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 .Home .pricing-switch-btn:hover {
   color: var(--main-font-color);
@@ -1532,11 +1575,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.Home .footer-social:hover {
+  background-color: var(--third-color);
+}
+
+.Home .footer-social:hover > svg {
+  stroke: #fff;
 }
 
 .Home .footer-social svg {
   height: 16px !important;
   width: 16px !important;
+  transition: all 0.3s ease-in-out;
 }
 
 .Home .footer-right {
@@ -1579,4 +1632,9 @@ body {
 
 .Home .footer-column-link {
   font-weight: 400;
+  cursor: pointer;
+}
+
+.Home .footer-column-link:hover {
+  text-decoration: underline;
 }

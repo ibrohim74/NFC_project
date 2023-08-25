@@ -18,6 +18,8 @@ import {
   navLangs,
 } from "../utils/multiLang";
 import Faq from "../component/faq";
+import WOW from "wow.js/dist/wow.js";
+import "animate.css";
 
 // for language select
 const customComponents = {
@@ -88,19 +90,45 @@ const NewHome = () => {
   /* for nav menu toggler */
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const [pageLang, setPageLang] = useState(
+    localStorage.getItem("language") || "uz"
+  );
+
+  useEffect(() => {
+    // save pageLang to localStorage under "language" key
+    localStorage.setItem("language", pageLang);
+    console.log(localStorage.getItem("language"));
+  }, [pageLang]); // only run when pageLang changes
 
   const handleBurgerClick = () => {
     setShowMenu(!showMenu);
   };
 
+  // useEffect(() => {
+  //   if (menuRef.current) {
+  //     menuRef.current.style.maxHeight = showMenu
+  //       ? // ? `${menuRef.current.scrollHeight}px`
+  //         "fit-content"
+  //       : // "320px"
+  //         "0";
+  //   }
+  // }, [showMenu]);
   useEffect(() => {
     if (menuRef.current) {
-      menuRef.current.style.maxHeight = showMenu
-        ? `${menuRef.current.scrollHeight}px`
-        : // "320px"
-          "0";
+      if (showMenu) {
+        menuRef.current.classList.add("expanded");
+        menuRef.current.classList.remove("collapsed");
+      } else {
+        menuRef.current.classList.add("collapsed");
+        menuRef.current.classList.remove("expanded");
+      }
     }
   }, [showMenu]);
+
+  useEffect(() => {
+    const wow = new WOW();
+    wow.init();
+  }, []);
 
   /* for price switch */
   const [priceTime, setPriceTime] = useState("monthly"); // can be "monthly", "yearly", "lifetime"
@@ -108,7 +136,7 @@ const NewHome = () => {
     <>
       <div className="Home">
         {/* NAVBAR */}
-        <div className="home-navbar">
+        <div className="home-navbar wow animate__animated animate__slideInDown">
           <div className="navbar-box">
             <div className="navbar-left">
               <div className="logo">
@@ -125,13 +153,36 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div ref={menuRef} className="navbar-right">
+            <div
+              ref={menuRef}
+              className={`navbar-right ${
+                showMenu ? "wow animate__animated animate__slideInDown" : ""
+              }`}
+            >
               <div className="navbar-links">
                 <div className="navbar-link">Home</div>
                 <div className="navbar-link">About</div>
                 <div className="navbar-link">Contact</div>
               </div>
               <div className="navbar-btns">
+                {/* LANGUAGES */}
+                <Select
+                  className="select"
+                  components={customComponents}
+                  value={{
+                    value: pageLang,
+                    label: pageLang.charAt(0).toUpperCase() + pageLang.slice(1),
+                  }}
+                  onChange={(selectedOption) =>
+                    setPageLang(selectedOption.value)
+                  }
+                  styles={customStyles}
+                  options={[
+                    { value: "uz", label: "Uz" },
+                    { value: "ru", label: "Ru" },
+                    { value: "en", label: "En" },
+                  ]}
+                />
                 <div className="login-btn first-btn-style">Log In</div>
                 <div className="signup-btn second-btn-style ">Sign Up</div>
               </div>
@@ -141,7 +192,7 @@ const NewHome = () => {
 
         {/* HERO SECTION */}
         <div className="hero-section">
-          <div className="hero-box">
+          <div className="hero-box wow animate__animated animate__slideInUp">
             <div className="hero-left">
               <div className="hero-info">
                 <div className="info-title">
@@ -174,7 +225,7 @@ const NewHome = () => {
 
         {/* SLIDER SECTION */}
         <div className="home-slider-section">
-          <div className="home-slider">
+          <div className="home-slider wow animate__animated animate__slideInRight">
             <div className="slider-box">
               <div className="slider-track">
                 {slides}
@@ -188,7 +239,7 @@ const NewHome = () => {
 
         {/* FUNCTIONS SECTION */}
         <div className="functions-section">
-          <div className="section-header">
+          <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Mobile Money Management </div>
               <div>
@@ -206,7 +257,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="functions-cards">
-            <div className="functions-card">
+            <div className="functions-card  wow animate__animated animate__slideInRight">
               <div className="functions-card-icon-container">
                 <div className="functions-card-icon">
                   <svg
@@ -249,7 +300,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="functions-card">
+            <div className="functions-card  wow animate__animated animate__slideInRight">
               <div className="functions-card-icon-container">
                 <div className="functions-card-icon">
                   <svg
@@ -284,7 +335,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="functions-card">
+            <div className="functions-card  wow animate__animated animate__slideInRight">
               <div className="functions-card-icon-container">
                 <div className="functions-card-icon">
                   <svg
@@ -325,7 +376,7 @@ const NewHome = () => {
 
         {/* FEATURES SECTION */}
         <div className="features-section">
-          <div className="section-header">
+          <div className="section-header   wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Get the Full Picture of Your Finances and Improve </div>
               <div>
@@ -345,7 +396,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="features-cards">
-            <div className="big-card main-color-bg">
+            <div className="big-card main-color-bg  wow animate__animated animate__slideInRight">
               <div className="big-card-left">
                 <div className="big-card-img-container second-color-bg border-r-64px">
                   <img
@@ -374,7 +425,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="big-card sc-theme-main-color-bg">
+            <div className="big-card sc-theme-main-color-bg  wow animate__animated animate__slideInRight">
               <div className="big-card-left">
                 <div className="big-card-img-container sc-theme-second-color-bg border-r-64px">
                   <img src={require("../assets/img/wristband.png")} alt="" />
@@ -396,7 +447,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="big-card trd-theme-main-color-bg">
+            <div className="big-card trd-theme-main-color-bg  wow animate__animated animate__slideInRight">
               <div className="big-card-left">
                 <div className="big-card-img-container trd-theme-second-color-bg border-r-64px">
                   <img src={require("../assets/img/wristband.png")} alt="" />
@@ -424,7 +475,7 @@ const NewHome = () => {
 
         {/* DASHBOARD SECTION */}
         <div className="dashboard-section">
-          <div className="section-header">
+          <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Transform the Way You Spend and Save </div>
               <div>
@@ -440,7 +491,7 @@ const NewHome = () => {
               </div>
             </div>
           </div>
-          <div className="big-card main-color-bg border-r-64px">
+          <div className="big-card main-color-bg border-r-64px  wow animate__animated animate__slideInUp">
             <div className="big-card-left">
               <div className="big-card-icon-container">
                 <div className="big-card-icon">
@@ -490,7 +541,7 @@ const NewHome = () => {
 
         {/* REVIEWS SECTION */}
         <div className="reviews-section">
-          <div className="section-header">
+          <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Trusted by Millions of Happy Customers from </div>
               <div>
@@ -507,7 +558,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="reviews">
-            <div className="review main-color-bg">
+            <div className="review main-color-bg  wow animate__animated animate__slideInRight">
               <div className="review-logo">
                 <img src={require("../assets/testImg/partnyor1.png")} alt="" />
               </div>
@@ -538,7 +589,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="review main-color-bg">
+            <div className="review main-color-bg  wow animate__animated animate__slideInRight">
               <div className="review-logo">
                 <img src={require("../assets/testImg/partnyor2.png")} alt="" />
               </div>
@@ -569,7 +620,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="review main-color-bg">
+            <div className="review main-color-bg  wow animate__animated animate__slideInRight">
               <div className="review-logo">
                 <img src={require("../assets/testImg/partnyor3.png")} alt="" />
               </div>
@@ -605,7 +656,7 @@ const NewHome = () => {
 
         {/* PRICING SECTION */}
         <div className="pricing-section">
-          <div className="section-header">
+          <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Flexible Pricing Plans to Fit </div>
               <div>
@@ -652,7 +703,7 @@ const NewHome = () => {
               </div>
             </div>
             <div className="pricing-plans">
-              <div className="pricing-plan">
+              <div className="pricing-plan  wow animate__animated animate__slideInLeft">
                 <div className="pricing-plan-price">
                   <div className="price-title second-color-font">Free</div>
                   <div className="price-info">
@@ -759,7 +810,7 @@ const NewHome = () => {
                   Get Started
                 </div>
               </div>
-              <div className="pricing-plan">
+              <div className="pricing-plan  wow animate__animated animate__slideInRight">
                 <div className="pricing-plan-price">
                   <div className="price-title second-color-font">Premium</div>
                   <div className="price-info">
@@ -934,7 +985,7 @@ const NewHome = () => {
 
         {/* FAQ SECTION */}
         <div className="faq-section">
-          <div className="section-header">
+          <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Frequently Asked </div>
               <div>
@@ -951,14 +1002,18 @@ const NewHome = () => {
           </div>
           <div className="faqs">
             {faqLangs.faqs["en"].map((faq, index) => (
-              <Faq faq={faq} key={index} />
+              <Faq
+                faq={faq}
+                key={index}
+                className="wow animate__animated animate__slideInUp"
+              />
             ))}
           </div>
         </div>
 
         {/* GET STARTED SECTION */}
         <div className="start-section">
-          <div className="start-box main-color-bg border-r-64px">
+          <div className="start-box main-color-bg border-r-64px  wow animate__animated animate__slideInUp">
             <div className="section-header">
               <div className="section-header-title">
                 <div>Get Started </div>
@@ -988,7 +1043,7 @@ const NewHome = () => {
         </div>
 
         {/* FOOTER SECTION */}
-        <div className="footer-section">
+        <div className="footer-section  wow animate__animated animate__slideInUp">
           <div className="footer-box main-color-bg border-r-64px">
             <div className="footer-left">
               <div className="footer-super">
