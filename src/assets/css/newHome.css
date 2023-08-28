@@ -1108,12 +1108,28 @@ body {
 
 .Home .reviews {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   gap: 48px;
   width: 100%;
 }
 
+/* Update styles for the slider container */
+.reviews .slick-slider {
+  width: 100%;
+}
+
+/* Update styles for each review slide */
+.reviews .slick-slide {
+  padding: 0 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .reviews .slick-slide {
+    padding: 0;
+  }
+}
+/* 
 @media screen and (max-width: 1250px) {
   .Home .reviews {
     flex-direction: column;
@@ -1124,17 +1140,18 @@ body {
   .Home .reviews {
     gap: 32px;
   }
-}
+} */
 
 .Home .review {
+  height: 100%;
   width: 100%;
   padding: 32px;
   border-radius: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
-  gap: 48px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: start !important;
+  justify-content: space-between !important;
+  gap: 48px !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -1157,14 +1174,15 @@ body {
 }
 
 .Home .review-text {
-  font-size: 1.25rem;
+  font-size: 1.25rem !important;
   font-weight: 500;
+  white-space: normal !important;
 }
 
 .Home .review-author {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
   gap: 24px;
 }
 
@@ -1174,8 +1192,8 @@ body {
 }
 
 .Home .review-author-img svg {
-  max-width: 32px;
-  max-height: 32px;
+  width: 32px !important;
+  height: 32px !important;
 }
 
 @media screen and (max-width: 768px) {

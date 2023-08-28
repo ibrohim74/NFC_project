@@ -3,7 +3,6 @@ import Select from "react-select";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/css/newHome.css";
 import Question from "../component/question";
-import Slider from "../component/slider";
 import Wpsay from "../component/wpsay";
 import VideoPanel from "../component/videoPanel";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, USER_CONTACT } from "../utils/consts";
@@ -21,6 +20,52 @@ import {
 import Faq from "../component/faq";
 import WOW from "wow.js/dist/wow.js";
 import "animate.css";
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+//review slider settings
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1300,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+const reviews = [
+  {
+    text: "This is one of the best apps I have ever tried! It offers everything modern app should have and the design is just outstanding - so easy to use!",
+    author: "Josh Smith",
+    title: "Sr. Product Designer",
+  },
+  {
+    text: "I was really impressed when I found out about this app. At first I thought it wasn't for me, but after some time, I realized that it's one of the best apps I ever used.",
+    author: "Samantha Johnsonith",
+    title: "Digital Marketing Manager",
+  },
+  {
+    text: "I would absolutely recommend this app to anybody who is looking to try something new and interesting as the features this app offers are just incredible.",
+    author: "Paul Anderson",
+    title: "CEO & Founder",
+  },
+];
 
 // for language select
 const customComponents = {
@@ -667,99 +712,46 @@ const NewHome = () => {
             </div>
           </div>
           <div className="reviews">
-            <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
-              <div className="review-logo">
-                <img src={require("../assets/testImg/partnyor1.png")} alt="" />
-              </div>
-              <div className="review-text">
-                "This is one of the best apps I have ever tried! It offers
-                everything modern app should have and the design is just
-                outstanding - so easy to use!"
-              </div>
-              <div className="review-author">
-                <div className="review-author-img second-color-bg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 8 8"
-                    id="person"
-                    fill="#fff"
-                    style={{ width: "100%", cursor: "auto", height: "100%" }}
-                  >
-                    <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
-                  </svg>
-                </div>
-                <div className="review-author-info">
-                  <div className="review-author-name">Josh Smith</div>
-                  <div className="review-author-title third-color-font">
-                    Sr. Product Designer
+            <Slider {...settings}>
+              {reviews.map((review, index) => (
+                <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
+                  <div className="review-logo">
+                    <img
+                      src={require(`../assets/testImg/partnyor${
+                        index + 1
+                      }.png`)}
+                      alt=""
+                    />
+                  </div>
+                  <div className="review-text">{review.text}</div>
+                  <div className="review-author">
+                    <div className="review-author-img second-color-bg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 8 8"
+                        id="person"
+                        fill="#fff"
+                        style={{
+                          width: "100%",
+                          cursor: "auto",
+                          height: "100%",
+                        }}
+                      >
+                        <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
+                      </svg>
+                    </div>
+                    <div className="review-author-info">
+                      <div className="review-author-name">{review.author}</div>
+                      <div className="review-author-title third-color-font">
+                        {review.title}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
-              <div className="review-logo">
-                <img src={require("../assets/testImg/partnyor2.png")} alt="" />
-              </div>
-              <div className="review-text">
-                "I was really impressed when I found out about this app. At
-                first I thought it wasn't for me, but after some time, I
-                realized that it's one of the best apps I ever used."
-              </div>
-              <div className="review-author">
-                <div className="review-author-img second-color-bg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 8 8"
-                    id="person"
-                    fill="#fff"
-                    style={{ width: "100%", cursor: "auto", height: "100%" }}
-                  >
-                    <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
-                  </svg>
-                </div>
-                <div className="review-author-info">
-                  <div className="review-author-name">Samantha Johnsonith</div>
-                  <div className="review-author-title third-color-font">
-                    Digital Marketing Manager
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
-              <div className="review-logo">
-                <img src={require("../assets/testImg/partnyor3.png")} alt="" />
-              </div>
-              <div className="review-text">
-                "I would absolutely recommend this app to anybody who is looking
-                to try something new and interesting as the features this app
-                offers are just incredible."
-              </div>
-              <div className="review-author">
-                <div className="review-author-img second-color-bg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 8 8"
-                    id="person"
-                    fill="#fff"
-                    style={{ width: "100%", cursor: "auto", height: "100%" }}
-                  >
-                    <path d="M4 0C2.9 0 2 1.12 2 2.5S2.9 5 4 5s2-1.12 2-2.5S5.1 0 4 0zM1.91 5C.85 5.05 0 5.92 0 7v1h8V7c0-1.08-.84-1.95-1.91-2-.54.61-1.28 1-2.09 1-.81 0-1.55-.39-2.09-1z"></path>
-                  </svg>
-                </div>
-                <div className="review-author-info">
-                  <div className="review-author-name">Paul Anderson</div>
-                  <div className="review-author-title third-color-font">
-                    CEO & Founder
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))}
+            </Slider>
           </div>
         </div>
 
