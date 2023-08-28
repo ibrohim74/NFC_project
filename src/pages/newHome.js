@@ -152,7 +152,9 @@ const NewHome = () => {
     console.log(localStorage.getItem("language"));
   }, [pageLang]); // only run when pageLang changes
 
-  const handleBurgerClick = () => {
+  const handleBurgerClick = (event) => {
+    // Stop the propagation of the click event to prevent conflicts
+    event.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -164,6 +166,22 @@ const NewHome = () => {
         : // "320px"
           "0";
     }
+    // Add a click event listener to the document
+    const handleClickOutside = (event) => {
+      if (
+        showMenu &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [showMenu]);
 
   useEffect(() => {
@@ -219,7 +237,10 @@ const NewHome = () => {
                     { value: "en", label: "En" },
                   ]}
                 />
-                <div className="burger-menu" onClick={handleBurgerClick}>
+                <div
+                  className="burger-menu"
+                  onClick={(event) => handleBurgerClick(event)}
+                >
                   <div className="nav-toggle">
                     <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
                     <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
@@ -230,9 +251,10 @@ const NewHome = () => {
             </div>
             <div
               ref={menuRef}
-              className={`navbar-right ${
-                showMenu ? "wow animate__animated animate__slideInDown" : ""
-              }`}
+              // className={`navbar-right ${
+              //   showMenu ? "wow animate__animated animate__slideInDown" : ""
+              // }`}
+              className="navbar-right"
             >
               <div className="navbar-links">
                 <div className="navbar-link">

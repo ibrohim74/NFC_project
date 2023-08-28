@@ -170,7 +170,7 @@ body {
 }
 @media screen and (max-width: 1250px) {
   .select.second-select {
-    display: none;
+    display: none !important;
   }
 }
 .Home .select .css-1dimb5e-singleValue {
@@ -1488,6 +1488,11 @@ body {
   justify-content: space-between;
   gap: 24px;
   align-items: start;
+}
+
+.Home .faq-icon {
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .Home .faq-question {
