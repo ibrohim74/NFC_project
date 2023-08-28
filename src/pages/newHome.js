@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useHistory } from "react";
 import Select from "react-select";
 import Carousel from "react-bootstrap/Carousel";
 import "../assets/css/newHome.css";
@@ -6,7 +6,7 @@ import Question from "../component/question";
 import Slider from "../component/slider";
 import Wpsay from "../component/wpsay";
 import VideoPanel from "../component/videoPanel";
-import { LOGIN_ROUTE, USER_CONTACT } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, USER_CONTACT } from "../utils/consts";
 import { Link } from "react-router-dom";
 import {
   createLangs,
@@ -16,6 +16,7 @@ import {
   goalLangs,
   launchLags,
   navLangs,
+  newHomeLangs,
 } from "../utils/multiLang";
 import Faq from "../component/faq";
 import WOW from "wow.js/dist/wow.js";
@@ -31,8 +32,8 @@ const customStyles = {
     ...provided,
     border: "none",
     borderRadius: "10px",
-    backgroundColor: "#f3f3f3",
-    color: "#333",
+    backgroundColor: "var(--second-color)",
+    color: "white",
     fontFamily: "Arial, sans-serif",
     fontSize: "1rem",
     textAlign: "center",
@@ -46,11 +47,11 @@ const customStyles = {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: state.isSelected
-      ? "#b8ff65"
+      ? "#7755cc"
       : state.isFocused
       ? "#f3f3f3"
       : "white",
-    color: state.isSelected ? "black" : "black",
+    color: state.isSelected ? "white" : "black",
     textAlign: "center",
   }),
   menuList: (provided) => ({
@@ -69,30 +70,81 @@ const customStyles = {
 const slides = (
   <>
     <div className="slide">
-      <img src={require("../assets/testImg/partnyor1.png")} alt="" />
+      <img src={require("../assets/testImg/partner1.png")} alt="" />
     </div>
     <div className="slide">
-      <img src={require("../assets/testImg/partnyor2.png")} alt="" />
+      <img src={require("../assets/testImg/partner2.png")} alt="" />
     </div>
     <div className="slide">
-      <img src={require("../assets/testImg/partnyor3.png")} alt="" />
+      <img src={require("../assets/testImg/partner3.png")} alt="" />
     </div>
     <div className="slide">
-      <img src={require("../assets/testImg/partnyor4.png")} alt="" />
+      <img src={require("../assets/testImg/partner4.png")} alt="" />
     </div>
     <div className="slide">
-      <img src={require("../assets/testImg/partnyor5.png")} alt="" />
+      <img src={require("../assets/testImg/partner5.png")} alt="" />
     </div>
   </>
 );
+
+const footerLinks = [
+  [
+    {
+      lang: newHomeLangs.footerSection.footerColumns[0].columnLinks[0], //features
+      scroll: "#features",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[0].columnLinks[1], //pricing
+      scroll: "#pricing",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[0].columnLinks[2], //reviews
+      scroll: "#reviews",
+    },
+  ],
+  [
+    {
+      lang: newHomeLangs.footerSection.footerColumns[1].columnLinks[0], //about
+      link: "/about",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[1].columnLinks[1], //contact
+      link: "/contact",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[1].columnLinks[2], //support
+      link: "/support",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[1].columnLinks[3], //news
+      link: "/news",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[1].columnLinks[4], //careers
+      link: "/careers",
+    },
+  ],
+  [
+    {
+      lang: newHomeLangs.footerSection.footerColumns[2].columnLinks[0], //privacy policy
+      link: "/legal",
+    },
+    {
+      lang: newHomeLangs.footerSection.footerColumns[2].columnLinks[1], //terms of service
+      link: "/legal",
+    },
+  ],
+];
 
 const NewHome = () => {
   /* for nav menu toggler */
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const languageSelectorRef = useRef(null);
   const [pageLang, setPageLang] = useState(
     localStorage.getItem("language") || "uz"
   );
+  const [openLanguageSelector, setOpenLanguageSelector] = useState(false);
 
   useEffect(() => {
     // save pageLang to localStorage under "language" key
@@ -104,26 +156,27 @@ const NewHome = () => {
     setShowMenu(!showMenu);
   };
 
-  // useEffect(() => {
-  //   if (menuRef.current) {
-  //     menuRef.current.style.maxHeight = showMenu
-  //       ? // ? `${menuRef.current.scrollHeight}px`
-  //         "fit-content"
-  //       : // "320px"
-  //         "0";
-  //   }
-  // }, [showMenu]);
   useEffect(() => {
     if (menuRef.current) {
-      if (showMenu) {
-        menuRef.current.classList.add("expanded");
-        menuRef.current.classList.remove("collapsed");
-      } else {
-        menuRef.current.classList.add("collapsed");
-        menuRef.current.classList.remove("expanded");
-      }
+      menuRef.current.style.maxHeight = showMenu
+        ? // ? `${menuRef.current.scrollHeight}px`
+          "500px"
+        : // "320px"
+          "0";
     }
   }, [showMenu]);
+
+  useEffect(() => {
+    if (languageSelectorRef.current) {
+      if (openLanguageSelector) {
+        languageSelectorRef.current.classList.add("open");
+        // languageSelectorRef.current.classList.remove("collapsed");
+      } else {
+        // languageSelectorRef.current.classList.add("collapsed");
+        languageSelectorRef.current.classList.remove("open");
+      }
+    }
+  }, [openLanguageSelector]);
 
   useEffect(() => {
     const wow = new WOW();
@@ -132,6 +185,7 @@ const NewHome = () => {
 
   /* for price switch */
   const [priceTime, setPriceTime] = useState("monthly"); // can be "monthly", "yearly", "lifetime"
+
   return (
     <>
       <div className="Home">
@@ -146,7 +200,7 @@ const NewHome = () => {
                 </span>
               </div>
               <div className="burger-menu" onClick={handleBurgerClick}>
-                <div class="nav-toggle">
+                <div className="nav-toggle">
                   <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
                   <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
                   <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
@@ -160,9 +214,15 @@ const NewHome = () => {
               }`}
             >
               <div className="navbar-links">
-                <div className="navbar-link">Home</div>
-                <div className="navbar-link">About</div>
-                <div className="navbar-link">Contact</div>
+                <div className="navbar-link">
+                  <Link to="/">{newHomeLangs.navbar.home[pageLang]}</Link>
+                </div>
+                <div className="navbar-link">
+                  <Link to="/">{newHomeLangs.navbar.about[pageLang]}</Link>
+                </div>
+                <div className="navbar-link">
+                  <Link to="/">{newHomeLangs.navbar.contact[pageLang]}</Link>
+                </div>
               </div>
               <div className="navbar-btns">
                 {/* LANGUAGES */}
@@ -177,14 +237,55 @@ const NewHome = () => {
                     setPageLang(selectedOption.value)
                   }
                   styles={customStyles}
+                  closeMenuOnSelect={true}
                   options={[
                     { value: "uz", label: "Uz" },
                     { value: "ru", label: "Ru" },
                     { value: "en", label: "En" },
                   ]}
                 />
-                <div className="login-btn first-btn-style">Log In</div>
-                <div className="signup-btn second-btn-style ">Sign Up</div>
+                {/* <div className="language-selector" ref={languageSelectorRef}>
+                  <div
+                    className="selector-control-btn"
+                    onClick={() =>
+                      setOpenLanguageSelector(!openLanguageSelector)
+                    }
+                  >
+                    {pageLang}
+                  </div>
+                  <div className="selector-menu">
+                    <div
+                      className="selector-menu-item"
+                      value="uz"
+                      onClick={() => setPageLang("uz")}
+                    >
+                      Uz
+                    </div>
+                    <div
+                      className="selector-menu-item"
+                      value="ru"
+                      onClick={() => setPageLang("ru")}
+                    >
+                      Ru
+                    </div>
+                    <div
+                      className="selector-menu-item"
+                      value="en"
+                      onClick={() => setPageLang("en")}
+                    >
+                      En
+                    </div>
+                  </div>
+                </div> */}
+                <Link className="login-btn first-btn-style" to={LOGIN_ROUTE}>
+                  {newHomeLangs.navbar.login[pageLang]}
+                </Link>
+                <Link
+                  className="signup-btn second-btn-style"
+                  to={REGISTRATION_ROUTE}
+                >
+                  {newHomeLangs.navbar.signUp[pageLang]}
+                </Link>
               </div>
             </div>
           </div>
@@ -195,24 +296,25 @@ const NewHome = () => {
           <div className="hero-box wow animate__animated animate__slideInUp">
             <div className="hero-left">
               <div className="hero-info">
-                <div className="info-title">
-                  Meet NFC Wristband, a Finance App You will Love from the{" "}
-                  <span className="second-color-font underlined-text">
-                    First Sight
-                  </span>
-                </div>
+                <div
+                  className="info-title"
+                  dangerouslySetInnerHTML={{
+                    __html: newHomeLangs.heroSection.infoTitle[pageLang],
+                  }}
+                ></div>
                 <div className="info-text">
                   <div className="third-color-font">
-                    We have built NFC Wristband to help you change the way you
-                    manage your money for the better.
+                    {newHomeLangs.heroSection.infoText[pageLang]}
                   </div>
                 </div>
               </div>
               <div className="hero-btns">
                 <div className="download-btn second-btn-style">
-                  Dowdload for Free
+                  {newHomeLangs.heroSection.getStarted[pageLang]}
                 </div>
-                <div className="demo-btn first-btn-style">Request a Demo</div>
+                <div className="demo-btn first-btn-style">
+                  {newHomeLangs.heroSection.watchVideo[pageLang]}
+                </div>
               </div>
             </div>
             <div className="hero-right">
@@ -240,14 +342,19 @@ const NewHome = () => {
         {/* FUNCTIONS SECTION */}
         <div className="functions-section">
           <div className="section-header  wow animate__animated animate__slideInUp">
-            <div className="section-header-title">
-              <div>Mobile Money Management </div>
+            <div
+              className="section-header-title"
+              dangerouslySetInnerHTML={{
+                __html: newHomeLangs.functionsSection.headerTitle[pageLang],
+              }}
+            >
+              {/* <div>Mobile Money Management </div>
               <div>
                 <span className="second-color-font underlined-text">
                   Reimagined
                 </span>{" "}
                 for the Better
-              </div>
+              </div> */}
             </div>
             <div className="section-header-text">
               <div className="third-color-font">
@@ -287,17 +394,16 @@ const NewHome = () => {
               <div className="functions-card-bottom">
                 <div className="functions-card-info">
                   <div className="functions-card-info-title">
-                    Advanced Security
+                    {newHomeLangs.functionsSection.cards[0].infoTitle[pageLang]}
                   </div>
                   <div className="functions-card-info-text">
-                    Our app offers an insane level of security to protect all of
-                    your important information.
+                    {newHomeLangs.functionsSection.cards[0].infoText[pageLang]}
                   </div>
                 </div>
-                <div className="functions-card-learn-container">
+                {/* <div className="functions-card-learn-container">
                   <div>Learn More</div>
                   <div>{">"}</div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="functions-card  wow animate__animated animate__slideInRight">
@@ -322,17 +428,16 @@ const NewHome = () => {
               <div className="functions-card-bottom">
                 <div className="functions-card-info">
                   <div className="functions-card-info-title">
-                    Instant Transfers
+                    {newHomeLangs.functionsSection.cards[1].infoTitle[pageLang]}
                   </div>
                   <div className="functions-card-info-text">
-                    Transfer money to others locally with the speed of sound or
-                    maybe even faster, who knows.
+                    {newHomeLangs.functionsSection.cards[1].infoText[pageLang]}
                   </div>
                 </div>
-                <div className="functions-card-learn-container">
+                {/* <div className="functions-card-learn-container">
                   <div>Learn More</div>
                   <div>{">"}</div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="functions-card  wow animate__animated animate__slideInRight">
@@ -358,40 +463,33 @@ const NewHome = () => {
               <div className="functions-card-bottom">
                 <div className="functions-card-info">
                   <div className="functions-card-info-title">
-                    Robust Analytics
+                    {newHomeLangs.functionsSection.cards[2].infoTitle[pageLang]}
                   </div>
                   <div className="functions-card-info-text">
-                    Analyze all of your transactions with ease and have a clear
-                    picture of where your money is going to.
+                    {newHomeLangs.functionsSection.cards[2].infoText[pageLang]}
                   </div>
                 </div>
-                <div className="functions-card-learn-container">
+                {/* <div className="functions-card-learn-container">
                   <div>Learn More</div>
                   <div>{">"}</div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
 
         {/* FEATURES SECTION */}
-        <div className="features-section">
+        <div className="features-section" id="features">
           <div className="section-header   wow animate__animated animate__slideInUp">
-            <div className="section-header-title">
-              <div>Get the Full Picture of Your Finances and Improve </div>
-              <div>
-                <span className="second-color-font underlined-text">Your</span>{" "}
-                <span className="second-color-font underlined-text">
-                  Financial
-                </span>{" "}
-                <span className="second-color-font underlined-text">
-                  Habits
-                </span>
-              </div>
-            </div>
+            <div
+              className="section-header-title"
+              dangerouslySetInnerHTML={{
+                __html: newHomeLangs.featuresSection.headerTitle[pageLang],
+              }}
+            ></div>
             <div className="section-header-text">
               <div className="third-color-font">
-                With our app you can easily improve your financial habits.
+                {newHomeLangs.featuresSection.headerText[pageLang]}
               </div>
             </div>
           </div>
@@ -407,20 +505,16 @@ const NewHome = () => {
                 </div>
               </div>
               <div className="big-card-right">
-                <div className="big-card-info-title">
-                  Advanced Analytics for You to Have a{" "}
-                  <span className="second-color-font underlined-text">
-                    Clear
-                  </span>{" "}
-                  <span className="second-color-font underlined-text">
-                    Picture
-                  </span>{" "}
-                  of Your Finances
-                </div>
+                <div
+                  className="big-card-info-title"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      newHomeLangs.featuresSection.cards[0].infoTitle[pageLang],
+                  }}
+                ></div>
                 <div className="big-card-info-text">
                   <div className="third-color-font">
-                    See the full picture of where your money is going and cut
-                    back on unnecessary expenses easily.
+                    {newHomeLangs.featuresSection.cards[0].infoText[pageLang]}
                   </div>
                 </div>
               </div>
@@ -432,17 +526,16 @@ const NewHome = () => {
                 </div>
               </div>
               <div className="big-card-right">
-                <div className="big-card-info-title">
-                  Every Transaction You Make is{" "}
-                  <span className="sc-theme-second-color-font underlined-text">
-                    Categorized
-                  </span>{" "}
-                  of Your Finances
-                </div>
+                <div
+                  className="big-card-info-title"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      newHomeLangs.featuresSection.cards[1].infoTitle[pageLang],
+                  }}
+                ></div>
                 <div className="big-card-info-text">
                   <div className="third-color-font">
-                    Don't worry about categorizing your transactions manually as
-                    we have already taken care of this for you.
+                    {newHomeLangs.featuresSection.cards[1].infoText[pageLang]}
                   </div>
                 </div>
               </div>
@@ -454,18 +547,16 @@ const NewHome = () => {
                 </div>
               </div>
               <div className="big-card-right">
-                <div className="big-card-info-title">
-                  Share Bills and Vaults with Your{" "}
-                  <span className="trd-theme-second-color-font underlined-text">
-                    Friends and Family
-                  </span>{" "}
-                  Members
-                </div>
+                <div
+                  className="big-card-info-title"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      newHomeLangs.featuresSection.cards[2].infoTitle[pageLang],
+                  }}
+                ></div>
                 <div className="big-card-info-text">
                   <div className="third-color-font">
-                    Our app lets you share all of your bills and savings vaults
-                    with anyone you wish as long as they are the user of the app
-                    too.
+                    {newHomeLangs.featuresSection.cards[2].infoText[pageLang]}
                   </div>
                 </div>
               </div>
@@ -476,24 +567,21 @@ const NewHome = () => {
         {/* DASHBOARD SECTION */}
         <div className="dashboard-section">
           <div className="section-header  wow animate__animated animate__slideInUp">
-            <div className="section-header-title">
-              <div>Transform the Way You Spend and Save </div>
-              <div>
-                <span className="second-color-font underlined-text">
-                  Your Money
-                </span>
-              </div>
-            </div>
+            <div
+              className="section-header-title"
+              dangerouslySetInnerHTML={{
+                __html: newHomeLangs.dashboardSection.headerTitle[pageLang],
+              }}
+            ></div>
             <div className="section-header-text">
               <div className="third-color-font">
-                Don't just take our word for it, take a look at some of the
-                reviews below.
+                {newHomeLangs.dashboardSection.headerText[pageLang]}
               </div>
             </div>
           </div>
           <div className="big-card main-color-bg border-r-64px  wow animate__animated animate__slideInUp">
             <div className="big-card-left">
-              <div className="big-card-icon-container">
+              {/* <div className="big-card-icon-container">
                 <div className="big-card-icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -501,7 +589,7 @@ const NewHome = () => {
                     height="32"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke='var(--token-057e105f-6de4-415f-b0f5-ac7d77f8a158, rgb(255, 255, 255)) /* {"name":"White"} */'
+                    stroke="#fff"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -513,21 +601,32 @@ const NewHome = () => {
                     <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
                   </svg>
                 </div>
-              </div>
+              </div> */}
               <div className="big-card-info">
                 <div className="big-card-info-top">
-                  <div className="big-card-info-title">Sync Across Devices</div>
+                  <div
+                    className="big-card-info-title"
+                    dangerouslySetInnerHTML={{
+                      __html: newHomeLangs.dashboardSection.infoTitle[pageLang],
+                    }}
+                  ></div>
                   <div className="big-card-info-text">
                     <div className="third-color-font">
-                      All of your transactions are automatically synced across
-                      various devices you might have to offer a seamless
-                      experience.
+                      {newHomeLangs.dashboardSection.infoText[pageLang]}
                     </div>
                   </div>
                 </div>
-                <div className="big-card-learn-container second-color-font">
+                {/* <div className="big-card-learn-container second-color-font">
                   <div>Learn More</div>
                   <div>{">"}</div>
+                </div> */}
+                <div className="hero-btns">
+                  <div className="download-btn second-btn-style">
+                    {newHomeLangs.heroSection.getStarted[pageLang]}
+                  </div>
+                  <div className="demo-btn first-btn-style">
+                    {newHomeLangs.heroSection.watchVideo[pageLang]}
+                  </div>
                 </div>
               </div>
             </div>
@@ -540,7 +639,7 @@ const NewHome = () => {
         </div>
 
         {/* REVIEWS SECTION */}
-        <div className="reviews-section">
+        <div className="reviews-section" id="reviews">
           <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Trusted by Millions of Happy Customers from </div>
@@ -655,7 +754,7 @@ const NewHome = () => {
         </div>
 
         {/* PRICING SECTION */}
-        <div className="pricing-section">
+        <div className="pricing-section" id="pricing">
           <div className="section-header  wow animate__animated animate__slideInUp">
             <div className="section-header-title">
               <div>Flexible Pricing Plans to Fit </div>
@@ -1054,7 +1153,8 @@ const NewHome = () => {
                   </span>
                 </div>
                 <div className="rights-reserved third-color-font">
-                  © IT Park 2019-2023. All Rights Reserved.
+                  © IT Park 2019-2023.{" "}
+                  {newHomeLangs.footerSection.footerRights[pageLang]}
                 </div>
               </div>
               <div className="footer-socials">
@@ -1118,22 +1218,92 @@ const NewHome = () => {
               </div>
             </div>
             <div className="footer-right">
-              <div className="footer-column">
-                <div className="footer-column-header">Product</div>
+              {newHomeLangs.footerSection.footerColumns.map((column, index) => (
+                <div className="footer-column">
+                  <div className="footer-column-header">
+                    {column.columnTitle[pageLang]}
+                  </div>
+                  <div className="footer-column-links">
+                    {footerLinks[index].map((link) => (
+                      <div className="footer-column-link">
+                        {link.scroll ? (
+                          <a href={link.scroll}>{link.lang[pageLang]}</a>
+                        ) : (
+                          <Link to={link.link}>{link.lang[pageLang]}</Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              {/* <div className="footer-column">
+                <div className="footer-column-header">
+                  {
+                    newHomeLangs.footerSection.footerColumns[0].columnTitle[
+                      pageLang
+                    ]
+                  }
+                </div>
                 <div className="footer-column-links">
-                  <div className="footer-column-link">Features</div>
-                  <div className="footer-column-link">Pricing</div>
-                  <div className="footer-column-link">Reviews</div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[0][pageLang]
+                    }
+                  </div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[1][pageLang]
+                    }
+                  </div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[2][pageLang]
+                    }
+                  </div>
                 </div>
               </div>
               <div className="footer-column">
-                <div className="footer-column-header">Company</div>
+                <div className="footer-column-header">
+                  {
+                    newHomeLangs.footerSection.footerColumns[1].columnTitle[
+                      pageLang
+                    ]
+                  }
+                </div>
                 <div className="footer-column-links">
-                  <div className="footer-column-link">About</div>
-                  <div className="footer-column-link">Contact</div>
-                  <div className="footer-column-link">Support</div>
-                  <div className="footer-column-link">News</div>
-                  <div className="footer-column-link">Careers</div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[0][pageLang]
+                    }
+                  </div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[0][pageLang]
+                    }
+                  </div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[0][pageLang]
+                    }
+                  </div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[0][pageLang]
+                    }
+                  </div>
+                  <div className="footer-column-link">
+                    {
+                      newHomeLangs.footerSection.footerColumns[0]
+                        .columnLinks[0][pageLang]
+                    }
+                  </div>
                 </div>
               </div>
               <div className="footer-column">
@@ -1142,7 +1312,7 @@ const NewHome = () => {
                   <div className="footer-column-link">Privacy Policy</div>
                   <div className="footer-column-link">Terms of Service</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -162,6 +162,7 @@ const Home = () => {
                   />
                 </svg>
               </Link>
+              <Link to={"/newHome"}>new home</Link>
               {/* <Link to={USER_CONTACT} className="account">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
