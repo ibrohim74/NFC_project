@@ -163,6 +163,16 @@ body {
   outline: none;
   cursor: pointer;
 }
+@media screen and (min-width: 1250px) {
+  .select.first-select {
+    display: none;
+  }
+}
+@media screen and (max-width: 1250px) {
+  .select.second-select {
+    display: none;
+  }
+}
 .Home .select .css-1dimb5e-singleValue {
   color: white !important;
 }
@@ -370,6 +380,13 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.Home .home-navbar .navbar-left-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 .Home .logo {
@@ -776,6 +793,11 @@ body {
   border-radius: 24px;
 }
 
+.Home .functions-card-icon svg {
+  max-width: 32px;
+  max-height: 32px;
+}
+
 .Home .functions-card-bottom {
   gap: 24px;
 }
@@ -1149,6 +1171,11 @@ body {
 .Home .review-author-img {
   padding: 16px;
   border-radius: 24px;
+}
+
+.Home .review-author-img svg {
+  max-width: 32px;
+  max-height: 32px;
 }
 
 @media screen and (max-width: 768px) {

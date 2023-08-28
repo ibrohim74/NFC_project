@@ -199,11 +199,32 @@ const NewHome = () => {
                   <div className="dot second-color-bg"></div>
                 </span>
               </div>
-              <div className="burger-menu" onClick={handleBurgerClick}>
-                <div className="nav-toggle">
-                  <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
-                  <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
-                  <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+              <div className="navbar-left-btns">
+                {/* LANGUAGES */}
+                <Select
+                  className="select first-select"
+                  components={customComponents}
+                  value={{
+                    value: pageLang,
+                    label: pageLang.charAt(0).toUpperCase() + pageLang.slice(1),
+                  }}
+                  onChange={(selectedOption) =>
+                    setPageLang(selectedOption.value)
+                  }
+                  styles={customStyles}
+                  closeMenuOnSelect={true}
+                  options={[
+                    { value: "uz", label: "Uz" },
+                    { value: "ru", label: "Ru" },
+                    { value: "en", label: "En" },
+                  ]}
+                />
+                <div className="burger-menu" onClick={handleBurgerClick}>
+                  <div className="nav-toggle">
+                    <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+                    <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+                    <span className={`bar ${showMenu ? "x-icon" : ""}`}></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -227,7 +248,7 @@ const NewHome = () => {
               <div className="navbar-btns">
                 {/* LANGUAGES */}
                 <Select
-                  className="select"
+                  className="select second-select"
                   components={customComponents}
                   value={{
                     value: pageLang,
@@ -244,39 +265,6 @@ const NewHome = () => {
                     { value: "en", label: "En" },
                   ]}
                 />
-                {/* <div className="language-selector" ref={languageSelectorRef}>
-                  <div
-                    className="selector-control-btn"
-                    onClick={() =>
-                      setOpenLanguageSelector(!openLanguageSelector)
-                    }
-                  >
-                    {pageLang}
-                  </div>
-                  <div className="selector-menu">
-                    <div
-                      className="selector-menu-item"
-                      value="uz"
-                      onClick={() => setPageLang("uz")}
-                    >
-                      Uz
-                    </div>
-                    <div
-                      className="selector-menu-item"
-                      value="ru"
-                      onClick={() => setPageLang("ru")}
-                    >
-                      Ru
-                    </div>
-                    <div
-                      className="selector-menu-item"
-                      value="en"
-                      onClick={() => setPageLang("en")}
-                    >
-                      En
-                    </div>
-                  </div>
-                </div> */}
                 <Link className="login-btn first-btn-style" to={LOGIN_ROUTE}>
                   {newHomeLangs.navbar.login[pageLang]}
                 </Link>
@@ -327,7 +315,7 @@ const NewHome = () => {
 
         {/* SLIDER SECTION */}
         <div className="home-slider-section">
-          <div className="home-slider wow animate__animated animate__slideInRight">
+          <div className="home-slider wow animate__animated animate__slideInLeft">
             <div className="slider-box">
               <div className="slider-track">
                 {slides}
@@ -364,7 +352,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="functions-cards">
-            <div className="functions-card  wow animate__animated animate__slideInRight">
+            <div className="functions-card  wow animate__animated animate__slideInLeft">
               <div className="functions-card-icon-container">
                 <div className="functions-card-icon">
                   <svg
@@ -406,7 +394,7 @@ const NewHome = () => {
                 </div> */}
               </div>
             </div>
-            <div className="functions-card  wow animate__animated animate__slideInRight">
+            <div className="functions-card  wow animate__animated animate__slideInLeft">
               <div className="functions-card-icon-container">
                 <div className="functions-card-icon">
                   <svg
@@ -440,7 +428,7 @@ const NewHome = () => {
                 </div> */}
               </div>
             </div>
-            <div className="functions-card  wow animate__animated animate__slideInRight">
+            <div className="functions-card  wow animate__animated animate__slideInLeft">
               <div className="functions-card-icon-container">
                 <div className="functions-card-icon">
                   <svg
@@ -494,7 +482,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="features-cards">
-            <div className="big-card main-color-bg  wow animate__animated animate__slideInRight">
+            <div className="big-card main-color-bg  wow animate__animated animate__slideInLeft">
               <div className="big-card-left">
                 <div className="big-card-img-container second-color-bg border-r-64px">
                   <img
@@ -519,7 +507,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="big-card sc-theme-main-color-bg  wow animate__animated animate__slideInRight">
+            <div className="big-card sc-theme-main-color-bg  wow animate__animated animate__slideInLeft">
               <div className="big-card-left">
                 <div className="big-card-img-container sc-theme-second-color-bg border-r-64px">
                   <img src={require("../assets/img/wristband.png")} alt="" />
@@ -540,7 +528,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="big-card trd-theme-main-color-bg  wow animate__animated animate__slideInRight">
+            <div className="big-card trd-theme-main-color-bg  wow animate__animated animate__slideInLeft">
               <div className="big-card-left">
                 <div className="big-card-img-container trd-theme-second-color-bg border-r-64px">
                   <img src={require("../assets/img/wristband.png")} alt="" />
@@ -657,7 +645,7 @@ const NewHome = () => {
             </div>
           </div>
           <div className="reviews">
-            <div className="review main-color-bg  wow animate__animated animate__slideInRight">
+            <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
               <div className="review-logo">
                 <img src={require("../assets/testImg/partnyor1.png")} alt="" />
               </div>
@@ -688,7 +676,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="review main-color-bg  wow animate__animated animate__slideInRight">
+            <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
               <div className="review-logo">
                 <img src={require("../assets/testImg/partnyor2.png")} alt="" />
               </div>
@@ -719,7 +707,7 @@ const NewHome = () => {
                 </div>
               </div>
             </div>
-            <div className="review main-color-bg  wow animate__animated animate__slideInRight">
+            <div className="review main-color-bg  wow animate__animated animate__slideInLeft">
               <div className="review-logo">
                 <img src={require("../assets/testImg/partnyor3.png")} alt="" />
               </div>
@@ -909,7 +897,7 @@ const NewHome = () => {
                   Get Started
                 </div>
               </div>
-              <div className="pricing-plan  wow animate__animated animate__slideInRight">
+              <div className="pricing-plan  wow animate__animated animate__slideInLeft">
                 <div className="pricing-plan-price">
                   <div className="price-title second-color-font">Premium</div>
                   <div className="price-info">
