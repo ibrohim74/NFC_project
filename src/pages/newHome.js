@@ -28,13 +28,17 @@ import "slick-carousel/slick/slick-theme.css";
 //review slider settings
 const settings = {
   dots: true,
+  arrows: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 2,
   slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  pauseOnHover: false,
   responsive: [
     {
-      breakpoint: 1300,
+      breakpoint: 1024,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,
