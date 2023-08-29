@@ -88,6 +88,7 @@ const customStyles = {
     textAlign: "center",
     outline: "none !important",
     cursor: "pointer",
+    boxShadow: "none",
   }),
   option: (provided, state) => ({
     ...provided,
@@ -194,6 +195,11 @@ const NewHome = () => {
     localStorage.getItem("language") || "uz"
   );
   const [openLanguageSelector, setOpenLanguageSelector] = useState(false);
+  const [yournameInput, setYournameInput] = useState("");
+
+  const handleYournameChange = (event) => {
+    setYournameInput(event.target.value);
+  };
 
   useEffect(() => {
     // save pageLang to localStorage under "language" key
@@ -680,11 +686,18 @@ const NewHome = () => {
                   <div>{">"}</div>
                 </div> */}
                 <div className="hero-btns">
-                  <div className="download-btn second-btn-style">
-                    {newHomeLangs.heroSection.getStarted[pageLang]}
+                  <div className="input-btn first-btn-style">
+                    <span class="unit">biosite.uz/</span>
+                    <input
+                      type="text"
+                      value={yournameInput}
+                      name=""
+                      placeholder="yourname"
+                      onChange={handleYournameChange}
+                    />
                   </div>
-                  <div className="demo-btn first-btn-style">
-                    {newHomeLangs.heroSection.watchVideo[pageLang]}
+                  <div className="demo-btn second-btn-style">
+                    Claim your biosite
                   </div>
                 </div>
               </div>

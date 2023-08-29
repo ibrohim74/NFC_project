@@ -436,9 +436,9 @@ export const newHomeLangs = {
   },
   functionsSection: {
     headerTitle: {
-      uz: "Nima Bilan Shug'ullansangiz ham, Nimaga Qiziqsangiz ham - Buni <span>Bir Havola</span> Orqali <span>Ulashing!</span> ",
-      en: "Whatever You Do, Whatever You're Into - <span>Share</span> in One <span>Simple Link</span>",
-      ru: "Чем Бы Вы ни Занимались, Чем Бы Вы ни Интересовались - <span>Поделитесь</span> Одной <span>Простой Ссылкой!</span>",
+      uz: "Nima Bilan Shug'ullansangiz ham, Nimaga Qiziqsangiz ham - Buni <span>Bir Havola Orqali Ulashing!</span> ",
+      en: "Whatever You Do, Whatever You're Into - <span>Share in One Simple Link</span>",
+      ru: "Чем Бы Вы ни Занимались, Чем Бы Вы ни Интересовались - <span>Поделитесь Одной Простой Ссылкой!</span>",
     },
     headerText: {
       uz: "Siz bir zumda to'liq profilingizni baham ko'rishingiz mumkin, bu esa tarmoqli ishlashni va boshqalar bilan bog'lanishni osonlashtiradi",
@@ -498,9 +498,9 @@ export const newHomeLangs = {
     cards: [
       {
         infoTitle: {
-          uz: "Auditoriyangizni Tahlil Qiling va Izdoshlaringizni <span>Jalb Qiling</span>",
-          en: "Analyze Your Audience and Keep Your Followers <span>Engaged</span>",
-          ru: "Анализируйте Свою Аудиторию и <span>Поддерживайте Интерес</span> Подписчиков",
+          uz: "Auditoriyangizni <span>Tahlil Qiling</span> va Izdoshlaringizni <span>Jalb Qiling</span>",
+          en: "<span>Analyze</span> Your Audience and Keep Your Followers <span>Engaged</span>",
+          ru: "<span>Анализируйте</span> Свою Аудиторию и <span>Поддерживайте Интерес</span> Подписчиков",
         },
         infoText: {
           uz: "Foydalanuvchilaringizni vaqt jarayonidagi ishtirokini shuningdek daromadni kuzating va auditoriyangizni nima jalb qilishini bilib oling. Auditoriyangiz siz bilan jam bo'lishi uchun bir zumda o'zgartirishlar kiriting",
