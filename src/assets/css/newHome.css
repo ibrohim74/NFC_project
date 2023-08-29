@@ -1084,7 +1084,9 @@ body {
   padding-left: 20px !important;
   border-radius: 8px !important;
   position: relative;
-  width: max-content;
+  width: 100%;
+  display: flex;
+  justify-content: start;
 }
 
 .Home .dashboard-section .input-btn input {
