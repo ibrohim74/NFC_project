@@ -438,7 +438,7 @@ export const newHomeLangs = {
     headerTitle: {
       uz: "Nima Bilan Shug'ullansangiz ham, Nimaga Qiziqsangiz ham - Buni <span>Bir Havola Orqali Ulashing!</span> ",
       en: "Whatever You Do, Whatever You're Into - <span>Share in One Simple Link</span>",
-      ru: "Чем Бы Вы ни Занимались, Чем Бы Вы ни Интересовались - <span>Поделитесь Одной Простой Ссылкой!</span>",
+      ru: "Чем Бы Вы ни Занимались, Чем Бы Вы ни Интересовались - <span>Поделитесь Одной</span> <span>Простой Ссылкой!</span>",
     },
     headerText: {
       uz: "Siz bir zumda to'liq profilingizni baham ko'rishingiz mumkin, bu esa tarmoqli ishlashni va boshqalar bilan bog'lanishni osonlashtiradi",
