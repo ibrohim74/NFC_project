@@ -1081,6 +1081,7 @@ body {
 }
 
 .Home .dashboard-section .input-btn {
+  cursor: text;
   padding-left: 20px !important;
   border-radius: 8px !important;
   position: relative;
